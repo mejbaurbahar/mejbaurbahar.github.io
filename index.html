@@ -1793,6 +1793,131 @@
     </div>
   </div>
 
+  <!-- Admin User Details & Autonomous Telemetry Modal -->
+  <div id="admin-user-detail-modal" class="auth-modal-overlay" style="display:none; z-index:100015;">
+    <div class="auth-modal-card" style="max-width:860px; width:95%; max-height:92vh; overflow-y:auto; background:#0f172a; color:#f8fafc; border:1px solid #334155; border-radius:18px; padding:28px 24px; box-shadow:0 24px 64px rgba(0,0,0,0.75);">
+      <!-- Modal Header -->
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px; border-bottom:1px solid #1e293b; padding-bottom:16px;">
+        <div style="display:flex; align-items:center; gap:14px;">
+          <img id="detail-modal-avatar" src="https://avatars.githubusercontent.com/u/245405312?v=4" style="width:54px; height:54px; border-radius:50%; object-fit:cover; border:2px solid #38bdf8;" alt="User Avatar">
+          <div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <h3 id="detail-modal-name" style="font-size:1.35rem; font-weight:700; color:#f8fafc; margin:0;">User Details</h3>
+              <span id="detail-modal-role-badge" class="role-badge-user">👤 User</span>
+              <span id="detail-modal-status-badge" style="font-size:0.75rem; font-weight:600; padding:2px 8px; border-radius:10px; background:rgba(52,211,153,0.15); color:#34d399;">● Active</span>
+            </div>
+            <div id="detail-modal-email" style="font-size:0.86rem; color:#94a3b8; margin-top:3px;">email@example.com</div>
+          </div>
+        </div>
+        <button onclick="closeAdminUserDetailModal()" style="background:transparent; border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer; padding:4px 8px; line-height:1;" title="Close">✕</button>
+      </div>
+
+      <!-- Quick KPI Strip -->
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:12px; margin-bottom:24px;">
+        <div style="background:#1e293b; border:1px solid #334155; border-radius:10px; padding:12px 14px;">
+          <div style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase; font-weight:700;">Subscription Plan</div>
+          <div id="detail-modal-plan" style="font-size:1.05rem; font-weight:800; color:#38bdf8; margin-top:2px;">15 Days Free Trial</div>
+          <div id="detail-modal-days-left" style="font-size:0.75rem; color:#34d399; margin-top:2px;">15 days left</div>
+        </div>
+        <div style="background:#1e293b; border:1px solid #334155; border-radius:10px; padding:12px 14px;">
+          <div style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase; font-weight:700;">Connected Channels</div>
+          <div id="detail-modal-channels-count" style="font-size:1.05rem; font-weight:800; color:#f8fafc; margin-top:2px;">0 / 5 Channels</div>
+          <div style="font-size:0.75rem; color:#94a3b8; margin-top:2px;">Verified Handshakes</div>
+        </div>
+        <div style="background:#1e293b; border:1px solid #334155; border-radius:10px; padding:12px 14px;">
+          <div style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase; font-weight:700;">AI Worker Status</div>
+          <div id="detail-modal-worker-status" style="font-size:1.05rem; font-weight:800; color:#34d399; margin-top:2px;">● ACTIVE_WORKING</div>
+          <div style="font-size:0.75rem; color:#94a3b8; margin-top:2px;">Autonomous Loop</div>
+        </div>
+        <div style="background:#1e293b; border:1px solid #334155; border-radius:10px; padding:12px 14px;">
+          <div style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase; font-weight:700;">Community Engagement</div>
+          <div id="detail-modal-engagement-count" style="font-size:1.05rem; font-weight:800; color:#f59e0b; margin-top:2px;">0 Actions</div>
+          <div id="detail-modal-replies-reactions" style="font-size:0.75rem; color:#94a3b8; margin-top:2px;">0 replies • 0 reacts</div>
+        </div>
+      </div>
+
+      <!-- Section 1: Connected Social Media Accounts -->
+      <div style="margin-bottom:24px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <h4 style="font-size:1rem; font-weight:700; color:#f8fafc; margin:0; display:flex; align-items:center; gap:8px;">
+            <span>🌐</span> Connected Social Media Fleet
+          </h4>
+          <span style="font-size:0.75rem; color:#94a3b8;">Real authentic handles inspected live</span>
+        </div>
+        <div id="detail-modal-channels-list" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:12px;">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Section 2: Audience Sentiment Telemetry & Negative Feedback -->
+      <div style="margin-bottom:24px; background:rgba(30,41,59,0.5); border:1px solid #334155; border-radius:12px; padding:18px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <div>
+            <h4 style="font-size:1rem; font-weight:700; color:#f8fafc; margin:0; display:flex; align-items:center; gap:8px;">
+              <span>📊</span> Audience Sentiment & Telemetry
+            </h4>
+            <div style="font-size:0.76rem; color:#94a3b8; margin-top:2px;">Real-time analysis of comments, praise, technical questions, and critiques</div>
+          </div>
+          <div id="detail-modal-sentiment-total" style="font-size:0.8rem; font-weight:700; color:#38bdf8; background:#0b0f19; padding:4px 10px; border-radius:8px; border:1px solid #334155;">
+            0 Monitored
+          </div>
+        </div>
+
+        <!-- Sentiment Bar Diagram -->
+        <div style="margin-bottom:16px;">
+          <div style="display:flex; height:12px; border-radius:6px; overflow:hidden; background:#0b0f19; margin-bottom:8px;">
+            <div id="detail-bar-pos" style="background:#10b981; width:70%; transition:width 0.4s ease;" title="Positive"></div>
+            <div id="detail-bar-neu" style="background:#64748b; width:20%; transition:width 0.4s ease;" title="Neutral"></div>
+            <div id="detail-bar-neg" style="background:#ef4444; width:10%; transition:width 0.4s ease;" title="Negative"></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:0.76rem;">
+            <span style="color:#34d399; font-weight:600;" id="detail-text-pos">Positive: 70% (0)</span>
+            <span style="color:#94a3b8; font-weight:600;" id="detail-text-neu">Neutral: 20% (0)</span>
+            <span style="color:#f87171; font-weight:600;" id="detail-text-neg">Negative: 10% (0)</span>
+          </div>
+        </div>
+
+        <!-- Negative Feedback Ledger / Complaints Box -->
+        <div>
+          <h5 style="font-size:0.85rem; font-weight:700; color:#f87171; margin:0 0 8px 0; display:flex; align-items:center; gap:6px;">
+            <span>⚠️</span> Audience Critiques & Negative Feedback (Auto-Escalated to Lead)
+          </h5>
+          <div id="detail-modal-negative-list" style="max-height:160px; overflow-y:auto; display:flex; flex-direction:column; gap:8px;">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Recent Activity & Reply Stream -->
+      <div style="margin-bottom:24px;">
+        <h4 style="font-size:1rem; font-weight:700; color:#f8fafc; margin:0 0 12px 0; display:flex; align-items:center; gap:8px;">
+          <span>💬</span> Recent Interactions & Auto-Replies
+        </h4>
+        <div id="detail-modal-recent-feed" style="max-height:220px; overflow-y:auto; display:flex; flex-direction:column; gap:8px; border:1px solid #1e293b; border-radius:10px; padding:10px; background:#0b0f19;">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Section 4: Admin Action Buttons -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-top:1px solid #1e293b; padding-top:18px;">
+        <div style="display:flex; gap:8px; align-items:center;">
+          <button type="button" id="detail-btn-scan" onclick="adminTriggerUserScanFromModal()" style="padding:9px 16px; background:linear-gradient(135deg, #10b981, #059669); color:#ffffff; font-weight:700; border:none; border-radius:8px; font-size:0.82rem; cursor:pointer; display:flex; align-items:center; gap:6px;">
+            <span>⚡</span> Run AI Scan & Sentiment Check
+          </button>
+          <button type="button" id="detail-btn-extend" onclick="adminExtendUserPlanFromModal(30)" style="padding:9px 14px; background:#1e293b; color:#38bdf8; border:1px solid #38bdf8; border-radius:8px; font-size:0.82rem; font-weight:600; cursor:pointer;">
+            +30 Days Subscription
+          </button>
+          <button type="button" id="detail-btn-toggle-status" onclick="adminToggleStatusFromModal()" style="padding:9px 14px; background:#1e293b; color:#cbd5e1; border:1px solid #475569; border-radius:8px; font-size:0.82rem; cursor:pointer;">
+            Suspend / Activate
+          </button>
+        </div>
+        <button type="button" onclick="closeAdminUserDetailModal()" style="padding:9px 18px; background:#334155; color:#f8fafc; border:none; border-radius:8px; font-size:0.82rem; font-weight:600; cursor:pointer;">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
 
   <main class="container" role="main">
 
@@ -2193,9 +2318,12 @@
                 <span>🌐</span> Connect Your Social Media Accounts
               </h3>
               <div style="font-size:0.84rem; color:#94a3b8;">
-                Connect your personal profiles and pages below. Once connected, Fagun AI automatically starts research and daily scheduling.
+                Connect your personal profiles and pages below. Once connected, Fagun AI automatically starts research, checks comments, dispatches replies, and monitors audience sentiment.
               </div>
             </div>
+            <button type="button" id="btn-user-live-scan" onclick="triggerUserLiveScan()" style="display:flex; align-items:center; gap:8px; padding:9px 16px; background:linear-gradient(135deg, #10b981, #059669); color:#ffffff; font-weight:700; border:none; border-radius:8px; font-size:0.84rem; cursor:pointer; box-shadow:0 4px 12px rgba(16,185,129,0.3);">
+              <span>⚡</span> Run Live AI Scan & Sentiment Check
+            </button>
           </div>
 
           <div id="user-portal-channels-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px;">
@@ -3376,10 +3504,12 @@
           ? '<span style="color:#34d399; font-weight:600;">● Active</span>'
           : '<span style="color:#ef4444; font-weight:600;">● Suspended</span>';
 
-        const actionButtons = u.role === 'admin'
-          ? '<span style="font-size:0.75rem; color:#94a3b8;">Super Admin (Protected)</span>'
-          : `
-            <div style="display:flex; justify-content:flex-end; align-items:center; gap:6px;">
+        const actionButtons = `
+          <div style="display:flex; justify-content:flex-end; align-items:center; gap:6px;">
+            <button class="btn btn-outline" style="padding:4px 8px; font-size:0.72rem; color:#38bdf8; border-color:#38bdf8;" onclick="openAdminUserDetailModal(${u.id})" title="View Complete User Details, Connected Channels & Sentiment">
+              🔍 Details
+            </button>
+            ${u.role === 'admin' ? '' : `
               <button class="btn btn-outline" style="padding:4px 8px; font-size:0.72rem;" onclick="extendUserPlan(${u.id}, 30)" title="Extend Subscription">
                 +30d
               </button>
@@ -3389,10 +3519,11 @@
               <button class="btn btn-outline" style="padding:4px 8px; font-size:0.72rem; color:#ef4444; border-color:#ef4444;" onclick="deleteUserAction(${u.id}, '${escapeHtml(u.email)}')" title="Delete User">
                 🗑️
               </button>
-            </div>
-          `;
+            `}
+          </div>
+        `;
 
-        html += `<tr>
+        html += `<tr onclick="openAdminUserDetailModal(${u.id})" style="cursor:pointer; transition:background 0.2s ease;" onmouseover="this.style.background='rgba(56,189,248,0.06)'" onmouseout="this.style.background='transparent'" title="Click to view full user details, connected channels & sentiment">
           <td>
             <div style="display:flex; align-items:center; gap:10px;">
               <img src="${u.avatar_url || 'https://avatars.githubusercontent.com/u/245405312?v=4'}" style="width:32px; height:32px; border-radius:50%; object-fit:cover; border:1px solid #334155;" alt="${escapeHtml(u.name)}">
@@ -3407,7 +3538,7 @@
           <td style="color:#94a3b8; font-size:0.8rem;">${u.subscription_started_at}</td>
           <td><span class="${daysClass}">${u.days_left} days left</span></td>
           <td>${statusBadge}</td>
-          <td style="text-align:right;">${actionButtons}</td>
+          <td style="text-align:right;" onclick="event.stopPropagation()">${actionButtons}</td>
         </tr>`;
       });
       tbody.innerHTML = html;
@@ -3739,6 +3870,8 @@
           }
           alert(`🎉 Success! Connected ${platform.toUpperCase()} (${canonicalHandle})!\n\nFagun AI Autonomous Worker has automatically started active monitoring, scheduled posts, and sentiment telemetry for your account.`);
           await refreshUserSocialFleet();
+          await loadSentimentStats();
+          await loadSentimentFeed('all');
         } else {
           if (statusEl) {
             statusEl.className = 'verify-status-msg error';
@@ -4257,6 +4390,234 @@
         document.execCommand('copy');
         alert('📋 Joining Link copied to clipboard!');
       });
+    }
+
+    // --- User Live Autonomous Scan & Sentiment Check ---
+    async function triggerUserLiveScan(silent = false) {
+      const scanBtn = document.getElementById('btn-user-live-scan');
+      if (scanBtn) {
+        scanBtn.disabled = true;
+        scanBtn.innerHTML = '<span>⏳</span> Scanning Comments & Sentiment...';
+      }
+      try {
+        const res = await fetch(`${getApiBase()}/api/user/scan-now`, {
+          method: 'POST',
+          headers: getApiHeaders()
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          await loadSentimentStats();
+          await loadSentimentFeed('all');
+          if (!silent) {
+            alert(`🎉 Autonomous Loop Execution Complete!\n\n• Channels Scanned: ${data.connected_channels}\n• Audience Comments & Mentions Analyzed: ${data.comments_analyzed}\n• Auto-Replies Dispatched: ${data.replies_dispatched}\n• Reactions Given (❤️ / 👍): ${data.reactions_given}\n\nYour Audience Perception & Sentiment Telemetry has been updated live!`);
+          }
+        } else {
+          if (!silent) alert(`⚠️ ${data.message || data.detail || 'Scan failed'}`);
+        }
+      } catch (err) {
+        if (!silent) alert(`⚠️ Scan error: ${err.message}`);
+      } finally {
+        if (scanBtn) {
+          scanBtn.disabled = false;
+          scanBtn.innerHTML = '<span>⚡</span> Run Live AI Scan & Sentiment Check';
+        }
+      }
+    }
+
+    // --- Admin User Detail Modal & Live Diagnostics ---
+    let selectedAdminDetailUserId = null;
+
+    async function openAdminUserDetailModal(userId) {
+      selectedAdminDetailUserId = userId;
+      const modal = document.getElementById('admin-user-detail-modal');
+      if (!modal) return;
+      modal.style.display = 'flex';
+
+      // Show loading states
+      document.getElementById('detail-modal-name').innerText = 'Loading user...';
+      document.getElementById('detail-modal-email').innerText = 'Fetching details...';
+      document.getElementById('detail-modal-channels-list').innerHTML = '<div style="color:#94a3b8; font-size:0.85rem;">Loading channels...</div>';
+      document.getElementById('detail-modal-negative-list').innerHTML = '<div style="color:#94a3b8; font-size:0.85rem;">Analyzing feedback...</div>';
+      document.getElementById('detail-modal-recent-feed').innerHTML = '<div style="color:#94a3b8; font-size:0.85rem;">Loading interactions...</div>';
+
+      try {
+        const res = await fetch(`${getApiBase()}/api/admin/users/${userId}/details`, {
+          headers: getApiHeaders()
+        });
+        if (!res.ok) {
+          alert('Failed to load user details.');
+          closeAdminUserDetailModal();
+          return;
+        }
+        const data = await res.json();
+        const u = data.user;
+        const channels = data.connected_channels || [];
+        const progress = data.progress || {};
+        const sentiment = data.sentiment || {};
+
+        // Profile Header
+        document.getElementById('detail-modal-avatar').src = u.avatar_url || 'https://avatars.githubusercontent.com/u/245405312?v=4';
+        document.getElementById('detail-modal-name').innerText = u.full_name || u.email;
+        document.getElementById('detail-modal-email').innerText = u.email;
+        document.getElementById('detail-modal-role-badge').className = u.role === 'admin' ? 'role-badge-admin' : 'role-badge-user';
+        document.getElementById('detail-modal-role-badge').innerText = u.role === 'admin' ? '👑 Admin' : '👤 User';
+
+        const statusBadge = document.getElementById('detail-modal-status-badge');
+        if (statusBadge) {
+          statusBadge.innerText = u.status === 'active' ? '● Active' : '● Suspended';
+          statusBadge.style.color = u.status === 'active' ? '#34d399' : '#ef4444';
+          statusBadge.style.background = u.status === 'active' ? 'rgba(52,211,153,0.15)' : 'rgba(239,68,68,0.15)';
+        }
+
+        // Quick KPI Strip
+        document.getElementById('detail-modal-plan').innerText = u.pricing_plan;
+        document.getElementById('detail-modal-days-left').innerText = `${u.days_left} days left (expires ${u.subscription_expires_at})`;
+        const connectedCount = channels.filter(c => c.is_connected).length;
+        document.getElementById('detail-modal-channels-count').innerText = `${connectedCount} / ${channels.length || 5} Channels`;
+        document.getElementById('detail-modal-worker-status').innerText = progress.worker_status === 'ACTIVE_WORKING' ? '● ACTIVE_WORKING' : 'IDLE';
+        document.getElementById('detail-modal-worker-status').style.color = progress.worker_status === 'ACTIVE_WORKING' ? '#34d399' : '#94a3b8';
+        document.getElementById('detail-modal-engagement-count').innerText = `${(progress.total_replies_dispatched || 0) + (progress.total_reactions_given || 0)} Actions`;
+        document.getElementById('detail-modal-replies-reactions').innerText = `${progress.total_replies_dispatched || 0} replies • ${progress.total_reactions_given || 0} reacts`;
+
+        // Section 1: Channels List
+        const platformIcons = {
+          linkedin: '<svg width="18" height="18" viewBox="0 0 24 24" fill="#0a66c2"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>',
+          x: '<svg width="18" height="18" viewBox="0 0 24 24" fill="#f8fafc"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+          facebook: '<svg width="18" height="18" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>',
+          facebook_page: '<span style="font-size:1.1rem;">🌾</span>',
+          instagram: '<svg width="18" height="18" viewBox="0 0 24 24" fill="#e1306c"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>'
+        };
+
+        const channelsListEl = document.getElementById('detail-modal-channels-list');
+        channelsListEl.innerHTML = channels.map(c => {
+          const icon = platformIcons[c.platform] || '🌐';
+          const isConn = c.is_connected;
+          const badgeHtml = isConn
+            ? `<span style="font-size:0.72rem; padding:2px 8px; border-radius:10px; background:rgba(52,211,153,0.15); color:#34d399; font-weight:600;">● Connected</span>`
+            : `<span style="font-size:0.72rem; padding:2px 8px; border-radius:10px; background:rgba(148,163,184,0.1); color:#94a3b8;">Not Connected</span>`;
+          return `
+            <div style="background:#0b0f19; border:1px solid ${isConn ? '#38bdf8' : '#334155'}; border-radius:10px; padding:12px 14px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <div style="display:flex; align-items:center; gap:8px; font-weight:700; color:#f8fafc; font-size:0.9rem;">
+                  ${icon} <span>${c.platform.replace('_', ' ').toUpperCase()}</span>
+                </div>
+                ${badgeHtml}
+              </div>
+              <div style="font-size:0.82rem; color:${isConn ? '#38bdf8' : '#64748b'}; font-family:monospace; margin-bottom:4px;">
+                ${escapeHtml(c.account_handle || 'None configured')}
+              </div>
+              <div style="font-size:0.72rem; color:#94a3b8;">
+                Slot: <span style="color:#cbd5e1;">${escapeHtml(c.post_time_slot || 'Default SQA')}</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        // Section 2: Sentiment Breakdown
+        const sTotal = sentiment.total_monitored || 0;
+        document.getElementById('detail-modal-sentiment-total').innerText = `${sTotal} Total Monitored`;
+        document.getElementById('detail-bar-pos').style.width = `${sentiment.positive_pct || 0}%`;
+        document.getElementById('detail-bar-neu').style.width = `${sentiment.neutral_pct || 0}%`;
+        document.getElementById('detail-bar-neg').style.width = `${sentiment.negative_pct || 0}%`;
+        document.getElementById('detail-text-pos').innerText = `Positive: ${sentiment.positive_pct || 0}% (${sentiment.positive_count || 0})`;
+        document.getElementById('detail-text-neu').innerText = `Neutral: ${sentiment.neutral_pct || 0}% (${sentiment.neutral_count || 0})`;
+        document.getElementById('detail-text-neg').innerText = `Negative: ${sentiment.negative_pct || 0}% (${sentiment.negative_count || 0})`;
+
+        // Negative feedback list
+        const negListEl = document.getElementById('detail-modal-negative-list');
+        const negItems = sentiment.negative_feedback || [];
+        if (negItems.length === 0) {
+          negListEl.innerHTML = '<div style="font-size:0.8rem; color:#94a3b8; font-style:italic; padding:6px 0;">No active negative feedback or critical issues logged. 100% healthy sentiment.</div>';
+        } else {
+          negListEl.innerHTML = negItems.map(n => `
+            <div style="background:#18181b; border:1px solid #7f1d1d; border-radius:8px; padding:10px 12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <div style="font-weight:700; color:#f87171; font-size:0.82rem;">
+                  ${escapeHtml(n.author_name)} <span style="color:#94a3b8; font-weight:400;">(${escapeHtml(n.author_handle)}) on ${n.platform.toUpperCase()}</span>
+                </div>
+                <span style="font-size:0.7rem; color:#94a3b8;">${n.created_at}</span>
+              </div>
+              <div style="font-size:0.82rem; color:#fecaca; margin-bottom:6px;">"${escapeHtml(n.content_text)}"</div>
+              <div style="font-size:0.72rem; color:#fbbf24; font-weight:600;">🛡️ Status: ${escapeHtml(n.ai_action_status)}</div>
+            </div>
+          `).join('');
+        }
+
+        // Recent activity feed
+        const recentEl = document.getElementById('detail-modal-recent-feed');
+        const recentItems = sentiment.recent_feed || [];
+        if (recentItems.length === 0) {
+          recentEl.innerHTML = '<div style="font-size:0.8rem; color:#94a3b8; font-style:italic;">No recorded interactions yet. Run an AI scan to check comments.</div>';
+        } else {
+          recentEl.innerHTML = recentItems.map(item => {
+            const badgeColor = item.sentiment === 'positive' ? '#34d399' : (item.sentiment === 'negative' ? '#f87171' : '#94a3b8');
+            return `
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:10px; padding:6px 8px; border-bottom:1px solid #1e293b;">
+                <div style="flex:1;">
+                  <div style="font-size:0.8rem; color:#f8fafc; font-weight:600;">
+                    ${escapeHtml(item.author_name)} <span style="color:#94a3b8; font-weight:400;">(${escapeHtml(item.author_handle)}) • ${item.platform.toUpperCase()}</span>
+                    <span style="font-size:0.68rem; padding:1px 6px; border-radius:8px; background:rgba(255,255,255,0.06); color:${badgeColor}; font-weight:700; margin-left:6px;">${item.sentiment.toUpperCase()}</span>
+                  </div>
+                  <div style="font-size:0.78rem; color:#cbd5e1; margin-top:2px;">${escapeHtml(item.content_text)}</div>
+                  <div style="font-size:0.7rem; color:#38bdf8; margin-top:2px;">🤖 ${escapeHtml(item.ai_action_status)}</div>
+                </div>
+                <div style="font-size:0.7rem; color:#64748b; white-space:nowrap;">${item.created_at}</div>
+              </div>
+            `;
+          }).join('');
+        }
+
+      } catch (err) {
+        alert('Network error loading user details: ' + err.message);
+      }
+    }
+
+    function closeAdminUserDetailModal() {
+      const modal = document.getElementById('admin-user-detail-modal');
+      if (modal) modal.style.display = 'none';
+      selectedAdminDetailUserId = null;
+    }
+
+    async function adminTriggerUserScanFromModal() {
+      if (!selectedAdminDetailUserId) return;
+      const btn = document.getElementById('detail-btn-scan');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<span>⏳</span> Scanning...';
+      }
+      try {
+        const res = await fetch(`${getApiBase()}/api/admin/users/${selectedAdminDetailUserId}/scan-now`, {
+          method: 'POST',
+          headers: getApiHeaders()
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          alert(`🎉 Scan Complete!\n\n• Channels Scanned: ${data.connected_channels}\n• Comments Analyzed: ${data.comments_analyzed}\n• Replies Dispatched: ${data.replies_dispatched}\n• Reactions Executed: ${data.reactions_given}`);
+          await openAdminUserDetailModal(selectedAdminDetailUserId);
+          await loadAdminUsers();
+        } else {
+          alert(`⚠️ ${data.message || data.detail || 'Scan failed'}`);
+        }
+      } catch (err) {
+        alert('Scan error: ' + err.message);
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = '<span>⚡</span> Run AI Scan & Sentiment Check';
+        }
+      }
+    }
+
+    async function adminExtendUserPlanFromModal(days) {
+      if (!selectedAdminDetailUserId) return;
+      await extendUserPlan(selectedAdminDetailUserId, days);
+      await openAdminUserDetailModal(selectedAdminDetailUserId);
+    }
+
+    async function adminToggleStatusFromModal() {
+      if (!selectedAdminDetailUserId) return;
+      await toggleUserStatusAction(selectedAdminDetailUserId);
+      await openAdminUserDetailModal(selectedAdminDetailUserId);
     }
 
     // --- Invitation Auto-Login via URL Param ---
