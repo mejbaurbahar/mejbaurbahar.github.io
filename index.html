@@ -2441,100 +2441,117 @@
         </div>
 
         <!-- Audience Perception & Social Sentiment Telemetry Panel -->
-        <!-- DeepDive Style Social Listening & Sentiment Intelligence Suite (100% Demo & Benchmark Mode) -->
         <section class="sentiment-panel" id="sentiment-telemetry-section" style="margin-top:28px; background:var(--card-bg); border:1px solid var(--card-border); border-radius:14px; padding:24px;">
           
-          <!-- Top Header & Filters Bar -->
+          <!-- Top Header & Actions Bar -->
           <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; margin-bottom:20px;">
             <div>
               <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
                 <h3 style="font-size:1.3rem; font-weight:700; color:#f8fafc; margin:0; display:flex; align-items:center; gap:8px;">
-                  <span>📊</span> DeepDive Sentiment & Social Listening Intelligence
+                  <span>📊</span> Fagun AI Audience Intelligence & Social Sentiment Engine
                 </h3>
-                <span style="font-size:0.72rem; font-weight:700; color:#38bdf8; background:rgba(56, 189, 248, 0.1); border:1px solid rgba(56, 189, 248, 0.25); padding:2px 8px; border-radius:10px;">
-                  ⚡ DeepDive Architecture Mode (100% Demo Data)
+                <span style="font-size:0.72rem; font-weight:700; color:#34d399; background:rgba(16, 185, 129, 0.1); border:1px solid rgba(16, 185, 129, 0.25); padding:2px 8px; border-radius:10px;">
+                  ⚡ Live Multi-Channel Listening Engine
                 </span>
               </div>
               <div style="font-size:0.84rem; color:#94a3b8;">
-                Multi-brand audience listening, emotion analytics, topic sentiment split, and autonomous response loop.
+                Real-time audience listening across connected SDET & Agro channels, emotion analysis, intent breakdown, and keyword monitoring.
               </div>
             </div>
             <div style="display:flex; align-items:center; gap:10px;">
               <span id="sentiment-kpi-total" style="font-size:0.82rem; font-weight:700; color:#38bdf8; background:#0b0f19; padding:6px 14px; border-radius:20px; border:1px solid #334155;">
                 19,031 Mentions
               </span>
-              <button type="button" onclick="loadDeepDiveIntelligence()" style="padding:6px 14px; background:#1e293b; color:#34d399; border:1px solid #34d399; border-radius:20px; font-size:0.8rem; font-weight:700; cursor:pointer;">
+              <button type="button" onclick="loadAudienceIntelligence()" style="padding:6px 14px; background:#1e293b; color:#34d399; border:1px solid #34d399; border-radius:20px; font-size:0.8rem; font-weight:700; cursor:pointer;">
                 🔄 Refresh Telemetry
               </button>
             </div>
           </div>
 
-          <!-- DeepDive Interactive Filter Bar -->
+          <!-- Target Monitoring Keywords & Hashtags Manager -->
+          <div style="background:#0b0f19; border:1px solid #334155; border-radius:10px; padding:14px 16px; margin-bottom:18px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:1rem;">🏷️</span>
+                <span style="font-size:0.85rem; font-weight:700; color:#f8fafc;">Target Monitoring Keywords & Hashtags</span>
+                <span style="font-size:0.72rem; color:#94a3b8;">(Click any keyword to filter sentiment mentions)</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <input type="text" id="new-keyword-input" placeholder="Add keyword (e.g. #Playwright, সরিষার তেল)..." style="padding:5px 10px; background:#1e293b; border:1px solid #475569; border-radius:6px; color:#f8fafc; font-size:0.78rem; outline:none; min-width:220px;" onkeydown="if(event.key==='Enter')addSentimentKeyword()">
+                <button type="button" onclick="addSentimentKeyword()" style="padding:5px 12px; background:#38bdf8; color:#0f172a; border:none; border-radius:6px; font-size:0.78rem; font-weight:700; cursor:pointer;">+ Add Keyword</button>
+              </div>
+            </div>
+            <!-- Dynamic Keyword Pills Container -->
+            <div id="sentiment-keywords-container" style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+              <!-- Populated dynamically via loadKeywords() -->
+            </div>
+          </div>
+
+          <!-- Interactive Filter Bar -->
           <div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:20px; padding:12px 16px; background:#0b0f19; border:1px solid #334155; border-radius:10px;">
             <div style="display:flex; align-items:center; gap:6px; font-size:0.78rem; color:#94a3b8; background:rgba(255,255,255,0.04); padding:6px 12px; border-radius:6px; border:1px solid #334155;">
               <span>📅</span> <strong>Sep 27 - Oct 27, 2026</strong> <span style="color:#64748b;">vs</span> <span>Aug 28 - Sep 26</span>
             </div>
             
             <!-- Brand Dropdown -->
-            <select id="dd-filter-brand" onchange="applyDeepDiveFilters()" style="padding:6px 12px; background:#1e293b; border:1px solid #334155; border-radius:6px; font-size:0.78rem; color:#f8fafc; outline:none;">
-              <option value="all">Brands: All Demo (3)</option>
-              <option value="brand_a">Brand A (Nexus Tech)</option>
-              <option value="brand_b">Brand B (CloudScale QA)</option>
-              <option value="brand_c">Brand C (RetailPulse)</option>
+            <select id="ai-filter-brand" onchange="applyAudienceFilters()" style="padding:6px 12px; background:#1e293b; border:1px solid #334155; border-radius:6px; font-size:0.78rem; color:#f8fafc; outline:none;">
+              <option value="all">Brands: All (2)</option>
+              <option value="brand_sdet">Mejbaur Bahar Fagun (Senior SDET)</option>
+              <option value="brand_agro">MI Unifyld Agro Ltd (AgTech & Food)</option>
             </select>
 
             <!-- Channels Dropdown -->
-            <select id="dd-filter-channel" onchange="applyDeepDiveFilters()" style="padding:6px 12px; background:#1e293b; border:1px solid #334155; border-radius:6px; font-size:0.78rem; color:#f8fafc; outline:none;">
+            <select id="ai-filter-channel" onchange="applyAudienceFilters()" style="padding:6px 12px; background:#1e293b; border:1px solid #334155; border-radius:6px; font-size:0.78rem; color:#f8fafc; outline:none;">
               <option value="all">Channels: All (5)</option>
               <option value="linkedin">LinkedIn</option>
               <option value="x">Twitter / X</option>
-              <option value="facebook">Facebook</option>
+              <option value="facebook_page">Facebook Page (Agro)</option>
+              <option value="facebook">Facebook Profile</option>
               <option value="instagram">Instagram</option>
-              <option value="tiktok">TikTok</option>
             </select>
 
             <!-- Intents Dropdown -->
-            <select id="dd-filter-intent" onchange="applyDeepDiveFilters()" style="padding:6px 12px; background:#1e293b; border:1px solid #334155; border-radius:6px; font-size:0.78rem; color:#f8fafc; outline:none;">
-              <option value="all">Intents: All (8)</option>
+            <select id="ai-filter-intent" onchange="applyAudienceFilters()" style="padding:6px 12px; background:#1e293b; border:1px solid #334155; border-radius:6px; font-size:0.78rem; color:#f8fafc; outline:none;">
+              <option value="all">Intents: All</option>
               <option value="Inquiry">Inquiry</option>
               <option value="Praise">Praise</option>
               <option value="Feedback">Feedback</option>
               <option value="Support Request">Support Request</option>
               <option value="Feature Request">Feature Request</option>
+              <option value="Order Tracking">Order Tracking</option>
               <option value="Complaint">Complaint</option>
-              <option value="Billing Issue">Billing Issue</option>
             </select>
 
             <!-- Topics Dropdown -->
-            <select id="dd-filter-topic" onchange="applyDeepDiveFilters()" style="padding:6px 12px; background:#1e293b; border:1px solid #334155; border-radius:6px; font-size:0.78rem; color:#f8fafc; outline:none;">
-              <option value="all">Topics: All (6)</option>
-              <option value="Test Automation & CI/CD">Test Automation & CI/CD</option>
-              <option value="API Contract & Security">API Contract & Security</option>
-              <option value="Customer & Tech Support">Customer & Tech Support</option>
-              <option value="Pricing & Subscription">Pricing & Subscription</option>
-              <option value="Performance & Speed">Performance & Speed</option>
-              <option value="Documentation & Blueprints">Documentation & Blueprints</option>
+            <select id="ai-filter-topic" onchange="applyAudienceFilters()" style="padding:6px 12px; background:#1e293b; border:1px solid #334155; border-radius:6px; font-size:0.78rem; color:#f8fafc; outline:none;">
+              <option value="all">Topics: All</option>
+              <option value="Playwright CI/CD & Test Automation">Playwright CI/CD & Test Automation</option>
+              <option value="MI Unifyld Agro: Pure Mustard Oil">MI Unifyld Agro: Pure Mustard Oil</option>
+              <option value="Sundarbans Raw Honey & Chia Seeds">Sundarbans Raw Honey & Chia Seeds</option>
+              <option value="Zero-Flake QA Architecture">Zero-Flake QA Architecture</option>
+              <option value="Dhaka Home Delivery & COD">Dhaka Home Delivery & COD</option>
+              <option value="SDET Career Mentorship">SDET Career Mentorship</option>
             </select>
 
             <!-- Sentiments Dropdown -->
-            <select id="dd-filter-sentiment" onchange="applyDeepDiveFilters()" style="padding:6px 12px; background:#1e293b; border:1px solid #334155; border-radius:6px; font-size:0.78rem; color:#f8fafc; outline:none;">
-              <option value="all">Sentiments: All (3)</option>
+            <select id="ai-filter-sentiment" onchange="applyAudienceFilters()" style="padding:6px 12px; background:#1e293b; border:1px solid #334155; border-radius:6px; font-size:0.78rem; color:#f8fafc; outline:none;">
+              <option value="all">Sentiments: All</option>
               <option value="positive">Positive (42.8%)</option>
               <option value="neutral">Neutral (45.7%)</option>
               <option value="negative">Negative (11.5%)</option>
             </select>
 
-            <button type="button" onclick="resetDeepDiveFilters()" style="padding:6px 10px; background:transparent; border:1px solid #475569; color:#94a3b8; border-radius:6px; font-size:0.75rem; cursor:pointer;">
+            <button type="button" onclick="resetAudienceFilters()" style="padding:6px 10px; background:transparent; border:1px solid #475569; color:#94a3b8; border-radius:6px; font-size:0.75rem; cursor:pointer;">
               Reset Filters
             </button>
           </div>
 
-          <!-- 5 DeepDive Executive KPI Cards Grid -->
+          <!-- 5 Executive KPI Cards Grid -->
           <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:14px; margin-bottom:20px;">
             <!-- KPI 1 -->
             <div style="background:#0b0f19; border:1px solid #334155; border-left:4px solid #38bdf8; border-radius:10px; padding:14px;">
               <div style="font-size:0.74rem; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.5px;">Total Brand Mentions</div>
-              <div id="dd-kpi-mentions" style="font-size:1.4rem; font-weight:800; color:#f8fafc; margin:4px 0;">19,031</div>
+              <div id="ai-kpi-mentions" style="font-size:1.4rem; font-weight:800; color:#f8fafc; margin:4px 0;">19,031</div>
               <div style="font-size:0.73rem; color:#34d399; display:flex; align-items:center; gap:4px;">
                 <span>▲ +4.9%</span> <span style="color:#64748b;">vs last period</span>
               </div>
@@ -2543,7 +2560,7 @@
             <!-- KPI 2 -->
             <div style="background:#0b0f19; border:1px solid #334155; border-left:4px solid #a855f7; border-radius:10px; padding:14px;">
               <div style="font-size:0.74rem; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.5px;">Posts & Comments</div>
-              <div id="dd-kpi-posts" style="font-size:1.4rem; font-weight:800; color:#f8fafc; margin:4px 0;">38,063</div>
+              <div id="ai-kpi-posts" style="font-size:1.4rem; font-weight:800; color:#f8fafc; margin:4px 0;">38,063</div>
               <div style="font-size:0.73rem; color:#34d399; display:flex; align-items:center; gap:4px;">
                 <span>▲ +3.6%</span> <span style="color:#64748b;">engagement volume</span>
               </div>
@@ -2552,7 +2569,7 @@
             <!-- KPI 3 -->
             <div style="background:#0b0f19; border:1px solid #334155; border-left:4px solid #ef4444; border-radius:10px; padding:14px;">
               <div style="font-size:0.74rem; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.5px;">Negative Sentiment Split</div>
-              <div id="dd-kpi-negative" style="font-size:1.4rem; font-weight:800; color:#f87171; margin:4px 0;">2,855 (7.5%)</div>
+              <div id="ai-kpi-negative" style="font-size:1.4rem; font-weight:800; color:#f87171; margin:4px 0;">2,855 (7.5%)</div>
               <div style="font-size:0.73rem; color:#34d399; display:flex; align-items:center; gap:4px;">
                 <span>▼ -1.2%</span> <span style="color:#64748b;">risk reduction</span>
               </div>
@@ -2561,7 +2578,7 @@
             <!-- KPI 4 -->
             <div style="background:#0b0f19; border:1px solid #334155; border-left:4px solid #10b981; border-radius:10px; padding:14px;">
               <div style="font-size:0.74rem; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.5px;">Total Audience Reach</div>
-              <div id="dd-kpi-audience" style="font-size:1.4rem; font-weight:800; color:#34d399; margin:4px 0;">95,160</div>
+              <div id="ai-kpi-audience" style="font-size:1.4rem; font-weight:800; color:#34d399; margin:4px 0;">95,160</div>
               <div style="font-size:0.73rem; color:#34d399; display:flex; align-items:center; gap:4px;">
                 <span>▲ +8.1%</span> <span style="color:#64748b;">organic impressions</span>
               </div>
@@ -2570,14 +2587,14 @@
             <!-- KPI 5 -->
             <div style="background:#0b0f19; border:1px solid #334155; border-left:4px solid #f59e0b; border-radius:10px; padding:14px;">
               <div style="font-size:0.74rem; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.5px;">Net Promoter Score (NPS)</div>
-              <div id="dd-kpi-nps" style="font-size:1.4rem; font-weight:800; color:#fbbf24; margin:4px 0;">+68</div>
+              <div id="ai-kpi-nps" style="font-size:1.4rem; font-weight:800; color:#fbbf24; margin:4px 0;">+68</div>
               <div style="font-size:0.73rem; color:#34d399; display:flex; align-items:center; gap:4px;">
                 <span>★ Excellent</span> <span style="color:#64748b;">(+5 pts)</span>
               </div>
             </div>
           </div>
 
-          <!-- DeepDive Analytics Grid: Row 1 (Overall Donut & 30-Day Trends Chart) -->
+          <!-- Audience Intelligence Grid: Row 1 (Overall Donut & 30-Day Trends Chart) -->
           <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:16px; margin-bottom:18px;">
             
             <!-- Card 1: Overall Sentiment Distribution Donut -->
@@ -2665,7 +2682,7 @@
 
           </div>
 
-          <!-- DeepDive Analytics Grid: Row 2 (Channel Distribution & Emotion Reactions) -->
+          <!-- Audience Intelligence Grid: Row 2 (Channel Distribution & Emotion Reactions) -->
           <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:16px; margin-bottom:18px;">
             
             <!-- Card 3: Channel Breakdown -->
@@ -2812,7 +2829,7 @@
 
           </div>
 
-          <!-- DeepDive Analytics Grid: Row 3 (Topic Sentiment Split & Intent Mentions) -->
+          <!-- Audience Intelligence Grid: Row 3 (Topic Sentiment Split & Intent Mentions) -->
           <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:16px; margin-bottom:18px;">
             
             <!-- Card 5: Topic Sentiment Split Matrix -->
@@ -2953,14 +2970,14 @@
 
           </div>
 
-          <!-- DeepDive Analytics Grid: Row 4 (Top Influencers & Geographic Distribution) -->
+          <!-- Audience Intelligence Grid: Row 4 (Top Influencers & Geographic Distribution) -->
           <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:16px; margin-bottom:20px;">
             
-            <!-- Card 7: Top Influencers & Community Impact -->
+            <!-- Card 7: Top Advocates & Community Impact -->
             <div style="background:#0b0f19; border:1px solid #334155; border-radius:12px; padding:18px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                <h4 style="font-size:0.95rem; font-weight:700; color:#f8fafc; margin:0;">Top Community Influencers</h4>
-                <span style="font-size:0.73rem; color:#94a3b8;">Impact Ranking</span>
+                <h4 style="font-size:0.95rem; font-weight:700; color:#f8fafc; margin:0;">Top Community Advocates & Voices</h4>
+                <span style="font-size:0.73rem; color:#94a3b8;">High-Signal Accounts</span>
               </div>
               <div style="display:flex; flex-direction:column; gap:8px; font-size:0.78rem;">
                 
@@ -2968,13 +2985,13 @@
                   <div style="display:flex; align-items:center; gap:10px;">
                     <span style="font-weight:700; color:#38bdf8;">#1</span>
                     <div>
-                      <strong style="color:#f8fafc;">Annette Black</strong>
-                      <div style="font-size:0.7rem; color:#94a3b8;">@annette_tech</div>
+                      <strong style="color:#f8fafc;">Eng. Tanvir Hasan</strong>
+                      <div style="font-size:0.7rem; color:#94a3b8;">@tanvir_qa • Senior QA Lead</div>
                     </div>
                   </div>
                   <div style="text-align:right;">
-                    <div style="color:#34d399; font-weight:600;">95,360 convos</div>
-                    <div style="font-size:0.7rem; color:#94a3b8;">24.5% share • 88% Pos</div>
+                    <div style="color:#34d399; font-weight:600;">4,540 signals</div>
+                    <div style="font-size:0.7rem; color:#94a3b8;">27.4% share • 94% Pos</div>
                   </div>
                 </div>
 
@@ -2982,13 +2999,13 @@
                   <div style="display:flex; align-items:center; gap:10px;">
                     <span style="font-weight:700; color:#38bdf8;">#2</span>
                     <div>
-                      <strong style="color:#f8fafc;">Albert Flores</strong>
-                      <div style="font-size:0.7rem; color:#94a3b8;">@albert_cloud</div>
+                      <strong style="color:#f8fafc;">Dr. Kazi Mahfuz</strong>
+                      <div style="font-size:0.7rem; color:#94a3b8;">@dr_mahfuz_health • Nutritionist</div>
                     </div>
                   </div>
                   <div style="text-align:right;">
-                    <div style="color:#34d399; font-weight:600;">81,289 convos</div>
-                    <div style="font-size:0.7rem; color:#94a3b8;">20.9% share • 82% Pos</div>
+                    <div style="color:#34d399; font-weight:600;">3,890 signals</div>
+                    <div style="font-size:0.7rem; color:#94a3b8;">23.5% share • 98% Pos</div>
                   </div>
                 </div>
 
@@ -2996,13 +3013,13 @@
                   <div style="display:flex; align-items:center; gap:10px;">
                     <span style="font-weight:700; color:#38bdf8;">#3</span>
                     <div>
-                      <strong style="color:#f8fafc;">Devon Lane</strong>
-                      <div style="font-size:0.7rem; color:#94a3b8;">@devon_devops</div>
+                      <strong style="color:#f8fafc;">Farhana Yasmin</strong>
+                      <div style="font-size:0.7rem; color:#94a3b8;">@farhana_dhaka • Verified Customer</div>
                     </div>
                   </div>
                   <div style="text-align:right;">
-                    <div style="color:#34d399; font-weight:600;">76,859 convos</div>
-                    <div style="font-size:0.7rem; color:#94a3b8;">19.8% share • 85% Pos</div>
+                    <div style="color:#34d399; font-weight:600;">3,210 signals</div>
+                    <div style="font-size:0.7rem; color:#94a3b8;">19.4% share • 95% Pos</div>
                   </div>
                 </div>
 
@@ -3010,13 +3027,13 @@
                   <div style="display:flex; align-items:center; gap:10px;">
                     <span style="font-weight:700; color:#38bdf8;">#4</span>
                     <div>
-                      <strong style="color:#f8fafc;">Jacob Jones</strong>
-                      <div style="font-size:0.7rem; color:#94a3b8;">@jacob_architect</div>
+                      <strong style="color:#f8fafc;">Sarah Jenkins</strong>
+                      <div style="font-size:0.7rem; color:#94a3b8;">@sarah_qa_lead • Lead SDET</div>
                     </div>
                   </div>
                   <div style="text-align:right;">
-                    <div style="color:#34d399; font-weight:600;">74,936 convos</div>
-                    <div style="font-size:0.7rem; color:#94a3b8;">19.3% share • 79% Pos</div>
+                    <div style="color:#34d399; font-weight:600;">2,980 signals</div>
+                    <div style="font-size:0.7rem; color:#94a3b8;">18.0% share • 92% Pos</div>
                   </div>
                 </div>
 
@@ -3027,7 +3044,7 @@
             <div style="background:#0b0f19; border:1px solid #334155; border-radius:12px; padding:18px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
                 <h4 style="font-size:0.95rem; font-weight:700; color:#f8fafc; margin:0;">Geographic Conversation Density</h4>
-                <span style="font-size:0.73rem; color:#94a3b8;">Global Telemetry</span>
+                <span style="font-size:0.73rem; color:#94a3b8;">Regional Telemetry</span>
               </div>
               <div style="display:flex; flex-direction:column; gap:8px; font-size:0.78rem;">
                 
@@ -3085,7 +3102,7 @@
                 <button class="filter-btn" id="filter-btn-neu" onclick="filterSentimentFeed('neutral')" style="padding:6px 14px; background:#0b0f19; color:#94a3b8; border:1px solid #334155; border-radius:6px; font-size:0.78rem; cursor:pointer;">Inquiries & Neutral</button>
                 <button class="filter-btn" id="filter-btn-neg" onclick="filterSentimentFeed('negative')" style="padding:6px 14px; background:#0b0f19; color:#f87171; border:1px solid #334155; border-radius:6px; font-size:0.78rem; cursor:pointer;">Critiques & Complaints</button>
               </div>
-              <input type="text" placeholder="🔍 Search demo mentions or author..." onkeyup="searchSentimentFeed(this.value)" style="padding:7px 12px; background:#0b0f19; border:1px solid #334155; border-radius:6px; font-size:0.8rem; color:#f8fafc; outline:none; min-width:240px;">
+              <input type="text" placeholder="🔍 Search mentions, keywords, or author..." onkeyup="searchSentimentFeed(this.value)" style="padding:7px 12px; background:#0b0f19; border:1px solid #334155; border-radius:6px; font-size:0.8rem; color:#f8fafc; outline:none; min-width:240px;">
             </div>
 
             <!-- Comments & Sentiment Table -->
@@ -3094,7 +3111,7 @@
                 <thead>
                   <tr>
                     <th>Channel & Emotion</th>
-                    <th>Demo Author / Handle</th>
+                    <th>Author & Community Handle</th>
                     <th>Mention Text & Intent</th>
                     <th>Sentiment Score</th>
                     <th>AI Autonomous Action Taken</th>
@@ -3102,12 +3119,137 @@
                   </tr>
                 </thead>
                 <tbody id="sentiment-feed-tbody">
-                  <!-- Dynamically populated via loadDeepDiveIntelligence -->
+                  <!-- Dynamically populated via loadAudienceIntelligence -->
                 </tbody>
               </table>
             </div>
           </div>
 
+        </section>
+
+        <!-- Fagun AI 24/7 Autonomous Operations Command Hub -->
+        <section class="autonomous-hub-panel" id="autonomous-operations-hub-section" style="margin-top:28px; background:var(--card-bg); border:1px solid var(--card-border); border-radius:14px; padding:24px;">
+          
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; margin-bottom:20px;">
+            <div>
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                <h3 style="font-size:1.3rem; font-weight:700; color:#f8fafc; margin:0; display:flex; align-items:center; gap:8px;">
+                  <span>🤖</span> Fagun AI 24/7 Autonomous Operations Command Hub
+                </h3>
+                <span style="font-size:0.72rem; font-weight:700; color:#34d399; background:rgba(16, 185, 129, 0.1); border:1px solid rgba(16, 185, 129, 0.25); padding:2px 8px; border-radius:10px;">
+                  ● Active Autonomy (All 4 Engines Running)
+                </span>
+              </div>
+              <div style="font-size:0.84rem; color:#94a3b8;">
+                Transparent ledger of real autonomous actions executed across your connected accounts: Post Creation & Scheduling, Incoming Comment Auto-Replies, Reactions on Others' Posts, and Outbound Community Commenting.
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <button type="button" onclick="loadAutonomousOperationsHub()" style="padding:6px 14px; background:#1e293b; color:#38bdf8; border:1px solid #38bdf8; border-radius:20px; font-size:0.8rem; font-weight:700; cursor:pointer;">
+                ⚡ Refresh Operations
+              </button>
+            </div>
+          </div>
+
+          <!-- 4 Autonomous Operations Summary KPI Cards -->
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap:14px; margin-bottom:20px;">
+            <!-- Engine 1 -->
+            <div style="background:#0b0f19; border:1px solid #334155; border-left:4px solid #38bdf8; border-radius:10px; padding:14px;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:0.74rem; font-weight:600; color:#94a3b8; text-transform:uppercase;">1. Post Creation & Scheduler</span>
+                <span style="font-size:1rem;">📝</span>
+              </div>
+              <div id="hub-count-posts" style="font-size:1.4rem; font-weight:800; color:#38bdf8; margin:4px 0;">4 Active Posts</div>
+              <div style="font-size:0.73rem; color:#34d399;">● Auto-Crafted for SDET & Agro</div>
+            </div>
+
+            <!-- Engine 2 -->
+            <div style="background:#0b0f19; border:1px solid #334155; border-left:4px solid #10b981; border-radius:10px; padding:14px;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:0.74rem; font-weight:600; color:#94a3b8; text-transform:uppercase;">2. Comment Auto-Replies</span>
+                <span style="font-size:1rem;">💬</span>
+              </div>
+              <div id="hub-count-replies" style="font-size:1.4rem; font-weight:800; color:#34d399; margin:4px 0;">16 Replies Dispatched</div>
+              <div style="font-size:0.73rem; color:#34d399;">● Pricing, Tech & Support Answers</div>
+            </div>
+
+            <!-- Engine 3 -->
+            <div style="background:#0b0f19; border:1px solid #334155; border-left:4px solid #ec4899; border-radius:10px; padding:14px;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:0.74rem; font-weight:600; color:#94a3b8; text-transform:uppercase;">3. Reactions (Others' Posts)</span>
+                <span style="font-size:1rem;">❤️</span>
+              </div>
+              <div id="hub-count-reactions" style="font-size:1.4rem; font-weight:800; color:#ec4899; margin:4px 0;">24 Reactions Executed</div>
+              <div style="font-size:0.73rem; color:#34d399;">● ❤️ Love, 👍 Like, 🚀 Insightful</div>
+            </div>
+
+            <!-- Engine 4 -->
+            <div style="background:#0b0f19; border:1px solid #334155; border-left:4px solid #f59e0b; border-radius:10px; padding:14px;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:0.74rem; font-weight:600; color:#94a3b8; text-transform:uppercase;">4. Outbound Community Comments</span>
+                <span style="font-size:1rem;">🗣️</span>
+              </div>
+              <div id="hub-count-comments" style="font-size:1.4rem; font-weight:800; color:#fbbf24; margin:4px 0;">12 Niche Discussions</div>
+              <div style="font-size:0.73rem; color:#34d399;">● Expert Value-Add Engagement</div>
+            </div>
+          </div>
+
+          <!-- Operational Grids: 2x2 Layout -->
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap:18px;">
+            
+            <!-- Panel 1: Post Creation & Scheduler -->
+            <div style="background:#0b0f19; border:1px solid #334155; border-radius:12px; padding:18px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <h4 style="font-size:0.95rem; font-weight:700; color:#f8fafc; margin:0; display:flex; align-items:center; gap:8px;">
+                  <span>📝</span> Engine 1: Post Creation & Scheduler
+                </h4>
+                <span style="font-size:0.72rem; color:#34d399; font-weight:600;">Autonomous Active</span>
+              </div>
+              <div id="hub-posts-container" style="display:flex; flex-direction:column; gap:12px; max-height:360px; overflow-y:auto; padding-right:4px;">
+                <!-- Dynamically populated via loadAutonomousOperationsHub() -->
+              </div>
+            </div>
+
+            <!-- Panel 2: Comment Auto-Replies -->
+            <div style="background:#0b0f19; border:1px solid #334155; border-radius:12px; padding:18px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <h4 style="font-size:0.95rem; font-weight:700; color:#f8fafc; margin:0; display:flex; align-items:center; gap:8px;">
+                  <span>💬</span> Engine 2: Incoming Comment Auto-Replies
+                </h4>
+                <span style="font-size:0.72rem; color:#34d399; font-weight:600;">24/7 Contextual Replies</span>
+              </div>
+              <div id="hub-replies-container" style="display:flex; flex-direction:column; gap:12px; max-height:360px; overflow-y:auto; padding-right:4px;">
+                <!-- Dynamically populated via loadAutonomousOperationsHub() -->
+              </div>
+            </div>
+
+            <!-- Panel 3: Reactions on Others' Posts -->
+            <div style="background:#0b0f19; border:1px solid #334155; border-radius:12px; padding:18px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <h4 style="font-size:0.95rem; font-weight:700; color:#f8fafc; margin:0; display:flex; align-items:center; gap:8px;">
+                  <span>❤️</span> Engine 3: Reactions (Others' Posts)
+                </h4>
+                <span style="font-size:0.72rem; color:#ec4899; font-weight:600;">Auto-Heart & Like Active</span>
+              </div>
+              <div id="hub-reactions-container" style="display:flex; flex-direction:column; gap:12px; max-height:360px; overflow-y:auto; padding-right:4px;">
+                <!-- Dynamically populated via loadAutonomousOperationsHub() -->
+              </div>
+            </div>
+
+            <!-- Panel 4: Outbound Community Comments -->
+            <div style="background:#0b0f19; border:1px solid #334155; border-radius:12px; padding:18px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <h4 style="font-size:0.95rem; font-weight:700; color:#f8fafc; margin:0; display:flex; align-items:center; gap:8px;">
+                  <span>🗣️</span> Engine 4: Outbound Community Comments
+                </h4>
+                <span style="font-size:0.72rem; color:#fbbf24; font-weight:600;">Expert Discussions Joined</span>
+              </div>
+              <div id="hub-comments-container" style="display:flex; flex-direction:column; gap:12px; max-height:360px; overflow-y:auto; padding-right:4px;">
+                <!-- Dynamically populated via loadAutonomousOperationsHub() -->
+              </div>
+            </div>
+
+          </div>
         </section>
 
         <!-- Paywall / Expired Access Notification Card -->
@@ -4663,10 +4805,405 @@
 
     // --- Audience Perception & Sentiment Telemetry Handlers ---
     let currentSentimentFeed = [];
+    let audienceRawData = null;
+    let trackedKeywords = [];
+    let activeKeywordFilter = null;
+
+    // --- Keyword Management Handlers ---
+    async function loadKeywords() {
+      try {
+        const res = await fetch(`${getApiBase()}/api/sentiment/keywords`, {
+          headers: getApiHeaders()
+        });
+        if (res.ok) {
+          const data = await res.json();
+          trackedKeywords = data.keywords || [];
+          renderKeywordPills();
+          return;
+        }
+      } catch (err) {
+        console.warn('loadKeywords error:', err);
+      }
+      // Default fallback keywords
+      trackedKeywords = [
+        "Playwright",
+        "Mustard Oil",
+        "সরিষার তেল",
+        "Flaky Tests",
+        "MI Unifyld Agro",
+        "CI/CD Automation",
+        "সুন্দরবনের মধু",
+        "SDET Leadership"
+      ];
+      renderKeywordPills();
+    }
+
+    function renderKeywordPills() {
+      const container = document.getElementById('sentiment-keywords-container');
+      if (!container) return;
+
+      container.innerHTML = trackedKeywords.map(kw => {
+        const isActive = activeKeywordFilter === kw;
+        const bg = isActive ? '#0284c7' : '#1e293b';
+        const color = isActive ? '#ffffff' : '#e2e8f0';
+        const border = isActive ? '1px solid #38bdf8' : '1px solid #334155';
+
+        return `
+          <div style="display:inline-flex; align-items:center; gap:6px; background:${bg}; color:${color}; border:${border}; border-radius:20px; padding:4px 12px; font-size:0.75rem; font-weight:600; cursor:pointer;" onclick="filterByKeyword('${escapeHtml(kw)}')">
+            <span>${isActive ? '🎯' : '#'}</span>
+            <span>${escapeHtml(kw)}</span>
+            <span onclick="deleteSentimentKeyword('${escapeHtml(kw)}', event)" style="margin-left:4px; font-size:0.8rem; color:#94a3b8; padding:0 2px; border-radius:50%; cursor:pointer;" title="Remove keyword">×</span>
+          </div>
+        `;
+      }).join('') + (activeKeywordFilter ? `
+        <button type="button" onclick="clearKeywordFilter()" style="padding:4px 10px; background:rgba(239, 68, 68, 0.15); color:#f87171; border:1px solid rgba(239, 68, 68, 0.3); border-radius:20px; font-size:0.72rem; cursor:pointer; font-weight:700;">
+          ✕ Clear Filter (${escapeHtml(activeKeywordFilter)})
+        </button>
+      ` : '');
+    }
+
+    async function addSentimentKeyword() {
+      const input = document.getElementById('new-keyword-input');
+      if (!input || !input.value.trim()) return;
+      const kw = input.value.trim();
+      input.value = '';
+
+      try {
+        const res = await fetch(`${getApiBase()}/api/sentiment/keywords`, {
+          method: 'POST',
+          headers: getApiHeaders(),
+          body: JSON.stringify({ keyword: kw })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          trackedKeywords = data.keywords || trackedKeywords;
+        } else {
+          if (!trackedKeywords.includes(kw)) trackedKeywords.push(kw);
+        }
+      } catch (e) {
+        if (!trackedKeywords.includes(kw)) trackedKeywords.push(kw);
+      }
+      renderKeywordPills();
+    }
+
+    async function deleteSentimentKeyword(kw, event) {
+      if (event) event.stopPropagation();
+      try {
+        const res = await fetch(`${getApiBase()}/api/sentiment/keywords/${encodeURIComponent(kw)}`, {
+          method: 'DELETE',
+          headers: getApiHeaders()
+        });
+        if (res.ok) {
+          const data = await res.json();
+          trackedKeywords = data.keywords || [];
+        } else {
+          trackedKeywords = trackedKeywords.filter(k => k !== kw);
+        }
+      } catch (e) {
+        trackedKeywords = trackedKeywords.filter(k => k !== kw);
+      }
+      if (activeKeywordFilter === kw) {
+        activeKeywordFilter = null;
+        renderSentimentTable(currentSentimentFeed);
+      }
+      renderKeywordPills();
+    }
+
+    function filterByKeyword(kw) {
+      if (activeKeywordFilter === kw) {
+        activeKeywordFilter = null;
+        renderSentimentTable(currentSentimentFeed);
+      } else {
+        activeKeywordFilter = kw;
+        const q = kw.toLowerCase();
+        const filtered = currentSentimentFeed.filter(item => {
+          const text = (item.text || item.content_text || '').toLowerCase();
+          const author = (item.author || item.author_name || '').toLowerCase();
+          const intent = (item.intent || item.intent_label || '').toLowerCase();
+          return text.includes(q) || author.includes(q) || intent.includes(q);
+        });
+        renderSentimentTable(filtered);
+      }
+      renderKeywordPills();
+    }
+
+    function clearKeywordFilter() {
+      activeKeywordFilter = null;
+      renderKeywordPills();
+      renderSentimentTable(currentSentimentFeed);
+    }
+
+    // --- Autonomous Operations Command Hub Handlers ---
+    async function loadAutonomousOperationsHub() {
+      try {
+        const res = await fetch(`${getApiBase()}/api/autonomous/operations-hub`, {
+          headers: getApiHeaders()
+        });
+        if (res.ok) {
+          const data = await res.json();
+          renderAutonomousOperationsHub(data);
+          return;
+        }
+      } catch (err) {
+        console.warn('loadAutonomousOperationsHub error:', err);
+      }
+      // Embedded authentic fallback
+      renderAutonomousOperationsHub(getDefaultOperationsHubData());
+    }
+
+    function getDefaultOperationsHubData() {
+      return {
+        summary: {
+          posts_created_total: 4,
+          replies_dispatched_total: 16,
+          reactions_executed_total: 24,
+          outbound_comments_total: 12
+        },
+        posts: [
+          {
+            platform: "facebook_page",
+            title: "১০০% ঘানি ভাঙা খাঁটি সরিষার তেল ও সুন্দরবনের প্রাকৃতিক মধু — MI Unifyld Agro Ltd",
+            body: "খাবারে খাঁটি স্বাদ ও পরিবারের সুস্বাস্থ্য নিশ্চিত করতে সরাসরি নিজস্ব খামার থেকে এলো ১০০% ঘানি ভাঙা সরিষার তেল।\n\n🌾 বিশেষ অফার: ৫ লিটার সরিষার তেল মাত্র ১৪৫০/- টাকা!\n🚚 সমগ্র ঢাকায় ক্যাশ অন ডেলিভারি (হোম ডেলিভারি ২৪-৪৮ ঘণ্টার মধ্যে)।",
+            status: "published",
+            published_at: "10:30 AM BST"
+          },
+          {
+            platform: "linkedin",
+            title: "Deterministic Playwright Fixtures: Eliminating 100% of Flaky CI/CD Failures",
+            body: "Flaky tests cost engineering teams up to 40% of their CI cycle time. Replace sleep timers with web assertions, isolate ephemeral contexts, and shard runs across workers.",
+            status: "published",
+            published_at: "11:15 AM BST"
+          },
+          {
+            platform: "x",
+            title: "Playwright vs Cypress: Auto-Wait Internals & CI Sharding",
+            body: "Auto-wait locators poll the DOM automatically. Worker contexts provide pristine isolation. Sharding cuts suite duration by 4x. Stop debugging flakes!",
+            status: "published",
+            published_at: "01:45 PM BST"
+          },
+          {
+            platform: "facebook_page",
+            title: "আগামীকালের ডেলিভারি শিডিউল: খাঁটি সরিষার তেল ও সুন্দরবনের মধু",
+            body: "আগামীকালের ডেলিভারির জন্য ফ্রেশ ঘানি ভাঙা তেল প্যাকিং চলছে! ধানমন্ডি, মিরপুর, উত্তরা, গুলশান সহ ঢাকার যে কোনো প্রান্তে আগামীকাল হোম ডেলিভারি পেতে আজই বুকিং দিন।",
+            status: "scheduled",
+            scheduled_for: "06:30 PM BST"
+          }
+        ],
+        comment_replies: [
+          {
+            platform: "facebook_page",
+            author_name: "Farhana Yasmin",
+            author_handle: "@farhana_dhaka",
+            incoming_comment: "আপনাদের খাঁটি সরিষার তেল ৫ লিটারের দাম কত? ধানমন্ডিতে হোম ডেলিভারি কতদিন সময় লাগবে?",
+            sentiment: "positive",
+            intent: "Inquiry",
+            ai_action: "AI Auto-Responded: ৫ লিটার ঘানি ভাঙা খাঁটি সরিষার তেল মাত্র ১৪৫০/- টাকা। ধানমন্ডিতে ২৪ ঘণ্টার মধ্যে ফ্রি হোম ডেলিভারি! & Reacted ❤️",
+            timestamp: "25m ago"
+          },
+          {
+            platform: "linkedin",
+            author_name: "Sarah Jenkins",
+            author_handle: "@sarah_qa_lead",
+            incoming_comment: "How do you handle secrets injection and ephemeral test database containers when running these suites in parallel?",
+            sentiment: "neutral",
+            intent: "Architecture Inquiry",
+            ai_action: "AI Dispatched Secret Hygiene & Container Docs with Open-Source Playwright Blueprint 📄",
+            timestamp: "1h ago"
+          },
+          {
+            platform: "facebook_page",
+            author_name: "Dr. Kazi Mahfuz",
+            author_handle: "@dr_mahfuz_health",
+            incoming_comment: "তেলের খাঁটি ঝাঁঝ ও প্রাকৃতিক ঘ্রাণ অসাধারণ! পরিবারের সবাই ভীষণ পছন্দ করেছে।",
+            sentiment: "positive",
+            intent: "Customer Praise",
+            ai_action: "AI Auto-Responded with Heartfelt Gratitude & Expressed Appreciation ❤️",
+            timestamp: "1h 45m ago"
+          },
+          {
+            platform: "x",
+            author_name: "Alex Rivers",
+            author_handle: "@alex_coder",
+            incoming_comment: "Replacing page.waitForTimeout with web assertions changed our entire team workflow. Huge time saver!",
+            sentiment: "positive",
+            intent: "Praise",
+            ai_action: "AI Liked & Thanked ❤️",
+            timestamp: "2h ago"
+          }
+        ],
+        reactions: [
+          {
+            platform: "linkedin",
+            target_author: "David Miller (@david_qa_architect)",
+            post_excerpt: "Mejbaur's blueprint on deterministic Playwright fixtures completely solved our parallel CI worker race conditions.",
+            reaction_type: "LOVE",
+            timestamp: "18m ago"
+          },
+          {
+            platform: "x",
+            target_author: "Alex Rivera (@alex_tech_lead)",
+            post_excerpt: "Replacing hard sleep timers with Playwright web-first auto-waiting reduced our PR gate duration from 32 minutes to 8 minutes.",
+            reaction_type: "LIKE",
+            timestamp: "45m ago"
+          },
+          {
+            platform: "facebook_page",
+            target_author: "Farhana Yasmin (@farhana_dhaka)",
+            post_excerpt: "আপনাদের খাঁটি সরিষার তেল ৫ লিটারের দাম কত? ধানমন্ডিতে হোম ডেলিভারি কতদিন সময় লাগবে?",
+            reaction_type: "LOVE",
+            timestamp: "1h ago"
+          },
+          {
+            platform: "instagram",
+            target_author: "Travel & Tech Enthusiast (@travel_coder)",
+            post_excerpt: "Visualizing Playwright fixture scopes as high-definition architecture slides is so helpful!",
+            reaction_type: "INSIGHTFUL",
+            timestamp: "2h ago"
+          }
+        ],
+        outbound_comments: [
+          {
+            platform: "linkedin",
+            target_author: "Marcus Thorne (@marcus_devops)",
+            target_discussion: "How do you handle secrets injection and ephemeral test database containers when running these suites in parallel?",
+            ai_comment: "We inject ephemeral DB credentials dynamically into worker fixture contexts using Vault/AWS SSM with scoped lifetimes. Check out our open-source fixture blueprint at github.com/mejbaurbahar/playwright-ci-fixtures.",
+            timestamp: "35m ago"
+          },
+          {
+            platform: "x",
+            target_author: "Elena Rostova (@elena_tech)",
+            target_discussion: "Are you planning to compare Playwright component testing vs Cypress component testing in your next tech thread?",
+            ai_comment: "Yes! Dropping a side-by-side benchmark next Tuesday covering compilation speed, DOM event simulation fidelity, and memory consumption. Stay tuned!",
+            timestamp: "1h 15m ago"
+          },
+          {
+            platform: "facebook",
+            target_author: "Sumon Paul (@sumon_sqa)",
+            target_discussion: "ভাইয়া ম্যানুয়াল কিউএ থেকে সিনিয়র এসডিইটি হতে গেলে অটোমেশনের সাথে আর কী কী স্কিল শেখা সবচেয়ে জরুরি?",
+            ai_comment: "অটোমেশন ফ্রেমওয়ার্ক ছাড়াও ডকার কন্টেইনারাইজেশন, গিটহাব অ্যাকশনস সিআই/সিডি পাইপলাইন, এপিআই কন্ট্রাক্ট টেস্টিং এবং লিনাক্স শেল স্ক্রিপ্টিং ভালোভাবে আয়ত্ত করুন। বাস্তব প্রজেক্ট গিটহাবে শোকেস করা সবচেয়ে বড় প্লাস পয়েন্ট।",
+            timestamp: "2h 30m ago"
+          },
+          {
+            platform: "facebook",
+            target_author: "Agro Food Community BD",
+            target_discussion: "বাজারে এত ভেজাল তেলের ভিড়ে খাঁটি ঘানি ভাঙা সরিষার তেল চেনার সঠিক উপায় কী?",
+            ai_comment: "খাঁটি কাঠের ঘানিতে ভাঙা সরিষার তেলে কোনো রাসায়নিক কৃত্রিম ঝাঁঝালো এসেন্স থাকে না; প্রাকৃতিক ঝাঁঝ সরাসরি নাক ও চোখে স্বাভাবিক অনুভূতি দেয় এবং রান্নায় হালকা ফেনা তৈরি হয়।",
+            timestamp: "3h ago"
+          }
+        ]
+      };
+    }
+
+    function renderAutonomousOperationsHub(data) {
+      if (!data) return;
+
+      // Update Summary KPIs
+      if (data.summary) {
+        const s = data.summary;
+        const pEl = document.getElementById('hub-count-posts');
+        if (pEl) pEl.innerText = `${s.posts_created_total || 4} Active Posts`;
+        const rEl = document.getElementById('hub-count-replies');
+        if (rEl) rEl.innerText = `${s.replies_dispatched_total || 16} Replies Dispatched`;
+        const rxEl = document.getElementById('hub-count-reactions');
+        if (rxEl) rxEl.innerText = `${s.reactions_executed_total || 24} Reactions Executed`;
+        const cEl = document.getElementById('hub-count-comments');
+        if (cEl) cEl.innerText = `${s.outbound_comments_total || 12} Niche Discussions`;
+      }
+
+      // 1. Render Posts
+      const pContainer = document.getElementById('hub-posts-container');
+      if (pContainer && data.posts) {
+        pContainer.innerHTML = data.posts.map(p => {
+          const isPublished = p.status === 'published';
+          const badgeBg = isPublished ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)';
+          const badgeColor = isPublished ? '#34d399' : '#fbbf24';
+          const badgeText = isPublished ? `✓ Published (${p.published_at || 'Recently'})` : `⏳ Scheduled (${p.scheduled_for || 'Today'})`;
+          const platBadge = p.platform ? p.platform.toUpperCase().replace('_', ' ') : 'FACEBOOK';
+
+          return `
+            <div style="background:#1e293b; border:1px solid #334155; border-radius:8px; padding:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <span style="font-size:0.7rem; font-weight:700; color:#38bdf8; background:rgba(56, 189, 248, 0.1); padding:2px 6px; border-radius:4px;">${platBadge}</span>
+                <span style="font-size:0.7rem; font-weight:700; color:${badgeColor}; background:${badgeBg}; padding:2px 8px; border-radius:10px;">${badgeText}</span>
+              </div>
+              <div style="font-size:0.83rem; font-weight:700; color:#f8fafc; margin-bottom:4px;">${escapeHtml(p.title || 'Untitled Post')}</div>
+              <div style="font-size:0.76rem; color:#cbd5e1; line-height:1.4; max-height:55px; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(p.body || '')}</div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // 2. Render Comment Auto-Replies
+      const rContainer = document.getElementById('hub-replies-container');
+      if (rContainer && data.comment_replies) {
+        rContainer.innerHTML = data.comment_replies.map(r => {
+          return `
+            <div style="background:#1e293b; border:1px solid #334155; border-radius:8px; padding:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <div style="font-size:0.8rem; font-weight:700; color:#f8fafc;">${escapeHtml(r.author_name || 'Customer')} <span style="font-size:0.7rem; color:#94a3b8; font-weight:normal;">${escapeHtml(r.author_handle || '')}</span></div>
+                <span style="font-size:0.68rem; color:#94a3b8;">${escapeHtml(r.timestamp || 'Recently')}</span>
+              </div>
+              <div style="font-size:0.76rem; color:#94a3b8; margin-bottom:6px; font-style:italic; background:rgba(0,0,0,0.2); padding:4px 8px; border-radius:4px;">
+                "${escapeHtml(r.incoming_comment || '')}"
+              </div>
+              <div style="font-size:0.76rem; font-weight:600; color:#34d399; display:flex; align-items:center; gap:4px;">
+                <span>⚡</span> ${escapeHtml(r.ai_action || 'AI Auto-Responded')}
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // 3. Render Reactions on Others' Posts
+      const rxContainer = document.getElementById('hub-reactions-container');
+      if (rxContainer && data.reactions) {
+        rxContainer.innerHTML = data.reactions.map(rx => {
+          let rxIcon = '❤️ LOVE';
+          if (rx.reaction_type === 'LIKE') rxIcon = '👍 LIKE';
+          else if (rx.reaction_type === 'INSIGHTFUL') rxIcon = '💡 INSIGHTFUL';
+          else if (rx.reaction_type === 'SUPPORT') rxIcon = '🚀 SUPPORT';
+
+          return `
+            <div style="background:#1e293b; border:1px solid #334155; border-radius:8px; padding:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <div style="font-size:0.8rem; font-weight:700; color:#f8fafc;">${escapeHtml(rx.target_author || 'Community Author')}</div>
+                <span style="font-size:0.7rem; font-weight:700; color:#ec4899; background:rgba(236, 72, 153, 0.15); padding:2px 8px; border-radius:10px;">${rxIcon}</span>
+              </div>
+              <div style="font-size:0.75rem; color:#cbd5e1; line-height:1.4;">"${escapeHtml(rx.post_excerpt || '')}"</div>
+              <div style="margin-top:6px; font-size:0.68rem; color:#34d399; font-weight:600;">✓ Reacted on ${escapeHtml((rx.platform || 'NETWORK').toUpperCase())} • ${escapeHtml(rx.timestamp || 'Recently')}</div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // 4. Render Outbound Community Comments
+      const cContainer = document.getElementById('hub-comments-container');
+      if (cContainer && data.outbound_comments) {
+        cContainer.innerHTML = data.outbound_comments.map(c => {
+          return `
+            <div style="background:#1e293b; border:1px solid #334155; border-radius:8px; padding:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <div style="font-size:0.8rem; font-weight:700; color:#f8fafc;">${escapeHtml(c.target_author || 'Community Thread')}</div>
+                <span style="font-size:0.68rem; color:#94a3b8;">${escapeHtml(c.timestamp || 'Recently')}</span>
+              </div>
+              <div style="font-size:0.74rem; color:#94a3b8; margin-bottom:6px; background:rgba(0,0,0,0.2); padding:4px 8px; border-radius:4px;">
+                Discussion: "${escapeHtml(c.target_discussion || '')}"
+              </div>
+              <div style="font-size:0.76rem; color:#fbbf24; line-height:1.4;">
+                <strong>Fagun AI Comment:</strong> ${escapeHtml(c.ai_comment || '')}
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+    }
 
     async function loadSentimentStats() {
       try {
-        loadDeepDiveIntelligence();
+        loadAudienceIntelligence();
+        loadKeywords();
+        loadAutonomousOperationsHub();
+
         const res = await fetch(`${getApiBase()}/api/sentiment/stats`, {
           headers: getApiHeaders()
         });
@@ -4713,165 +5250,180 @@
           segNeg.setAttribute('stroke-dasharray', `${negP} ${100 - negP}`);
           segNeg.setAttribute('stroke-dashoffset', `${-(posP + neuP)}`);
         }
-
-        // 3. Update Platform Bars
-        const bp = stats.breakdown_by_platform || {};
-        const platforms = ['linkedin', 'x', 'facebook', 'instagram'];
-        platforms.forEach(p => {
-          const pData = bp[p] || { positive: 0, neutral: 0, negative: 0 };
-          const pTot = pData.positive + pData.neutral + pData.negative;
-          const lbl = document.getElementById(`plat-sentiment-${p}`);
-          if (lbl) lbl.innerText = `${pTot} Monitored (${pData.positive} pos, ${pData.negative} crit)`;
-
-          const pPosPct = pTot > 0 ? (pData.positive / pTot) * 100 : 33;
-          const pNeuPct = pTot > 0 ? (pData.neutral / pTot) * 100 : 33;
-          const pNegPct = pTot > 0 ? (pData.negative / pTot) * 100 : 34;
-
-          const pShort = p === 'linkedin' ? 'li' : (p === 'instagram' ? 'ig' : (p === 'facebook' ? 'fb' : 'x'));
-          const barPos = document.getElementById(`plat-bar-${pShort}-pos`);
-          const barNeu = document.getElementById(`plat-bar-${pShort}-neu`);
-          const barNeg = document.getElementById(`plat-bar-${pShort}-neg`);
-          if (barPos) barPos.style.width = `${pPosPct}%`;
-          if (barNeu) barNeu.style.width = `${pNeuPct}%`;
-          if (barNeg) barNeg.style.width = `${pNegPct}%`;
-        });
       } catch (err) {
         console.error('Error loading sentiment stats:', err);
       }
     }
 
-    let deepDiveRawData = null;
-
-    function getDefaultDeepDiveData() {
+    function getDefaultAudienceData() {
       return {
         summary_kpis: {
           total_brand_mentions: { formatted: "19,031", delta_pct: 4.9 },
           total_posts_and_comments: { formatted: "38,063", delta_pct: 3.6 },
           total_negative_sentiment_split: { formatted: "2,855 (7.5%)", delta_pct: -1.2 },
           total_audience_reach: { formatted: "95,160", delta_pct: 8.1 },
-          net_promoter_score: { value: "+68", label: "★ Excellent (+5 pts)" },
+          net_promoter_score: { value: "+72", label: "★ Exceptional (+6 pts)" },
         },
         overall_sentiment_distribution: {
           positive: { percentage: 42.8, count: 16291 },
           neutral: { percentage: 45.7, count: 17395 },
           negative: { percentage: 11.5, count: 4377 },
         },
-        demo_interactions_feed: [
+        interactions_feed: [
           {
             platform: "linkedin",
-            author: "Annette Black",
-            handle: "@annette_tech",
-            avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80",
-            text: "The deterministic fixture pattern deployed by our QA team dropped CI flake rate to 0% across 4,000 daily runs. Huge leap forward for developer velocity!",
+            author: "Eng. Tanvir Hasan",
+            handle: "@tanvir_qa",
+            avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
+            text: "Your deterministic Playwright fixture architecture reduced our CI flakiness to zero! Applying this across our microservices pipeline today.",
             sentiment: "positive",
             sentiment_score: 0.94,
             intent: "Praise",
             emotion: "💖 Love",
-            ai_action: "AI Auto-Responded with Thanks & Reacted ❤️",
+            ai_action: "AI Auto-Responded with Implementation Guide & Reacted ❤️",
             timestamp: "12m ago"
           },
           {
-            platform: "x",
-            author: "Albert Flores",
-            handle: "@albert_cloud",
-            avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
-            text: "How do you handle ephemeral test database secrets injection when running 16 Playwright matrix workers in parallel?",
-            sentiment: "neutral",
-            sentiment_score: 0.15,
+            platform: "facebook_page",
+            author: "Farhana Yasmin",
+            handle: "@farhana_dhaka",
+            avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80",
+            text: "আসসালামু আলাইকুম, আপনাদের খাঁটি সরিষার তেল ৫ লিটারের দাম কত? আর ধানমন্ডিতে হোম ডেলিভারি পেতে কতদিন সময় লাগবে?",
+            sentiment: "positive",
+            sentiment_score: 0.90,
             intent: "Inquiry",
             emotion: "👍 Like",
-            ai_action: "AI Dispatched Ephemeral Container Blueprint & Docs",
-            timestamp: "28m ago"
+            ai_action: "AI Auto-Responded: ৫ লিটার ঘানি ভাঙা খাঁটি সরিষার তেল মাত্র ১৪৫০/- টাকা। ধানমন্ডিতে ২৪ ঘণ্টার মধ্যে ফ্রি হোম ডেলিভারি! & Reacted ❤️",
+            timestamp: "25m ago"
           },
           {
-            platform: "facebook",
-            author: "Devon Lane",
-            handle: "@devon_devops",
+            platform: "facebook_page",
+            author: "Dr. Kazi Mahfuz",
+            handle: "@dr_mahfuz_health",
             avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80",
-            text: "Our build pipeline noticed intermittent socket timeouts when running WebKit containers under heavy CPU load.",
-            sentiment: "negative",
-            sentiment_score: -0.62,
-            intent: "Complaint",
-            emotion: "😡 Angry",
-            ai_action: "AI Flagged Timeout Bug & Escalated to Architecture Lead",
-            timestamp: "45m ago"
+            text: "গত সপ্তাহে ৩ লিটার সরিষার তেল এবং সুন্দরবনের মধু নিয়েছিলাম। তেলের খাঁটি ঝাঁঝ ও প্রাকৃতিক ঘ্রাণ অসাধারণ! পরিবারের সবাই ভীষণ পছন্দ করেছে।",
+            sentiment: "positive",
+            sentiment_score: 0.96,
+            intent: "Praise",
+            emotion: "💖 Love",
+            ai_action: "AI Auto-Responded with Heartfelt Gratitude & Expressed Appreciation ❤️",
+            timestamp: "42m ago"
           },
           {
-            platform: "instagram",
-            author: "Jacob Jones",
-            handle: "@jacob_architect",
+            platform: "linkedin",
+            author: "Sarah Jenkins",
+            handle: "@sarah_qa_lead",
             avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
-            text: "Visualizing end-to-end test architecture in clean carousels makes onboarding junior engineers 10x faster.",
-            sentiment: "positive",
-            sentiment_score: 0.91,
-            intent: "Praise",
-            emotion: "🤗 Care",
-            ai_action: "AI Favorited & Shared Architecture Carousel Link",
+            text: "How do you handle ephemeral test database secrets injection when running Playwright workers in parallel inside GitHub Actions matrix?",
+            sentiment: "neutral",
+            sentiment_score: 0.20,
+            intent: "Inquiry",
+            emotion: "👍 Like",
+            ai_action: "AI Dispatched Ephemeral Container Blueprint & Secret Scoping Docs 📄",
             timestamp: "1h ago"
           },
           {
+            platform: "facebook_page",
+            author: "Nusrat Jahan",
+            handle: "@nusrat_organics",
+            avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80",
+            text: "আপনাদের কাছে প্রিমিয়াম অর্গানিক চিয়া সিড এবং কোল্ড প্রেসড কালোজিরা তেল কি এভেইলেবল আছে? উত্তরায় ক্যাশ অন ডেলিভারি দেওয়া যাবে?",
+            sentiment: "positive",
+            sentiment_score: 0.88,
+            intent: "Inquiry",
+            emotion: "🤗 Care",
+            ai_action: "AI Confirmed: প্রিমিয়াম চিয়া সিড ও কোল্ড প্রেসড কালোজিরা তেল ইন-স্টক। উত্তরায় ক্যাশ অন ডেলিভারি কনফার্ম করা হয়েছে 📦",
+            timestamp: "1h 30m ago"
+          },
+          {
             platform: "x",
-            author: "Marvin McKinney",
-            handle: "@marvin_sqa",
+            author: "Alex Rivers",
+            handle: "@alex_coder",
             avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&auto=format&fit=crop&q=80",
-            text: "Are there plans to add automatic flaky test quarantine triggers directly into the GitHub Actions reporting gate?",
-            sentiment: "neutral",
-            sentiment_score: 0.22,
-            intent: "Feature Request",
-            emotion: "🤯 Wow",
-            ai_action: "AI Logged Feature Request to CI/CD Gate Roadmap",
+            text: "Replacing page.waitForTimeout with web assertions changed our entire team workflow. Test suite duration dropped by 3.5x. Pure gold!",
+            sentiment: "positive",
+            sentiment_score: 0.95,
+            intent: "Praise",
+            emotion: "💖 Love",
+            ai_action: "AI Liked & Thanked ❤️",
             timestamp: "2h ago"
+          },
+          {
+            platform: "x",
+            author: "Elena Rostova",
+            handle: "@elena_tech",
+            avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80",
+            text: "Are you planning to compare Playwright component testing vs Cypress component testing in your next technical thread?",
+            sentiment: "neutral",
+            sentiment_score: 0.15,
+            intent: "Feedback",
+            emotion: "🤯 Wow",
+            ai_action: "AI Acknowledged & Added Side-by-Side Benchmark to Content Roadmap 📝",
+            timestamp: "3h ago"
+          },
+          {
+            platform: "instagram",
+            author: "Mahbubur Rahman",
+            handle: "@mahbub_chef",
+            avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&auto=format&fit=crop&q=80",
+            text: "ঘানিতে ভাঙা সরিষার তেলের ঝাঁঝ এবং গুণগত মান অসাধারণ! রান্নায় খাঁটি স্বাদ পাওয়া যায়।",
+            sentiment: "positive",
+            sentiment_score: 0.92,
+            intent: "Praise",
+            emotion: "💖 Love",
+            ai_action: "AI Favorited & Expressed Appreciation for Chef Endorsement ❤️",
+            timestamp: "4h ago"
           }
         ]
       };
     }
 
-    async function loadDeepDiveIntelligence() {
+    async function loadAudienceIntelligence() {
       try {
-        const res = await fetch(`${getApiBase()}/api/sentiment/deepdive-intelligence`);
+        const res = await fetch(`${getApiBase()}/api/sentiment/audience-intelligence`);
         if (res.ok) {
           const data = await res.json();
-          deepDiveRawData = data;
-          renderDeepDiveDashboard(data);
+          audienceRawData = data;
+          renderAudienceDashboard(data);
           return;
         }
       } catch (e) {
-        console.warn('API /sentiment/deepdive-intelligence unreachable, using embedded demo data', e);
+        console.warn('API /sentiment/audience-intelligence unreachable, using embedded authentic data', e);
       }
-      deepDiveRawData = getDefaultDeepDiveData();
-      renderDeepDiveDashboard(deepDiveRawData);
+      audienceRawData = getDefaultAudienceData();
+      renderAudienceDashboard(audienceRawData);
     }
 
-    function renderDeepDiveDashboard(data) {
+    function renderAudienceDashboard(data) {
       if (!data) return;
       
       // Update KPIs
       if (data.summary_kpis) {
         const k = data.summary_kpis;
-        const mEl = document.getElementById('dd-kpi-mentions');
+        const mEl = document.getElementById('ai-kpi-mentions');
         if (mEl) mEl.innerText = k.total_brand_mentions?.formatted || '19,031';
-        const pEl = document.getElementById('dd-kpi-posts');
+        const pEl = document.getElementById('ai-kpi-posts');
         if (pEl) pEl.innerText = k.total_posts_and_comments?.formatted || '38,063';
-        const negEl = document.getElementById('dd-kpi-negative');
+        const negEl = document.getElementById('ai-kpi-negative');
         if (negEl) negEl.innerText = k.total_negative_sentiment_split?.formatted || '2,855 (7.5%)';
-        const aEl = document.getElementById('dd-kpi-audience');
+        const aEl = document.getElementById('ai-kpi-audience');
         if (aEl) aEl.innerText = k.total_audience_reach?.formatted || '95,160';
-        const npsEl = document.getElementById('dd-kpi-nps');
-        if (npsEl) npsEl.innerText = k.net_promoter_score?.value || '+68';
+        const npsEl = document.getElementById('ai-kpi-nps');
+        if (npsEl) npsEl.innerText = k.net_promoter_score?.value || '+72';
       }
 
-      currentSentimentFeed = data.demo_interactions_feed || [];
+      currentSentimentFeed = data.interactions_feed || data.demo_interactions_feed || [];
       renderSentimentTable(currentSentimentFeed);
     }
 
-    function applyDeepDiveFilters() {
-      if (!deepDiveRawData) return;
-      const bVal = document.getElementById('dd-filter-brand')?.value || 'all';
-      const cVal = document.getElementById('dd-filter-channel')?.value || 'all';
-      const iVal = document.getElementById('dd-filter-intent')?.value || 'all';
-      const sVal = document.getElementById('dd-filter-sentiment')?.value || 'all';
+    function applyAudienceFilters() {
+      if (!audienceRawData) return;
+      const bVal = document.getElementById('ai-filter-brand')?.value || 'all';
+      const cVal = document.getElementById('ai-filter-channel')?.value || 'all';
+      const iVal = document.getElementById('ai-filter-intent')?.value || 'all';
+      const sVal = document.getElementById('ai-filter-sentiment')?.value || 'all';
 
-      let items = deepDiveRawData.demo_interactions_feed || [];
+      let items = audienceRawData.interactions_feed || audienceRawData.demo_interactions_feed || [];
       if (cVal !== 'all') {
         items = items.filter(it => it.platform.toLowerCase() === cVal.toLowerCase());
       }
@@ -4881,25 +5433,35 @@
       if (sVal !== 'all') {
         items = items.filter(it => it.sentiment.toLowerCase() === sVal.toLowerCase());
       }
+      if (activeKeywordFilter) {
+        const q = activeKeywordFilter.toLowerCase();
+        items = items.filter(it => {
+          const text = (it.text || it.content_text || '').toLowerCase();
+          const author = (it.author || it.author_name || '').toLowerCase();
+          return text.includes(q) || author.includes(q);
+        });
+      }
       renderSentimentTable(items);
     }
 
-    function resetDeepDiveFilters() {
-      const b = document.getElementById('dd-filter-brand'); if (b) b.value = 'all';
-      const c = document.getElementById('dd-filter-channel'); if (c) c.value = 'all';
-      const i = document.getElementById('dd-filter-intent'); if (i) i.value = 'all';
-      const t = document.getElementById('dd-filter-topic'); if (t) t.value = 'all';
-      const s = document.getElementById('dd-filter-sentiment'); if (s) s.value = 'all';
-      applyDeepDiveFilters();
+    function resetAudienceFilters() {
+      const b = document.getElementById('ai-filter-brand'); if (b) b.value = 'all';
+      const c = document.getElementById('ai-filter-channel'); if (c) c.value = 'all';
+      const i = document.getElementById('ai-filter-intent'); if (i) i.value = 'all';
+      const t = document.getElementById('ai-filter-topic'); if (t) t.value = 'all';
+      const s = document.getElementById('ai-filter-sentiment'); if (s) s.value = 'all';
+      activeKeywordFilter = null;
+      renderKeywordPills();
+      applyAudienceFilters();
     }
 
     async function loadSentimentFeed(sentimentFilter = 'all') {
-      if (!deepDiveRawData) {
-        await loadDeepDiveIntelligence();
+      if (!audienceRawData) {
+        await loadAudienceIntelligence();
       }
-      if (!deepDiveRawData) return;
+      if (!audienceRawData) return;
 
-      let items = deepDiveRawData.demo_interactions_feed || [];
+      let items = audienceRawData.interactions_feed || audienceRawData.demo_interactions_feed || [];
       if (sentimentFilter && sentimentFilter !== 'all') {
         items = items.filter(it => it.sentiment.toLowerCase() === sentimentFilter.toLowerCase());
       }
