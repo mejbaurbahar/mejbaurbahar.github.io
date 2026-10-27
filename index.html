@@ -1450,7 +1450,7 @@
             <p style="font-size:0.75rem; color:#94a3b8; margin:2px 0 0 0;">Authentication Required • Sign Up or Log In</p>
           </div>
         </div>
-        <button id="auth-modal-close-btn" onclick="closeAuthModal()" style="display:none; background:transparent; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">✕</button>
+        <button id="auth-modal-close-btn" onclick="closeAuthModal()" style="background:transparent; border:none; color:#94a3b8; font-size:1.3rem; cursor:pointer; padding:2px 8px;" title="Dismiss modal">✕</button>
       </div>
 
       <!-- Auth Tabs -->
@@ -1468,59 +1468,63 @@
 
       <!-- Log In Form -->
       <div id="auth-login-view">
-        <div style="margin-top:14px;">
-          <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Email Address</label>
-          <input type="email" id="login-input-email" placeholder="e.g. mejbaur.bahar@gmail.com" class="input-ctrl" value="mejbaur.bahar@gmail.com">
-        </div>
-        <div style="margin-top:12px;">
-          <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Password</label>
-          <input type="password" id="login-input-password" placeholder="Enter your password" class="input-ctrl" value="Admin@FagunAI2026!">
-        </div>
-        <button id="login-submit-btn" class="btn btn-primary" style="width:100%; margin-top:18px; padding:11px; font-weight:700; font-size:0.88rem; justify-content:center;" onclick="handleLoginSubmit()">
-          🚀 Sign In to Command Center
-        </button>
+        <form id="auth-login-form" onsubmit="event.preventDefault(); handleLoginSubmit();">
+          <div style="margin-top:14px;">
+            <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Email Address</label>
+            <input type="email" id="login-input-email" placeholder="e.g. mejbaur.bahar@gmail.com" class="input-ctrl" value="mejbaur.bahar@gmail.com" required>
+          </div>
+          <div style="margin-top:12px;">
+            <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Password</label>
+            <input type="password" id="login-input-password" placeholder="Enter your password" class="input-ctrl" value="Admin@FagunAI2026!" required>
+          </div>
+          <button id="login-submit-btn" type="submit" class="btn btn-primary" style="width:100%; margin-top:18px; padding:11px; font-weight:700; font-size:0.88rem; justify-content:center;">
+            🚀 Sign In to Command Center
+          </button>
+        </form>
 
         <div style="display:flex; align-items:center; gap:10px; margin:16px 0; color:#64748b; font-size:0.72rem;">
           <div style="flex:1; height:1px; background:#334155;"></div>
-          <span>OR QUICK 1-CLICK DEMO AUTH</span>
+          <span>OR 1-CLICK INSTANT AUTH</span>
           <div style="flex:1; height:1px; background:#334155;"></div>
         </div>
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-          <button class="btn btn-admin" style="font-size:0.75rem; padding:8px; justify-content:center;" onclick="quickFillLogin('mejbaur.bahar@gmail.com', 'Admin@FagunAI2026!')">
-            👑 Admin Demo
+          <button type="button" class="btn btn-admin" style="font-size:0.75rem; padding:8px; justify-content:center;" onclick="switchLogin('mejbaur.bahar@gmail.com')">
+            👑 Admin (mejbaur)
           </button>
-          <button class="btn btn-user" style="font-size:0.75rem; padding:8px; justify-content:center;" onclick="quickFillLogin('fagun115946@gmail.com', 'User@FagunAI2026!')">
-            👤 User Demo
+          <button type="button" class="btn btn-user" style="font-size:0.75rem; padding:8px; justify-content:center;" onclick="switchLogin('fagun115946@gmail.com')">
+            👤 User (fagun)
           </button>
         </div>
       </div>
 
       <!-- Sign Up Form -->
       <div id="auth-signup-view" style="display:none;">
-        <div style="margin-top:14px;">
-          <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Full Name</label>
-          <input type="text" id="signup-input-name" placeholder="e.g. Sarah QA Lead" class="input-ctrl">
-        </div>
-        <div style="margin-top:12px;">
-          <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Email Address</label>
-          <input type="email" id="signup-input-email" placeholder="e.g. sarah@company.com" class="input-ctrl">
-        </div>
-        <div style="margin-top:12px;">
-          <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Password (min. 6 characters)</label>
-          <input type="password" id="signup-input-password" placeholder="Create a secure password" class="input-ctrl">
-        </div>
-        <div style="margin-top:12px;">
-          <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Subscription Tier</label>
-          <select id="signup-input-plan" class="input-ctrl" style="cursor:pointer;">
-            <option value="Pro SDET Autonomous ($49/mo)" selected>Pro SDET Autonomous ($49/mo) - Recommended</option>
-            <option value="Enterprise Director Tier ($99/mo)">Enterprise Director Tier ($99/mo)</option>
-            <option value="Starter SDET Free Trial (7 Days)">Starter SDET Free Trial (7 Days)</option>
-          </select>
-        </div>
-        <button id="signup-submit-btn" class="btn btn-primary" style="width:100%; margin-top:18px; padding:11px; font-weight:700; font-size:0.88rem; justify-content:center;" onclick="handleSignupSubmit()">
-          ✨ Create Account & Start Access
-        </button>
+        <form id="auth-signup-form" onsubmit="event.preventDefault(); handleSignupSubmit();">
+          <div style="margin-top:14px;">
+            <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Full Name</label>
+            <input type="text" id="signup-input-name" placeholder="e.g. Sarah QA Lead" class="input-ctrl" required>
+          </div>
+          <div style="margin-top:12px;">
+            <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Email Address</label>
+            <input type="email" id="signup-input-email" placeholder="e.g. sarah@company.com" class="input-ctrl" required>
+          </div>
+          <div style="margin-top:12px;">
+            <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Password (min. 6 characters)</label>
+            <input type="password" id="signup-input-password" placeholder="Create a secure password" class="input-ctrl" required minlength="6">
+          </div>
+          <div style="margin-top:12px;">
+            <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Subscription Tier</label>
+            <select id="signup-input-plan" class="input-ctrl" style="cursor:pointer;">
+              <option value="Pro SDET Autonomous ($49/mo)" selected>Pro SDET Autonomous ($49/mo) - Recommended</option>
+              <option value="Enterprise Director Tier ($99/mo)">Enterprise Director Tier ($99/mo)</option>
+              <option value="Starter SDET Free Trial (7 Days)">Starter SDET Free Trial (7 Days)</option>
+            </select>
+          </div>
+          <button id="signup-submit-btn" type="submit" class="btn btn-primary" style="width:100%; margin-top:18px; padding:11px; font-weight:700; font-size:0.88rem; justify-content:center;">
+            ✨ Create Account & Start Access
+          </button>
+        </form>
       </div>
 
       <div style="text-align:center; margin-top:16px;">
@@ -3172,6 +3176,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
           currentAuthUser = data.user;
           localStorage.setItem('fagun_auth_token', currentAuthToken);
           localStorage.setItem('fagun_auth_email', data.user.email);
+          closeAuthModal();
           renderAuthUI();
           if (data.user.role === 'admin') {
             await loadAdminUsers();
@@ -3187,6 +3192,9 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
 
     async function localSwitchFallback(email) {
       const isAdmin = email === 'mejbaur.bahar@gmail.com';
+      currentAuthToken = 'token_' + Date.now();
+      localStorage.setItem('fagun_auth_token', currentAuthToken);
+      localStorage.setItem('fagun_auth_email', email);
       currentAuthUser = {
         email: email,
         role: isAdmin ? 'admin' : 'user',
@@ -3194,7 +3202,11 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
         pricing_plan: isAdmin ? 'Enterprise Director Tier' : 'Pro SDET Autonomous ($49/mo)',
         days_left: isAdmin ? 30 : 28
       };
+      closeAuthModal();
       renderAuthUI();
+      if (isAdmin) {
+        await loadAdminUsers();
+      }
       await loadUserQuota();
     }
 
