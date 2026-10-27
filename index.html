@@ -1670,7 +1670,7 @@
           <input type="email" id="google-email-input" placeholder="e.g. username@gmail.com" class="input-ctrl" required style="width:100%; padding:12px 14px; border:1px solid #dadce0; border-radius:6px; font-size:0.95rem; color:#202124; background:#ffffff; box-sizing:border-box; outline:none;" onfocus="this.style.borderColor='#1a73e8'; this.style.boxShadow='0 0 0 1px #1a73e8';" onblur="this.style.borderColor='#dadce0'; this.style.boxShadow='none';">
         </div>
         <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
-          <button type="button" onclick="triggerGoogleLoginModal()" style="background:transparent; border:none; color:#1a73e8; font-weight:600; font-size:0.88rem; cursor:pointer; padding:6px 0;">← Back to accounts</button>
+          <button type="button" id="google-form-back-btn" onclick="closeGooglePickerModal()" style="background:transparent; border:none; color:#1a73e8; font-weight:600; font-size:0.88rem; cursor:pointer; padding:6px 0;">Cancel</button>
           <button type="submit" id="google-next-btn" style="background:#1a73e8; color:#ffffff; border:none; border-radius:6px; padding:10px 24px; font-weight:600; font-size:0.88rem; cursor:pointer; transition:background 0.2s;" onmouseover="this.style.background='#1557b0'" onmouseout="this.style.background='#1a73e8'">
             Next
           </button>
@@ -1863,14 +1863,14 @@
     <!-- Complete Autonomous Dashboard Master View -->
     <div id="dashboard-sections">
 
-      <!-- Admin Oversight Command Center (Visible when logged in as mejbaur.bahar@gmail.com) -->
+      <!-- Admin Oversight Command Center (Visible when logged in as authorized administrator) -->
       <section id="admin-oversight-section" class="admin-panel">
       <div class="section-header-row">
         <div>
           <h2 class="section-title" style="color:#fbbf24;">
             👑 Admin Oversight Command Center
           </h2>
-          <div class="section-subtitle">Real-time administration view for mejbaur.bahar@gmail.com. Monitor all registered users, subscriptions, and connected channels.</div>
+          <div class="section-subtitle">Real-time administration command center. Monitor registered users, subscriptions, and connected channels.</div>
         </div>
         <div class="zero-secrets-badge">
           🛡️ Zero Secrets Policy: No private keys, passwords, or tokens displayed.
@@ -1879,15 +1879,15 @@
 
       <div class="admin-stats-row">
         <div class="admin-stat-card">
-          <span class="admin-stat-val" id="admin-stat-total" style="color:#60a5fa;">4</span>
+          <span class="admin-stat-val" id="admin-stat-total" style="color:#60a5fa;">0</span>
           <span class="admin-stat-lbl">Total Registered Users</span>
         </div>
         <div class="admin-stat-card">
-          <span class="admin-stat-val" id="admin-stat-active" style="color:#34d399;">4</span>
+          <span class="admin-stat-val" id="admin-stat-active" style="color:#34d399;">0</span>
           <span class="admin-stat-lbl">Active Subscriptions</span>
         </div>
         <div class="admin-stat-card">
-          <span class="admin-stat-val" id="admin-stat-channels" style="color:#f59e0b;">19</span>
+          <span class="admin-stat-val" id="admin-stat-channels" style="color:#f59e0b;">0</span>
           <span class="admin-stat-lbl">Connected Social Channels</span>
         </div>
         <div class="admin-stat-card">
@@ -1911,79 +1911,7 @@
             </tr>
           </thead>
           <tbody id="admin-users-tbody">
-            <!-- Dynamically populated from /api/admin/users -->
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <img src="https://media.licdn.com/dms/image/v2/D4E03AQHEita4mm9fSw/profile-displayphoto-scale_200_200/B4EaDxHdwpI8Ag-/0/1790751662592?e=1794441600&v=beta&t=-1jv-6mxVOc49o3uC4QSBfeCbtf3kbTWrw0bFoMRIIg" style="width:28px; height:28px; border-radius:50%;" alt="Admin">
-                  <div>
-                    <strong>Mejbaur Bahar (Admin)</strong><br>
-                    <span style="font-size:0.75rem; color:#94a3b8;">mejbaur.bahar@gmail.com</span>
-                  </div>
-                </div>
-              </td>
-              <td><span class="role-badge-admin">👑 Admin</span></td>
-              <td><strong>Enterprise Executive Tier ($199/mo)</strong></td>
-              <td>2026-10-01</td>
-              <td><span class="days-pill">30 days remaining</span></td>
-              <td><span style="color:#38bdf8;">5 Channels</span> (LI, FB, Agro, X, IG)</td>
-              <td><span style="color:#34d399;">● Active</span></td>
-              <td><span style="font-size:0.75rem; color:#94a3b8;">Super Admin</span></td>
-            </tr>
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <img src="https://avatars.githubusercontent.com/u/245405312?v=4" style="width:28px; height:28px; border-radius:50%;" alt="Primary User">
-                  <div>
-                    <strong>Mejbaur Bahar Fagun</strong><br>
-                    <span style="font-size:0.75rem; color:#94a3b8;">fagun115946@gmail.com</span>
-                  </div>
-                </div>
-              </td>
-              <td><span class="role-badge-user">👤 User</span></td>
-              <td><strong>Pro SDET Autonomous ($49/mo)</strong></td>
-              <td>2026-10-15</td>
-              <td><span class="days-pill">28 days remaining</span></td>
-              <td><span style="color:#38bdf8;">5 Channels</span> (LI, FB, Agro, X, IG)</td>
-              <td><span style="color:#34d399;">● Active</span></td>
-              <td><button class="btn btn-outline" style="padding:3px 8px; font-size:0.7rem;" onclick="extendUserPlan(2, 30)">Extend +30d</button></td>
-            </tr>
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" style="width:28px; height:28px; border-radius:50%;" alt="Customer">
-                  <div>
-                    <strong>Sarah Jenkins</strong><br>
-                    <span style="font-size:0.75rem; color:#94a3b8;">sarah.qa@fintechleads.io</span>
-                  </div>
-                </div>
-              </td>
-              <td><span class="role-badge-user">👤 User</span></td>
-              <td><strong>Starter Pro Trial</strong></td>
-              <td>2026-10-20</td>
-              <td><span class="days-pill warn">14 days remaining</span></td>
-              <td><span style="color:#38bdf8;">4 Channels</span> (LI, X, FB, IG)</td>
-              <td><span style="color:#34d399;">● Trial</span></td>
-              <td><button class="btn btn-outline" style="padding:3px 8px; font-size:0.7rem;" onclick="extendUserPlan(3, 30)">Extend +30d</button></td>
-            </tr>
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" style="width:28px; height:28px; border-radius:50%;" alt="Customer">
-                  <div>
-                    <strong>Tariq Al-Mansoor</strong><br>
-                    <span style="font-size:0.75rem; color:#94a3b8;">devops.lead@cloudscale.net</span>
-                  </div>
-                </div>
-              </td>
-              <td><span class="role-badge-user">👤 User</span></td>
-              <td><strong>Enterprise Automation ($99/mo)</strong></td>
-              <td>2026-10-10</td>
-              <td><span class="days-pill">25 days remaining</span></td>
-              <td><span style="color:#38bdf8;">5 Channels</span> (LI, X, FB, Agro, IG)</td>
-              <td><span style="color:#34d399;">● Active</span></td>
-              <td><button class="btn btn-outline" style="padding:3px 8px; font-size:0.7rem;" onclick="extendUserPlan(4, 30)">Extend +30d</button></td>
-            </tr>
+            <!-- Dynamically populated from /api/admin/users only for authenticated administrator -->
           </tbody>
         </table>
       </div>
@@ -3338,55 +3266,22 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       if (modal) modal.style.display = 'none';
     }
 
-    const DEFAULT_AVAILABLE_GOOGLE_ACCOUNTS = [
-      {
-        email: 'fagun115946@gmail.com',
-        name: 'Mejbaur Bahar Fagun',
-        avatar: 'https://avatars.githubusercontent.com/u/245405312?v=4',
-        role: 'user'
-      },
-      {
-        email: 'mejbaur.bahar@gmail.com',
-        name: 'Mejbaur Bahar (Admin)',
-        avatar: 'https://media.licdn.com/dms/image/v2/D4E03AQHEita4mm9fSw/profile-displayphoto-scale_200_200/B4EaDxHdwpI8Ag-/0/1790751662592?e=1794441600&v=beta&t=-1jv-6mxVOc49o3uC4QSBfeCbtf3kbTWrw0bFoMRIIg',
-        role: 'admin'
-      }
-    ];
-
-    function getAvailableGoogleAccounts() {
-      let customAccounts = [];
+    function getSavedGoogleAccounts() {
       try {
         const stored = localStorage.getItem('fagun_saved_google_accounts');
-        if (stored) customAccounts = JSON.parse(stored);
-      } catch (e) {}
-
-      const accountMap = new Map();
-      // Put custom accounts first (in case user added newer ones)
-      customAccounts.forEach(acc => {
-        if (acc && acc.email) {
-          accountMap.set(acc.email.toLowerCase().trim(), acc);
-        }
-      });
-      // Ensure default accounts are present
-      DEFAULT_AVAILABLE_GOOGLE_ACCOUNTS.forEach(acc => {
-        const key = acc.email.toLowerCase().trim();
-        if (!accountMap.has(key)) {
-          accountMap.set(key, acc);
-        }
-      });
-      return Array.from(accountMap.values());
+        return stored ? JSON.parse(stored) : [];
+      } catch (e) {
+        return [];
+      }
     }
 
     function saveGoogleAccountLocally(email, name, avatar) {
+      if (!email) return;
       try {
-        let accounts = [];
-        try {
-          const stored = localStorage.getItem('fagun_saved_google_accounts');
-          if (stored) accounts = JSON.parse(stored);
-        } catch (e) {}
+        let accounts = getSavedGoogleAccounts();
         accounts = accounts.filter(a => a.email.toLowerCase() !== email.toLowerCase());
-        accounts.unshift({ email, name, avatar });
-        if (accounts.length > 8) accounts = accounts.slice(0, 8);
+        accounts.unshift({ email, name: name || email.split('@')[0], avatar: avatar || '' });
+        if (accounts.length > 5) accounts = accounts.slice(0, 5);
         localStorage.setItem('fagun_saved_google_accounts', JSON.stringify(accounts));
       } catch (e) {}
     }
@@ -3398,53 +3293,60 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       const title = document.getElementById('google-modal-title');
       const subtitle = document.getElementById('google-modal-subtitle');
 
-      const accounts = getAvailableGoogleAccounts();
+      const accounts = getSavedGoogleAccounts();
 
-      if (title) title.innerText = 'Choose an account';
-      if (subtitle) subtitle.innerHTML = 'to continue to <strong style="color:#202124; font-weight:600;">Fagun AI</strong>';
+      if (accounts && accounts.length > 0) {
+        // Only rendered if user previously signed in on THIS local device
+        if (title) title.innerText = 'Choose an account';
+        if (subtitle) subtitle.innerHTML = 'to continue to <strong style="color:#202124; font-weight:600;">Fagun AI</strong>';
 
-      let html = '';
-      accounts.forEach(acc => {
-        const isAdmin = acc.email === 'mejbaur.bahar@gmail.com';
-        const badge = isAdmin
-          ? '<span style="font-size:0.75rem; color:#b45309; font-weight:600; background:#fef3c7; border:1px solid #fde68a; padding:2px 8px; border-radius:12px;">👑 Admin</span>'
-          : '<span style="font-size:0.75rem; color:#0369a1; font-weight:600; background:#e0f2fe; border:1px solid #bae6fd; padding:2px 8px; border-radius:12px;">👤 User</span>';
+        let html = '';
+        accounts.forEach(acc => {
+          const isAdmin = acc.email === 'mejbaur.bahar@gmail.com';
+          const badge = isAdmin
+            ? '<span style="font-size:0.75rem; color:#b45309; font-weight:600; background:#fef3c7; border:1px solid #fde68a; padding:2px 8px; border-radius:12px;">👑 Admin</span>'
+            : '<span style="font-size:0.75rem; color:#0369a1; font-weight:600; background:#e0f2fe; border:1px solid #bae6fd; padding:2px 8px; border-radius:12px;">👤 User</span>';
 
-        const initial = (acc.name || acc.email).charAt(0).toUpperCase();
-        const avatarImg = acc.avatar
-          ? `<img src="${acc.avatar}" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid #e5e7eb;" alt="${acc.name}">`
-          : `<div style="width:40px; height:40px; border-radius:50%; background:#1a73e8; color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:600; font-size:1rem;">${initial}</div>`;
+          const initial = (acc.name || acc.email).charAt(0).toUpperCase();
+          const avatarImg = acc.avatar
+            ? `<img src="${acc.avatar}" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid #e5e7eb;" alt="${acc.name}">`
+            : `<div style="width:40px; height:40px; border-radius:50%; background:#1a73e8; color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:600; font-size:1rem;">${initial}</div>`;
 
-        html += `
-          <div class="google-account-row" onclick="selectGoogleAccount('${acc.email}', '${acc.name || ''}', '${acc.avatar || ''}')" style="display:flex; align-items:center; gap:14px; padding:12px 14px; border-radius:8px; cursor:pointer; transition:all 0.15s ease; border-bottom:1px solid #f1f3f4;" onmouseover="this.style.background='#f8fafd'; this.style.boxShadow='0 1px 3px rgba(60,64,67,0.1)';" onmouseout="this.style.background='transparent'; this.style.boxShadow='none';">
-            ${avatarImg}
-            <div style="flex:1;">
-              <div style="font-size:0.92rem; font-weight:600; color:#202124;">${acc.name || acc.email}</div>
-              <div style="font-size:0.78rem; color:#5f6368;">${acc.email}</div>
+          html += `
+            <div class="google-account-row" onclick="selectGoogleAccount('${acc.email}', '${acc.name || ''}', '${acc.avatar || ''}')" style="display:flex; align-items:center; gap:14px; padding:12px 14px; border-radius:8px; cursor:pointer; transition:all 0.15s ease; border-bottom:1px solid #f1f3f4;" onmouseover="this.style.background='#f8fafd'; this.style.boxShadow='0 1px 3px rgba(60,64,67,0.1)';" onmouseout="this.style.background='transparent'; this.style.boxShadow='none';">
+              ${avatarImg}
+              <div style="flex:1;">
+                <div style="font-size:0.92rem; font-weight:600; color:#202124;">${acc.name || acc.email}</div>
+                <div style="font-size:0.78rem; color:#5f6368;">${acc.email}</div>
+              </div>
+              ${badge}
             </div>
-            ${badge}
+          `;
+        });
+
+        // "Use another account" row
+        html += `
+          <div class="google-account-row" onclick="showGoogleEmailInputView()" style="display:flex; align-items:center; gap:14px; padding:12px 14px; border-radius:8px; cursor:pointer; transition:all 0.15s ease; margin-top:4px;" onmouseover="this.style.background='#f8fafd'" onmouseout="this.style.background='transparent'">
+            <div style="width:40px; height:40px; border-radius:50%; background:#f1f3f4; color:#5f6368; display:flex; align-items:center; justify-content:center; font-size:1.1rem; border:1px dashed #d1d5db;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#5f6368"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            </div>
+            <div style="flex:1;">
+              <div style="font-size:0.92rem; font-weight:600; color:#1a73e8;">Use another account</div>
+              <div style="font-size:0.76rem; color:#5f6368;">Sign in with any other Google account</div>
+            </div>
           </div>
         `;
-      });
 
-      // "Use another account" row
-      html += `
-        <div class="google-account-row" onclick="showGoogleEmailInputView()" style="display:flex; align-items:center; gap:14px; padding:12px 14px; border-radius:8px; cursor:pointer; transition:all 0.15s ease; margin-top:4px;" onmouseover="this.style.background='#f8fafd'" onmouseout="this.style.background='transparent'">
-          <div style="width:40px; height:40px; border-radius:50%; background:#f1f3f4; color:#5f6368; display:flex; align-items:center; justify-content:center; font-size:1.1rem; border:1px dashed #d1d5db;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#5f6368"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-          </div>
-          <div style="flex:1;">
-            <div style="font-size:0.92rem; font-weight:600; color:#1a73e8;">Use another account</div>
-            <div style="font-size:0.76rem; color:#5f6368;">Sign in with any other Google account</div>
-          </div>
-        </div>
-      `;
-
-      if (list) {
-        list.innerHTML = html;
-        list.style.display = 'flex';
+        if (list) {
+          list.innerHTML = html;
+          list.style.display = 'flex';
+        }
+        if (form) form.style.display = 'none';
+      } else {
+        // Zero accounts saved in this browser (Incognito or new visitor): clean empty form, 0 data exposure
+        showGoogleEmailInputView();
       }
-      if (form) form.style.display = 'none';
+
       if (modal) modal.style.display = 'flex';
     }
 
@@ -3454,6 +3356,18 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       const title = document.getElementById('google-modal-title');
       const subtitle = document.getElementById('google-modal-subtitle');
       const emailInput = document.getElementById('google-email-input');
+      const backBtn = document.getElementById('google-form-back-btn');
+
+      const saved = getSavedGoogleAccounts();
+      if (backBtn) {
+        if (saved && saved.length > 0) {
+          backBtn.innerText = '← Back to accounts';
+          backBtn.onclick = triggerGoogleLoginModal;
+        } else {
+          backBtn.innerText = 'Cancel';
+          backBtn.onclick = closeGooglePickerModal;
+        }
+      }
 
       if (title) title.innerText = 'Sign in with Google';
       if (subtitle) subtitle.innerHTML = 'to continue to <strong style="color:#202124; font-weight:600;">Fagun AI</strong>';
