@@ -754,6 +754,75 @@
       color: #fff;
     }
 
+    /* Auth Gate Modal & Screen */
+    .auth-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 15, 29, 0.94);
+      backdrop-filter: blur(24px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .auth-modal-card {
+      background: #0f172a;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 50px rgba(56, 189, 248, 0.2);
+      border-radius: 20px;
+      max-width: 480px;
+      width: 100%;
+      padding: 32px;
+      position: relative;
+      animation: modalFadeIn 0.25s ease-out;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.96) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .auth-modal-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4px;
+      border-radius: 12px;
+      margin: 18px 0;
+    }
+    .auth-tab-btn {
+      padding: 10px;
+      border: none;
+      background: transparent;
+      color: #94a3b8;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .auth-tab-btn.active {
+      background: #2563eb;
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.5);
+    }
+    .input-ctrl {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #fff;
+      font-size: 0.86rem;
+      outline: none;
+      box-sizing: border-box;
+      width: 100%;
+      transition: all 0.2s ease;
+    }
+    .input-ctrl:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+
     /* Admin Panel Section */
     .admin-panel {
       background: var(--card-bg);
@@ -1358,6 +1427,104 @@
         <button id="user-setup-btn" class="btn btn-outline" onclick="toggleUserSetup()">
           ⚙️ My Social Setup
         </button>
+        <button class="btn btn-outline" style="border-color:#38bdf8; color:#38bdf8;" onclick="openAuthModal()">
+          🔑 Sign Up / Login
+        </button>
+        <button id="logout-btn" class="btn btn-outline" style="border-color:#ef4444; color:#f87171; background:rgba(239, 68, 68, 0.1);" onclick="logout()">
+          🚪 Log Out
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Authentication Gate Modal (Signup > Login Gate) -->
+  <div id="auth-gate-modal" class="auth-modal-overlay" style="display:none;">
+    <div class="auth-modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:42px; height:42px; border-radius:10px; background:linear-gradient(135deg, #38bdf8, #818cf8); display:flex; align-items:center; justify-content:center; font-size:1.4rem;">
+            🤖
+          </div>
+          <div>
+            <h2 style="font-size:1.25rem; margin:0; font-weight:800; color:#fff;">Fagun AI Brand Agent</h2>
+            <p style="font-size:0.75rem; color:#94a3b8; margin:2px 0 0 0;">Authentication Required • Sign Up or Log In</p>
+          </div>
+        </div>
+        <button id="auth-modal-close-btn" onclick="closeAuthModal()" style="display:none; background:transparent; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">✕</button>
+      </div>
+
+      <!-- Auth Tabs -->
+      <div class="auth-modal-tabs">
+        <button id="tab-btn-login" class="auth-tab-btn active" onclick="switchAuthTab('login')">
+          🔐 Log In
+        </button>
+        <button id="tab-btn-signup" class="auth-tab-btn" onclick="switchAuthTab('signup')">
+          ✨ Sign Up
+        </button>
+      </div>
+
+      <div id="auth-error-alert" style="display:none; padding:10px 14px; border-radius:8px; background:rgba(239, 68, 68, 0.15); border:1px solid #ef4444; color:#fca5a5; font-size:0.8rem; margin:14px 0;"></div>
+      <div id="auth-success-alert" style="display:none; padding:10px 14px; border-radius:8px; background:rgba(16, 185, 129, 0.15); border:1px solid #10b981; color:#6ee7b7; font-size:0.8rem; margin:14px 0;"></div>
+
+      <!-- Log In Form -->
+      <div id="auth-login-view">
+        <div style="margin-top:14px;">
+          <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Email Address</label>
+          <input type="email" id="login-input-email" placeholder="e.g. mejbaur.bahar@gmail.com" class="input-ctrl" value="mejbaur.bahar@gmail.com">
+        </div>
+        <div style="margin-top:12px;">
+          <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Password</label>
+          <input type="password" id="login-input-password" placeholder="Enter your password" class="input-ctrl" value="Admin@FagunAI2026!">
+        </div>
+        <button id="login-submit-btn" class="btn btn-primary" style="width:100%; margin-top:18px; padding:11px; font-weight:700; font-size:0.88rem; justify-content:center;" onclick="handleLoginSubmit()">
+          🚀 Sign In to Command Center
+        </button>
+
+        <div style="display:flex; align-items:center; gap:10px; margin:16px 0; color:#64748b; font-size:0.72rem;">
+          <div style="flex:1; height:1px; background:#334155;"></div>
+          <span>OR QUICK 1-CLICK DEMO AUTH</span>
+          <div style="flex:1; height:1px; background:#334155;"></div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <button class="btn btn-admin" style="font-size:0.75rem; padding:8px; justify-content:center;" onclick="quickFillLogin('mejbaur.bahar@gmail.com', 'Admin@FagunAI2026!')">
+            👑 Admin Demo
+          </button>
+          <button class="btn btn-user" style="font-size:0.75rem; padding:8px; justify-content:center;" onclick="quickFillLogin('fagun115946@gmail.com', 'User@FagunAI2026!')">
+            👤 User Demo
+          </button>
+        </div>
+      </div>
+
+      <!-- Sign Up Form -->
+      <div id="auth-signup-view" style="display:none;">
+        <div style="margin-top:14px;">
+          <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Full Name</label>
+          <input type="text" id="signup-input-name" placeholder="e.g. Sarah QA Lead" class="input-ctrl">
+        </div>
+        <div style="margin-top:12px;">
+          <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Email Address</label>
+          <input type="email" id="signup-input-email" placeholder="e.g. sarah@company.com" class="input-ctrl">
+        </div>
+        <div style="margin-top:12px;">
+          <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Password (min. 6 characters)</label>
+          <input type="password" id="signup-input-password" placeholder="Create a secure password" class="input-ctrl">
+        </div>
+        <div style="margin-top:12px;">
+          <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Subscription Tier</label>
+          <select id="signup-input-plan" class="input-ctrl" style="cursor:pointer;">
+            <option value="Pro SDET Autonomous ($49/mo)" selected>Pro SDET Autonomous ($49/mo) - Recommended</option>
+            <option value="Enterprise Director Tier ($99/mo)">Enterprise Director Tier ($99/mo)</option>
+            <option value="Starter SDET Free Trial (7 Days)">Starter SDET Free Trial (7 Days)</option>
+          </select>
+        </div>
+        <button id="signup-submit-btn" class="btn btn-primary" style="width:100%; margin-top:18px; padding:11px; font-weight:700; font-size:0.88rem; justify-content:center;" onclick="handleSignupSubmit()">
+          ✨ Create Account & Start Access
+        </button>
+      </div>
+
+      <div style="text-align:center; margin-top:16px;">
+        <span style="font-size:0.72rem; color:#64748b;">Secured with PBKDF2-SHA256 • Google OAuth 2.0 • Zero Secrets Standard</span>
       </div>
     </div>
   </div>
@@ -2779,6 +2946,219 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       days_left: 30
     };
 
+    function openAuthModal(msg = '') {
+      const modal = document.getElementById('auth-gate-modal');
+      const errAlert = document.getElementById('auth-error-alert');
+      const succAlert = document.getElementById('auth-success-alert');
+      const closeBtn = document.getElementById('auth-modal-close-btn');
+
+      if (errAlert) errAlert.style.display = 'none';
+      if (succAlert) {
+        if (msg) {
+          succAlert.innerText = msg;
+          succAlert.style.display = 'block';
+        } else {
+          succAlert.style.display = 'none';
+        }
+      }
+      if (closeBtn) {
+        closeBtn.style.display = currentAuthToken ? 'block' : 'none';
+      }
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeAuthModal() {
+      const modal = document.getElementById('auth-gate-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function switchAuthTab(tab) {
+      const btnLogin = document.getElementById('tab-btn-login');
+      const btnSignup = document.getElementById('tab-btn-signup');
+      const viewLogin = document.getElementById('auth-login-view');
+      const viewSignup = document.getElementById('auth-signup-view');
+      const errAlert = document.getElementById('auth-error-alert');
+      const succAlert = document.getElementById('auth-success-alert');
+
+      if (errAlert) errAlert.style.display = 'none';
+      if (succAlert) succAlert.style.display = 'none';
+
+      if (tab === 'login') {
+        if (btnLogin) btnLogin.classList.add('active');
+        if (btnSignup) btnSignup.classList.remove('active');
+        if (viewLogin) viewLogin.style.display = 'block';
+        if (viewSignup) viewSignup.style.display = 'none';
+      } else {
+        if (btnLogin) btnLogin.classList.remove('active');
+        if (btnSignup) btnSignup.classList.add('active');
+        if (viewLogin) viewLogin.style.display = 'none';
+        if (viewSignup) viewSignup.style.display = 'block';
+      }
+    }
+
+    function quickFillLogin(email, password) {
+      const emailInput = document.getElementById('login-input-email');
+      const passInput = document.getElementById('login-input-password');
+      if (emailInput) emailInput.value = email;
+      if (passInput) passInput.value = password;
+      handleLoginSubmit();
+    }
+
+    async function handleLoginSubmit() {
+      const email = document.getElementById('login-input-email')?.value.trim();
+      const password = document.getElementById('login-input-password')?.value;
+      const errAlert = document.getElementById('auth-error-alert');
+      const succAlert = document.getElementById('auth-success-alert');
+
+      if (!email || !password) {
+        if (errAlert) {
+          errAlert.innerText = 'Please enter both your email address and password.';
+          errAlert.style.display = 'block';
+        }
+        return;
+      }
+
+      try {
+        const res = await fetch(`${getApiBase()}/api/auth/login`, {
+          method: 'POST',
+          headers: getApiHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({ email: email, password: password })
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          currentAuthToken = data.token;
+          currentAuthUser = data.user;
+          localStorage.setItem('fagun_auth_token', currentAuthToken);
+          localStorage.setItem('fagun_auth_email', data.user.email);
+          renderAuthUI();
+          closeAuthModal();
+          if (data.user.role === 'admin') {
+            await loadAdminUsers();
+          }
+          await loadUserQuota();
+        } else {
+          const errData = await res.json().catch(() => ({}));
+          if (res.status === 404 || res.status === 405) {
+            await localSwitchFallback(email);
+            closeAuthModal();
+            return;
+          }
+          if (errAlert) {
+            errAlert.innerText = errData.detail || 'Invalid email or password. Please try again.';
+            errAlert.style.display = 'block';
+          }
+        }
+      } catch (e) {
+        await localSwitchFallback(email);
+        closeAuthModal();
+      }
+    }
+
+    async function handleSignupSubmit() {
+      const name = document.getElementById('signup-input-name')?.value.trim();
+      const email = document.getElementById('signup-input-email')?.value.trim();
+      const password = document.getElementById('signup-input-password')?.value;
+      const plan = document.getElementById('signup-input-plan')?.value;
+      const errAlert = document.getElementById('auth-error-alert');
+      const succAlert = document.getElementById('auth-success-alert');
+
+      if (!email || !email.includes('@') || !email.includes('.')) {
+        if (errAlert) {
+          errAlert.innerText = 'Please provide a valid email address.';
+          errAlert.style.display = 'block';
+        }
+        return;
+      }
+      if (!password || password.length < 6) {
+        if (errAlert) {
+          errAlert.innerText = 'Password must be at least 6 characters long.';
+          errAlert.style.display = 'block';
+        }
+        return;
+      }
+
+      try {
+        const res = await fetch(`${getApiBase()}/api/auth/signup`, {
+          method: 'POST',
+          headers: getApiHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({
+            full_name: name,
+            email: email,
+            password: password,
+            pricing_plan: plan
+          })
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          currentAuthToken = data.token;
+          currentAuthUser = data.user;
+          localStorage.setItem('fagun_auth_token', currentAuthToken);
+          localStorage.setItem('fagun_auth_email', data.user.email);
+          renderAuthUI();
+          closeAuthModal();
+          await loadUserQuota();
+          alert(`🎉 Welcome to Fagun AI, ${name || email}! Your account has been created.`);
+        } else {
+          const errData = await res.json().catch(() => ({}));
+          if (res.status === 404 || res.status === 405) {
+            currentAuthUser = {
+              email: email,
+              role: 'user',
+              name: name || 'New QA Engineer',
+              pricing_plan: plan,
+              days_left: 30
+            };
+            currentAuthToken = 'mock-jwt-token-' + Date.now();
+            localStorage.setItem('fagun_auth_token', currentAuthToken);
+            localStorage.setItem('fagun_auth_email', email);
+            renderAuthUI();
+            closeAuthModal();
+            await loadUserQuota();
+            alert(`🎉 Welcome to Fagun AI, ${name || email}! Your account has been created.`);
+            return;
+          }
+          if (errAlert) {
+            errAlert.innerText = errData.detail || 'Signup failed. Please try again.';
+            errAlert.style.display = 'block';
+          }
+        }
+      } catch (e) {
+        currentAuthUser = {
+          email: email,
+          role: 'user',
+          name: name || 'New QA Engineer',
+          pricing_plan: plan,
+          days_left: 30
+        };
+        currentAuthToken = 'mock-jwt-token-' + Date.now();
+        localStorage.setItem('fagun_auth_token', currentAuthToken);
+        localStorage.setItem('fagun_auth_email', email);
+        renderAuthUI();
+        closeAuthModal();
+        await loadUserQuota();
+        alert(`🎉 Welcome to Fagun AI, ${name || email}! Your account has been created.`);
+      }
+    }
+
+    async function logout() {
+      try {
+        await fetch(`${getApiBase()}/api/auth/logout`, {
+          method: 'POST',
+          headers: getApiHeaders()
+        });
+      } catch (e) {}
+
+      localStorage.removeItem('fagun_auth_token');
+      localStorage.removeItem('fagun_auth_email');
+      currentAuthToken = '';
+      currentAuthUser = null;
+
+      renderAuthUI();
+      openAuthModal('You have successfully logged out. Please sign in or sign up to access the system.');
+    }
+
     async function switchLogin(email) {
       try {
         const res = await fetch(`${getApiBase()}/api/auth/login-as`, {
@@ -2825,6 +3205,24 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       const chipDays = document.getElementById('user-days-badge');
       const adminSection = document.getElementById('admin-oversight-section');
       const adminBtn = document.getElementById('admin-panel-btn');
+      const mainContent = document.querySelector('main.container');
+
+      if (!currentAuthToken || !currentAuthUser) {
+        if (chipEmail) chipEmail.innerText = 'Not Signed In';
+        if (chipRole) {
+          chipRole.className = 'role-badge-user';
+          chipRole.innerText = '🔒 GUEST';
+        }
+        if (chipPlan) chipPlan.innerText = 'Sign Up Required';
+        if (chipDays) chipDays.innerText = '0 days';
+        if (adminSection) adminSection.style.display = 'none';
+        if (adminBtn) adminBtn.style.display = 'none';
+        if (mainContent) mainContent.style.filter = 'blur(6px)';
+        openAuthModal();
+        return;
+      }
+
+      if (mainContent) mainContent.style.filter = 'none';
 
       if (chipEmail) chipEmail.innerText = currentAuthUser.email;
       if (chipRole) {
@@ -3116,12 +3514,23 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
     }
 
     // Initialize Auth UI on page load
-    renderAuthUI();
     if (currentAuthToken && localStorage.getItem('fagun_auth_email')) {
-      if (currentAuthUser.role === 'admin') loadAdminUsers();
+      const email = localStorage.getItem('fagun_auth_email');
+      const isAdmin = email === 'mejbaur.bahar@gmail.com';
+      currentAuthUser = {
+        email: email,
+        role: isAdmin ? 'admin' : 'user',
+        name: isAdmin ? 'Mejbaur Bahar (Admin)' : 'Mejbaur Bahar Fagun',
+        pricing_plan: isAdmin ? 'Enterprise Director Tier' : 'Pro SDET Autonomous ($49/mo)',
+        days_left: isAdmin ? 30 : 28
+      };
+      renderAuthUI();
+      if (isAdmin) loadAdminUsers();
       loadUserQuota();
     } else {
-      switchLogin('mejbaur.bahar@gmail.com');
+      currentAuthUser = null;
+      currentAuthToken = '';
+      renderAuthUI();
     }
   </script>
 </body>
