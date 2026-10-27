@@ -919,6 +919,392 @@
     }
     input:checked + .slider { background-color: #10b981; }
     input:checked + .slider:before { transform: translateX(20px); }
+
+    /* Platform Mock Previews Section */
+    .mock-previews-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .preview-tabs-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 14px;
+    }
+    .preview-tab-btn {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #94a3b8;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .preview-tab-btn.active, .preview-tab-btn:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.4);
+      color: #fff;
+    }
+    .preview-cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 24px;
+    }
+
+    /* 1. LinkedIn Native Feed Mock */
+    .mock-linkedin-card {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 16px;
+      color: #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    .li-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .li-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .li-author-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .li-headline {
+      font-size: 0.74rem;
+      color: #94a3b8;
+      line-height: 1.3;
+    }
+    .li-time {
+      font-size: 0.7rem;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .li-post-text {
+      font-size: 0.86rem;
+      line-height: 1.5;
+      color: #e2e8f0;
+      white-space: pre-line;
+    }
+    .li-media-box {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #0f172a;
+    }
+    .li-stats-bar {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.74rem;
+      color: #94a3b8;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 8px;
+    }
+    .li-actions-bar {
+      display: flex;
+      justify-content: space-around;
+      padding-top: 4px;
+    }
+    .li-action-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 0.78rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+    .li-action-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #38bdf8;
+    }
+
+    /* 2. X / Twitter Native Tweet Mock */
+    .mock-x-card {
+      background: #000000;
+      border: 1px solid #2f3336;
+      border-radius: 16px;
+      padding: 16px;
+      color: #e7e9ea;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .x-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .x-user-group {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .x-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .x-names {
+      display: flex;
+      flex-direction: column;
+    }
+    .x-display-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #e7e9ea;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .x-handle {
+      font-size: 0.8rem;
+      color: #71767b;
+    }
+    .x-tweet-text {
+      font-size: 0.92rem;
+      line-height: 1.45;
+      color: #e7e9ea;
+      white-space: pre-line;
+    }
+    .x-video-player-box {
+      position: relative;
+      background: #0f172a;
+      border: 1px solid #2f3336;
+      border-radius: 14px;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .x-video-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 14px;
+    }
+    .x-play-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(29, 155, 240, 0.9);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      align-self: center;
+      box-shadow: 0 0 20px rgba(29, 155, 240, 0.6);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .x-play-btn:hover { transform: scale(1.1); }
+    .x-metrics-row {
+      display: flex;
+      justify-content: space-between;
+      color: #71767b;
+      font-size: 0.78rem;
+      border-top: 1px solid #2f3336;
+      padding-top: 10px;
+    }
+
+    /* 3. Facebook Native Card */
+    .mock-fb-card {
+      background: #242526;
+      border: 1px solid #3a3b3c;
+      border-radius: 10px;
+      padding: 14px;
+      color: #e4e6eb;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .fb-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .fb-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .fb-actions-row {
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid #3a3b3c;
+      padding-top: 6px;
+    }
+    .fb-btn {
+      background: none;
+      border: none;
+      color: #b0b3b8;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .fb-btn:hover { background: rgba(255, 255, 255, 0.08); color: #2e89ff; }
+
+    /* 4. Instagram Feed Post Card */
+    .mock-ig-card {
+      background: #000000;
+      border: 1px solid #262626;
+      border-radius: 12px;
+      overflow: hidden;
+      color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+    }
+    .ig-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 14px;
+    }
+    .ig-user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ig-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid #e1306c;
+      object-fit: cover;
+    }
+    .ig-carousel-box {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #121212;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ig-counter-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .ig-actions-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 14px 6px 14px;
+      font-size: 1.2rem;
+    }
+    .ig-caption-box {
+      padding: 0 14px 14px 14px;
+      font-size: 0.82rem;
+      line-height: 1.4;
+      color: #dbdbdb;
+    }
+
+    /* System Capacity & Quota Section */
+    .capacity-section {
+      background: var(--card-bg);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .quota-meters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin: 16px 0;
+    }
+    .quota-meter-card {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .quota-meter-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .quota-bar-track {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .quota-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #38bdf8, #818cf8);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+    .quota-meter-meta {
+      font-size: 0.7rem;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+    }
+    .hardware-spec-banner {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.75rem;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
   </style>
 </head>
 <body>
@@ -1920,7 +2306,375 @@ Reserve UI automation strictly for login and checkout.</div>
       </div>
     </section>
 
+    <!-- Section 6: Pixel-Accurate Platform Mock Previews (Real Content & Attached Media) -->
+    <section class="mock-previews-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-title">
+            📱 Live Platform Mock Previews (Native Feed Simulation)
+          </h2>
+          <div class="section-subtitle">Pixel-accurate feed previews showing exactly how autonomous posts appear on LinkedIn, X, Facebook, and Instagram with real media attachments.</div>
+        </div>
+      </div>
+
+      <div class="preview-tabs-bar">
+        <button class="preview-tab-btn active" onclick="filterMockPreview('all')">👁️ View All Channels</button>
+        <button class="preview-tab-btn" onclick="filterMockPreview('linkedin')">💼 LinkedIn Feed</button>
+        <button class="preview-tab-btn" onclick="filterMockPreview('x')">🐦 X Timeline</button>
+        <button class="preview-tab-btn" onclick="filterMockPreview('facebook')">📘 Facebook Profile</button>
+        <button class="preview-tab-btn" onclick="filterMockPreview('agro')">🌾 MI Unifyld Agro Ltd</button>
+        <button class="preview-tab-btn" onclick="filterMockPreview('instagram')">📸 Instagram Carousel</button>
+      </div>
+
+      <div class="preview-cards-container">
+
+        <!-- 1. LinkedIn Native Feed Mock Card -->
+        <div class="mock-linkedin-card preview-item" data-platform="linkedin">
+          <div class="li-header">
+            <img src="https://media.licdn.com/dms/image/v2/D4E03AQHEita4mm9fSw/profile-displayphoto-scale_200_200/B4EaDxHdwpI8Ag-/0/1790751662592?e=1794441600&v=beta&t=-1jv-6mxVOc49o3uC4QSBfeCbtf3kbTWrw0bFoMRIIg" class="li-avatar" alt="Mejbaur Bahar Fagun">
+            <div style="flex:1;">
+              <div class="li-author-name">
+                Mejbaur Bahar Fagun 🇧🇩 <span style="font-size:0.75rem; color:#94a3b8; font-weight:normal;">• 1st</span>
+              </div>
+              <div class="li-headline">Senior SDET & QA Automation Lead • Sofof Tech</div>
+              <div class="li-time">1h • Edited • 🌐</div>
+            </div>
+            <div style="color:#94a3b8; font-size:1.1rem; cursor:pointer;">•••</div>
+          </div>
+
+          <div class="li-post-text">
+Deterministic Playwright Fixtures in Enterprise CI/CD
+
+Flaky tests are an architectural failure, not bad luck. When your test suite grows beyond 500 test cases, naive sleep timers and shared database states inevitably bring down CI/CD pipelines.
+
+Here is how we stabilized our enterprise Playwright suite:
+1. Isolated Worker Fixtures
+2. Auto-retrying Assertions
+3. Network Harvester Intercepts
+4. Distributed Matrix Sharding
+
+What is your team's biggest challenge with end-to-end test flakiness?
+
+<span style="color:#60a5fa;">#SoftwareTesting #Playwright #QAEngineering #SDET #DevOps</span>
+          </div>
+
+          <!-- Embedded Visual Architecture Graphic -->
+          <div class="li-media-box">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="240" viewBox="0 0 600 240">
+              <defs>
+                <linearGradient id="liBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0b132b" />
+                  <stop offset="100%" stop-color="#1c2541" />
+                </linearGradient>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#liBg)" />
+              <rect x="20" y="20" width="560" height="200" rx="12" fill="none" stroke="#0a66c2" stroke-width="2" stroke-opacity="0.4" />
+              <text x="40" y="60" font-family="-apple-system, system-ui, sans-serif" font-size="14" font-weight="bold" fill="#38bdf8" letter-spacing="1">SDET ARCHITECTURE INSIGHT</text>
+              <text x="40" y="100" font-family="-apple-system, system-ui, sans-serif" font-size="20" font-weight="800" fill="#ffffff">Deterministic Playwright Fixtures in CI/CD</text>
+              <text x="40" y="130" font-family="-apple-system, system-ui, sans-serif" font-size="13" fill="#94a3b8">Zero Hard Sleeps • Worker Isolation • Sharded Runners</text>
+              <circle cx="480" cy="120" r="40" fill="#0a66c2" fill-opacity="0.2" />
+              <text x="480" y="126" font-family="monospace" font-size="18" font-weight="bold" fill="#60a5fa" text-anchor="middle">&lt;QA /&gt;</text>
+              <text x="40" y="195" font-family="-apple-system, system-ui, sans-serif" font-size="12" fill="#64748b">Mejbaur Bahar Fagun • Senior SDET • fagun.sqatesting.com</text>
+            </svg>
+          </div>
+
+          <div class="li-stats-bar">
+            <span>👍💡❤️ 84 • 18 comments</span>
+            <span>12 reposts</span>
+          </div>
+
+          <div class="li-actions-bar">
+            <button class="li-action-btn">👍 Like</button>
+            <button class="li-action-btn">💬 Comment</button>
+            <button class="li-action-btn">🔁 Repost</button>
+            <button class="li-action-btn">📤 Send</button>
+          </div>
+        </div>
+
+        <!-- 2. X / Twitter Native Timeline Mock Card -->
+        <div class="mock-x-card preview-item" data-platform="x">
+          <div class="x-header">
+            <div class="x-user-group">
+              <img src="https://pbs.twimg.com/profile_images/2104620085847707648/3Vq9sdJO_400x400.jpg" onerror="this.onerror=null; this.src='assets/x_avatar.jpg';" class="x-avatar" alt="Mejbaur Bahar on X">
+              <div class="x-names">
+                <div class="x-display-name">
+                  Mejbaur Bahar | Senior SDET
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#1d9bf0"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.79-4-4-4-.495 0-.965.084-1.4.238C14.55 2.475 13.18 1.6 11.6 1.6c-1.58 0-2.95.875-3.6 2.148-.435-.154-.905-.238-1.4-.238-2.21 0-4 1.79-4 4 0 .495.084.965.238 1.4C1.575 9.55.7 10.92.7 12.5c0 1.58.875 2.95 2.148 3.6-.154.435-.238.905-.238 1.4 0 2.21 1.79 4 4 4 .495 0 .965-.084 1.4-.238 1.35 1.273 2.72 2.148 4.3 2.148 1.58 0 2.95-.875 3.6-2.148.435.154.905.238 1.4.238 2.21 0 4-1.79 4-4 0-.495-.084-.965-.238-1.4 1.273-.65 2.148-2.02 2.148-3.6zm-12.72 4.41l-3.39-3.39 1.41-1.41 1.98 1.98 5.66-5.66 1.41 1.41-7.07 7.07z"/></svg>
+                </div>
+                <div class="x-handle">@fagun018 · 2h</div>
+              </div>
+            </div>
+            <div style="color:#71767b; font-size:1.1rem; cursor:pointer;">•••</div>
+          </div>
+
+          <div class="x-tweet-text">
+Hard sleep timers in test automation are a symptom of un-investigated race conditions.
+
+If your Playwright or Cypress script needs page.waitForTimeout(5000), fix the locator or mock the async event.
+
+Auto-retrying assertions + isolated context fixtures = 100% deterministic CI passes.
+
+<span style="color:#1d9bf0;">#SoftwareTesting #Playwright #SDET</span>
+          </div>
+
+          <!-- Embedded Motion Teaser Video Container -->
+          <div class="x-video-player-box">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 480 270">
+              <rect width="100%" height="100%" fill="#0a0f1d" />
+              <rect x="20" y="20" width="440" height="230" rx="8" fill="#111827" stroke="#374151" stroke-width="1.5" />
+              <circle cx="40" cy="40" r="5" fill="#ef4444" />
+              <circle cx="55" cy="40" r="5" fill="#f59e0b" />
+              <circle cx="70" cy="40" r="5" fill="#10b981" />
+              <text x="35" y="85" font-family="monospace" font-size="13" fill="#38bdf8">// Auto-retrying Playwright assertion</text>
+              <text x="35" y="115" font-family="monospace" font-size="13" fill="#4ade80">await expect(page.locator('#order-status')).toHaveText('Shipped');</text>
+              <text x="35" y="145" font-family="monospace" font-size="12" fill="#64748b">✔ PASSED (12ms • zero hard sleep timeout)</text>
+              <text x="35" y="210" font-family="-apple-system, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Autonomous Test Execution Demo</text>
+            </svg>
+            <div class="x-video-overlay">
+              <span style="align-self:flex-start; background:rgba(0,0,0,0.7); color:#fff; padding:2px 8px; border-radius:4px; font-size:0.72rem; font-weight:700;">HD 1080p</span>
+              <div class="x-play-btn">▶</div>
+              <span style="align-self:flex-end; background:rgba(0,0,0,0.8); color:#fff; padding:2px 6px; border-radius:4px; font-size:0.7rem;">0:05</span>
+            </div>
+          </div>
+
+          <div class="x-metrics-row">
+            <span>💬 24</span>
+            <span>🔁 48</span>
+            <span>❤️ 192</span>
+            <span>📊 3.8K</span>
+            <span>🔖</span>
+          </div>
+        </div>
+
+        <!-- 3. Facebook Personal Profile Native Feed Mock -->
+        <div class="mock-fb-card preview-item" data-platform="facebook">
+          <div class="fb-header">
+            <img src="https://scontent.fdac175-1.fna.fbcdn.net/v/t39.30808-1/609016625_4268576790031722_4069931847950370686_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx288x286&ctp=p80x80&_nc_cat=103&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=1d2534&_nc_eui2=AeHlVMEm7FujzrYe47NmGUUMdiH9rrYgLyB2If2utiAvIKOi9_wgbVwYBxSB3zFRJsCP5eHzgp4Bid7PYg2Oq_H6&_nc_ohc=2EYNS5QxmcsQ7kNvwFQxzDd&_nc_oc=AdpRglRJ9V_sFuUommYaaZWOk1x_Tt5Fophl5P2F_m5BRxpigKUilCqZH1GUv-DNOXw&_nc_zt=24&_nc_ht=scontent.fdac175-1.fna&_nc_gid=qYb8rD6jrTGv5l73B--UKw&_nc_ss=7b2a8&oh=00_AQMfCSQa_EXDoBW4xqyWjYoKEXM4nTYv8audEhgMlU3Bqg&oe=6AE5A5FA" class="fb-avatar" alt="Facebook Profile">
+            <div style="flex:1;">
+              <strong style="color:#fff; font-size:0.9rem;">Mejbaur Bahar Fagun</strong>
+              <div style="font-size:0.74rem; color:#b0b3b8;">3h • 🌍 Public</div>
+            </div>
+            <div style="color:#b0b3b8; font-size:1.1rem; cursor:pointer;">•••</div>
+          </div>
+
+          <div style="font-size:0.86rem; line-height:1.45; color:#e4e6eb; white-space:pre-line;">
+The transition from manual testing to Senior SDET is not just learning Python or TypeScript.
+
+It is shifting how you perceive quality:
+- You stop asking 'Did this feature pass?'
+- You start asking 'Can we safely deploy this pull request at 5 PM on a Thursday without paging engineers?'
+
+Build test suites that give developers confidence to ship fast.
+
+<span style="color:#2e89ff;">#SoftwareTesting #TechCareer #SDET #QAEngineer</span>
+          </div>
+
+          <div style="border-radius:8px; overflow:hidden; border:1px solid rgba(255,255,255,0.08);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="200" viewBox="0 0 500 200">
+              <rect width="100%" height="100%" fill="#182747" />
+              <circle cx="420" cy="100" r="70" fill="#1877f2" fill-opacity="0.15" />
+              <text x="35" y="60" font-family="-apple-system, sans-serif" font-size="14" font-weight="bold" fill="#60a5fa">QA CAREER PERSPECTIVE</text>
+              <text x="35" y="105" font-family="-apple-system, sans-serif" font-size="22" font-weight="800" fill="#ffffff">From Tester to Test Architect</text>
+              <text x="35" y="140" font-family="-apple-system, sans-serif" font-size="13" fill="#cbd5e1">Confidence to Deploy at 5 PM on a Thursday</text>
+              <text x="35" y="175" font-family="-apple-system, sans-serif" font-size="11" fill="#94a3b8">Mejbaur Bahar Fagun • Senior SDET Community</text>
+            </svg>
+          </div>
+
+          <div class="fb-actions-row">
+            <button class="fb-btn">👍 Like</button>
+            <button class="fb-btn">💬 Comment</button>
+            <button class="fb-btn">↗️ Share</button>
+          </div>
+        </div>
+
+        <!-- 4. Facebook Page Mock: MI Unifyld Agro Ltd -->
+        <div class="mock-fb-card preview-item" data-platform="agro" style="border-color:rgba(5, 150, 105, 0.4);">
+          <div class="fb-header">
+            <img src="https://scontent.fdac175-1.fna.fbcdn.net/v/t39.30808-1/807798566_122101019349476052_4858676092529831405_n.jpg?stp=dst-jpg_tt6&cstp=mx1254x1254&ctp=s120x120&_nc_cat=103&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=11a88f&_nc_eui2=AeGX3TwZCe4AR_u7HXJ_LE1Qorf6cOchMMyit_pw5yEwzB7NjwKmU0Sm-dMU9iOxqFhUk5X4FWvHhCoZs03PjOCN&_nc_ohc=EuybWzA7ORsQ7kNvwHBA2BV&_nc_oc=Adrgfq4RntFd1CKdsmrrxMcaeCmSIfH6AwWawmY7tNxVT_hYNXhf3BEs-xBZ0eNG4Gk&_nc_zt=24&_nc_ht=scontent.fdac175-1.fna&_nc_gid=miNB2_wjIqahU5JhRszNug&_nc_ss=7b2a8&oh=00_AQM6c21ttsk4qqC1EYgHHEcVM-NzJDnTLKfOuOaVbRXz8g&oe=6AE5CACE" class="fb-avatar" alt="MI Unifyld Agro Ltd" style="border-color:#10b981;">
+            <div style="flex:1;">
+              <strong style="color:#fff; font-size:0.9rem;">MI Unifyld Agro Ltd</strong>
+              <div style="font-size:0.74rem; color:#34d399;">Official Farm Page • 4h • 🌍</div>
+            </div>
+            <div style="color:#b0b3b8; font-size:1.1rem; cursor:pointer;">•••</div>
+          </div>
+
+          <div style="font-size:0.86rem; line-height:1.45; color:#e4e6eb; white-space:pre-line;">
+Modern agriculture is an engineering discipline.
+
+At MI Unifyld Agro Ltd, we are bringing software quality engineering and automated data pipelines directly into Bangladesh's farming ecosystem:
+- Automated IoT telemetry: Monitoring soil moisture, soil pH, and temperature.
+- Climate-Controlled Polyhouse automation.
+- Cold-Chain Traceability from farm gate to consumer tables.
+
+<span style="color:#34d399;">#MIUnifyldAgro #AgTech #SmartFarming #BangladeshAgriculture #QualityEngineering</span>
+          </div>
+
+          <!-- Embedded Smart Farming IoT Card -->
+          <div style="border-radius:8px; overflow:hidden; border:1px solid rgba(5, 150, 105, 0.3);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="220" viewBox="0 0 500 220">
+              <rect width="100%" height="100%" fill="#062e24" />
+              <rect x="20" y="20" width="460" height="180" rx="10" fill="none" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.5" />
+              <text x="40" y="55" font-family="-apple-system, sans-serif" font-size="13" font-weight="bold" fill="#34d399">SMART FARMING & AGRI-TECH TELEMETRY</text>
+              <text x="40" y="95" font-family="-apple-system, sans-serif" font-size="20" font-weight="800" fill="#ffffff">MI Unifyld Agro Ltd: Precision Soil IoT</text>
+              <text x="40" y="130" font-family="-apple-system, sans-serif" font-size="13" fill="#a7f3d0">Automated pH, Moisture & Irrigation Sensors</text>
+              <text x="40" y="175" font-family="-apple-system, sans-serif" font-size="11" fill="#6ee7b7">Bangladesh Agri-Innovation • Engineered for Food Security</text>
+            </svg>
+          </div>
+
+          <div class="fb-actions-row">
+            <button class="fb-btn">👍 Like Page</button>
+            <button class="fb-btn">💬 Comment</button>
+            <button class="fb-btn" style="color:#25d366;">💬 WhatsApp</button>
+          </div>
+        </div>
+
+        <!-- 5. Instagram Native Carousel Feed Mock Card -->
+        <div class="mock-ig-card preview-item" data-platform="instagram">
+          <div class="ig-header">
+            <div class="ig-user-info">
+              <img src="https://instagram.fdac175-1.fna.fbcdn.net/v/t51.82787-19/771968455_18375493972237227_8080633016537525452_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=104&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=KXJkIBTSjcAQ7kNvwEISxkO&_nc_oc=Ado6F-n5cfdB2QLzmPXTryxhtYbZWCPOZVoSDt97IIThO1RXTUFauHIqCCJcL5YICKs&_nc_zt=24&_nc_ht=instagram.fdac175-1.fna&_nc_gid=GFguGAax-kBKRu5EZgrjnA&_nc_ss=7baaf&oh=00_AQOUxNsogq9xZjh5Pd45eG-wzHLriaMxqxij0Z1bXfmWzA&oe=6AE5BF9B" class="ig-avatar" alt="Instagram Profile">
+              <div>
+                <strong style="color:#fff; font-size:0.86rem;">koy_jabo</strong>
+                <div style="font-size:0.7rem; color:#8e8e8e;">Dhaka, Bangladesh</div>
+              </div>
+            </div>
+            <div style="color:#8e8e8e; cursor:pointer;">•••</div>
+          </div>
+
+          <!-- 1:1 Square Carousel Media -->
+          <div class="ig-carousel-box">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 400 400">
+              <defs>
+                <linearGradient id="igBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#18181b" />
+                  <stop offset="100%" stop-color="#27272a" />
+                </linearGradient>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#igBg)" />
+              <rect x="25" y="25" width="350" height="350" rx="16" fill="none" stroke="#e1306c" stroke-width="2" stroke-opacity="0.3" />
+              <text x="45" y="75" font-family="-apple-system, sans-serif" font-size="13" font-weight="bold" fill="#f43f5e" letter-spacing="1">QA ARCHITECTURE GUIDE</text>
+              <text x="45" y="115" font-family="-apple-system, sans-serif" font-size="20" font-weight="800" fill="#ffffff">The 4 Pillars of Flake-Free QA</text>
+              
+              <rect x="45" y="145" width="310" height="42" rx="8" fill="#3f3f46" fill-opacity="0.4" />
+              <text x="60" y="172" font-family="-apple-system, sans-serif" font-size="14" font-weight="700" fill="#38bdf8">1. Independent Fixtures</text>
+
+              <rect x="45" y="195" width="310" height="42" rx="8" fill="#3f3f46" fill-opacity="0.4" />
+              <text x="60" y="222" font-family="-apple-system, sans-serif" font-size="14" font-weight="700" fill="#4ade80">2. Resilient Web Locators</text>
+
+              <rect x="45" y="245" width="310" height="42" rx="8" fill="#3f3f46" fill-opacity="0.4" />
+              <text x="60" y="272" font-family="-apple-system, sans-serif" font-size="14" font-weight="700" fill="#fbbf24">3. Network Event Triggers</text>
+
+              <rect x="45" y="295" width="310" height="42" rx="8" fill="#3f3f46" fill-opacity="0.4" />
+              <text x="60" y="322" font-family="-apple-system, sans-serif" font-size="14" font-weight="700" fill="#c084fc">4. Sharded Parallel Runners</text>
+
+              <text x="45" y="360" font-family="-apple-system, sans-serif" font-size="11" fill="#71717a">Swipe for full SDET tutorial →</text>
+            </svg>
+            <div class="ig-counter-badge">1 / 5</div>
+          </div>
+
+          <div class="ig-actions-row">
+            <div style="display:flex; gap:14px;">
+              <span>❤️</span>
+              <span>💬</span>
+              <span>📤</span>
+            </div>
+            <span>🔖</span>
+          </div>
+
+          <div class="ig-caption-box">
+            <strong>koy_jabo</strong> THE 4 PILLARS OF FLAKE-FREE AUTOMATION: Save this guide for your next automation sprint! If your tests fail only on CI, check your fixtures.<br>
+            <span style="color:#0095f6; font-size:0.75rem;">#SoftwareTesting #Playwright #QA #SDET #CodingLife</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 7: System Capacity & User Daily Quota Tracker -->
+    <section class="capacity-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-title">
+            ⚡ System Capacity & User Daily Usage Limitation
+          </h2>
+          <div class="section-subtitle">Real-time hardware capacity calibrated to Apple Silicon M1 (8-core, 16GB RAM) with per-user daily usage enforcement.</div>
+        </div>
+        <div class="persistent-notice" style="background:rgba(56, 189, 248, 0.1); border-color:rgba(56, 189, 248, 0.3); color:#38bdf8;">
+          💻 Hardware: Apple M1 (8 cores) • 16GB Unified RAM • 171GB SSD
+        </div>
+      </div>
+
+      <div class="quota-meters-grid">
+        <!-- 1. Post Quota Meter -->
+        <div class="quota-meter-card">
+          <div class="quota-meter-top">
+            <span style="color:#fff;">📝 Scheduled Posts</span>
+            <span id="quota-posts-text" style="color:#38bdf8;">1 / 15 Used</span>
+          </div>
+          <div class="quota-bar-track">
+            <div class="quota-bar-fill" id="quota-posts-bar" style="width: 7%;"></div>
+          </div>
+          <div class="quota-meter-meta">
+            <span id="quota-posts-remain">14 remaining today</span>
+            <span>Plan: Pro SDET</span>
+          </div>
+        </div>
+
+        <!-- 2. Images Quota Meter -->
+        <div class="quota-meter-card">
+          <div class="quota-meter-top">
+            <span style="color:#fff;">🎨 Visual Graphics & Cards</span>
+            <span id="quota-images-text" style="color:#34d399;">2 / 20 Used</span>
+          </div>
+          <div class="quota-bar-track">
+            <div class="quota-bar-fill" id="quota-images-bar" style="width: 10%; background:linear-gradient(90deg, #34d399, #10b981);"></div>
+          </div>
+          <div class="quota-meter-meta">
+            <span id="quota-images-remain">18 remaining today</span>
+            <span>Plan: Pro SDET</span>
+          </div>
+        </div>
+
+        <!-- 3. Videos Quota Meter -->
+        <div class="quota-meter-card">
+          <div class="quota-meter-top">
+            <span style="color:#fff;">🎬 Motion Video Teasers</span>
+            <span id="quota-videos-text" style="color:#c084fc;">0 / 5 Used</span>
+          </div>
+          <div class="quota-bar-track">
+            <div class="quota-bar-fill" id="quota-videos-bar" style="width: 0%; background:linear-gradient(90deg, #c084fc, #a855f7);"></div>
+          </div>
+          <div class="quota-meter-meta">
+            <span id="quota-videos-remain">5 remaining today</span>
+            <span>Plan: Pro SDET</span>
+          </div>
+        </div>
+
+        <!-- 4. Comments & Replies Quota Meter -->
+        <div class="quota-meter-card">
+          <div class="quota-meter-top">
+            <span style="color:#fff;">💬 Contextual AI Replies</span>
+            <span id="quota-comments-text" style="color:#fbbf24;">4 / 50 Used</span>
+          </div>
+          <div class="quota-bar-track">
+            <div class="quota-bar-fill" id="quota-comments-bar" style="width: 8%; background:linear-gradient(90deg, #fbbf24, #f59e0b);"></div>
+          </div>
+          <div class="quota-meter-meta">
+            <span id="quota-comments-remain">46 remaining today</span>
+            <span>Plan: Pro SDET</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hardware-spec-banner">
+        <div><strong>🖥️ Machine Capacity:</strong> Max 150 Posts/day • 100 Images/day • 25 Videos/day • 300 Replies/day across fleet.</div>
+        <div style="color:#34d399;"><strong>● Fleet Health:</strong> 0% Throttling • 100% Optimal Performance</div>
+      </div>
+    </section>
+
   </main>
+
+  <footer>
     <p>Fagun AI Autonomous System • Senior SDET Personal Brand & Social Operations</p>
     <p>Managed for <a href="https://www.linkedin.com/in/mejbaur/" target="_blank">Mejbaur Bahar Fagun</a> • Engineered for 24/7 Autonomous Performance</p>
   </footer>
@@ -2021,6 +2775,7 @@ Reserve UI automation strictly for login and checkout.</div>
           if (data.user.role === 'admin') {
             loadAdminUsers();
           }
+          loadUserQuota();
         } else {
           localSwitchFallback(email);
         }
@@ -2039,6 +2794,7 @@ Reserve UI automation strictly for login and checkout.</div>
         days_left: isAdmin ? 30 : 28
       };
       renderAuthUI();
+      loadUserQuota();
     }
 
     function renderAuthUI() {
@@ -2230,9 +2986,128 @@ Reserve UI automation strictly for login and checkout.</div>
       }
     }
 
+    function filterMockPreview(platform) {
+      const btns = document.querySelectorAll('.preview-tab-btn');
+      btns.forEach(btn => btn.classList.remove('active'));
+      const activeBtn = Array.from(btns).find(b => {
+        const onclickAttr = b.getAttribute('onclick') || '';
+        return onclickAttr.includes(`'${platform}'`);
+      });
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const items = document.querySelectorAll('.preview-item');
+      items.forEach(item => {
+        if (platform === 'all' || item.getAttribute('data-platform') === platform) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    async function loadUserQuota() {
+      try {
+        const headers = currentAuthToken ? { 'Authorization': 'Bearer ' + currentAuthToken } : {};
+        const res = await fetch('/api/user/usage', { headers });
+        if (!res.ok) {
+          applyDefaultQuotaDisplay();
+          return;
+        }
+        const data = await res.json();
+        if (!data || !data.usage || !data.limits) {
+          applyDefaultQuotaDisplay();
+          return;
+        }
+
+        const u = data.usage;
+        const l = data.limits;
+        const r = data.remaining || {};
+
+        // Update posts
+        const postPct = Math.min(100, Math.round((u.posts_used / (l.posts_per_day || 1)) * 100));
+        const postText = document.getElementById('quota-posts-text');
+        const postBar = document.getElementById('quota-posts-bar');
+        const postRemain = document.getElementById('quota-posts-remain');
+        if (postText) postText.textContent = `${u.posts_used} / ${l.posts_per_day} Used`;
+        if (postBar) postBar.style.width = `${postPct}%`;
+        if (postRemain) postRemain.textContent = `${r.posts_remaining ?? (l.posts_per_day - u.posts_used)} remaining today`;
+
+        // Update images
+        const imgPct = Math.min(100, Math.round((u.images_used / (l.images_per_day || 1)) * 100));
+        const imgText = document.getElementById('quota-images-text');
+        const imgBar = document.getElementById('quota-images-bar');
+        const imgRemain = document.getElementById('quota-images-remain');
+        if (imgText) imgText.textContent = `${u.images_used} / ${l.images_per_day} Used`;
+        if (imgBar) imgBar.style.width = `${imgPct}%`;
+        if (imgRemain) imgRemain.textContent = `${r.images_remaining ?? (l.images_per_day - u.images_used)} remaining today`;
+
+        // Update videos
+        const vidPct = Math.min(100, Math.round((u.videos_used / (l.videos_per_day || 1)) * 100));
+        const vidText = document.getElementById('quota-videos-text');
+        const vidBar = document.getElementById('quota-videos-bar');
+        const vidRemain = document.getElementById('quota-videos-remain');
+        if (vidText) vidText.textContent = `${u.videos_used} / ${l.videos_per_day} Used`;
+        if (vidBar) vidBar.style.width = `${vidPct}%`;
+        if (vidRemain) vidRemain.textContent = `${r.videos_remaining ?? (l.videos_per_day - u.videos_used)} remaining today`;
+
+        // Update comments
+        const cmtPct = Math.min(100, Math.round((u.comments_used / (l.comments_per_day || 1)) * 100));
+        const cmtText = document.getElementById('quota-comments-text');
+        const cmtBar = document.getElementById('quota-comments-bar');
+        const cmtRemain = document.getElementById('quota-comments-remain');
+        if (cmtText) cmtText.textContent = `${u.comments_used} / ${l.comments_per_day} Used`;
+        if (cmtBar) cmtBar.style.width = `${cmtPct}%`;
+        if (cmtRemain) cmtRemain.textContent = `${r.comments_remaining ?? (l.comments_per_day - u.comments_used)} remaining today`;
+      } catch (e) {
+        applyDefaultQuotaDisplay();
+      }
+    }
+
+    function applyDefaultQuotaDisplay() {
+      const isAdmin = currentAuthUser.role === 'admin';
+      const postLimit = isAdmin ? 100 : 15;
+      const imgLimit = isAdmin ? 100 : 20;
+      const vidLimit = isAdmin ? 25 : 5;
+      const cmtLimit = isAdmin ? 200 : 50;
+
+      const postUsed = isAdmin ? 5 : 1;
+      const imgUsed = isAdmin ? 8 : 2;
+      const vidUsed = isAdmin ? 2 : 0;
+      const cmtUsed = isAdmin ? 14 : 4;
+
+      const pt = document.getElementById('quota-posts-text');
+      const pb = document.getElementById('quota-posts-bar');
+      const pr = document.getElementById('quota-posts-remain');
+      if (pt) pt.textContent = `${postUsed} / ${postLimit} Used`;
+      if (pb) pb.style.width = `${Math.round((postUsed / postLimit) * 100)}%`;
+      if (pr) pr.textContent = `${postLimit - postUsed} remaining today`;
+
+      const it = document.getElementById('quota-images-text');
+      const ib = document.getElementById('quota-images-bar');
+      const ir = document.getElementById('quota-images-remain');
+      if (it) it.textContent = `${imgUsed} / ${imgLimit} Used`;
+      if (ib) ib.style.width = `${Math.round((imgUsed / imgLimit) * 100)}%`;
+      if (ir) ir.textContent = `${imgLimit - imgUsed} remaining today`;
+
+      const vt = document.getElementById('quota-videos-text');
+      const vb = document.getElementById('quota-videos-bar');
+      const vr = document.getElementById('quota-videos-remain');
+      if (vt) vt.textContent = `${vidUsed} / ${vidLimit} Used`;
+      if (vb) vb.style.width = `${Math.round((vidUsed / vidLimit) * 100)}%`;
+      if (vr) vr.textContent = `${vidLimit - vidUsed} remaining today`;
+
+      const ct = document.getElementById('quota-comments-text');
+      const cb = document.getElementById('quota-comments-bar');
+      const cr = document.getElementById('quota-comments-remain');
+      if (ct) ct.textContent = `${cmtUsed} / ${cmtLimit} Used`;
+      if (cb) cb.style.width = `${Math.round((cmtUsed / cmtLimit) * 100)}%`;
+      if (cr) cr.textContent = `${cmtLimit - cmtUsed} remaining today`;
+    }
+
     // Initialize Auth UI on page load
     renderAuthUI();
     loadAdminUsers();
+    loadUserQuota();
   </script>
 </body>
 </html>
