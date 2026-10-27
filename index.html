@@ -1374,6 +1374,137 @@
       flex-wrap: wrap;
       gap: 10px;
     }
+    /* Audience Perception & Social Sentiment Telemetry */
+    .sentiment-panel {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 24px;
+      margin-top: 32px;
+      backdrop-filter: blur(12px);
+    }
+    .sentiment-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .sentiment-kpi-card {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .sentiment-kpi-val {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #f8fafc;
+    }
+    .sentiment-kpi-lbl {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .sentiment-chart-row {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 900px) {
+      .sentiment-chart-row { grid-template-columns: 1fr; }
+    }
+    .sentiment-donut-card, .sentiment-platform-card {
+      background: rgba(30, 41, 59, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .sentiment-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .sentiment-filters {
+      display: flex;
+      gap: 8px;
+    }
+    .filter-btn {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+    .sentiment-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+    .sentiment-table th {
+      text-align: left;
+      padding: 12px;
+      background: rgba(15, 23, 42, 0.8);
+      color: #94a3b8;
+      font-weight: 600;
+      border-bottom: 1px solid #334155;
+    }
+    .sentiment-table td {
+      padding: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
+      vertical-align: middle;
+    }
+    .pill-sentiment {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .pill-positive { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+    .pill-neutral { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }
+    .pill-negative { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .btn-verify {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+    }
+    .btn-verify:hover {
+      background: rgba(56, 189, 248, 0.3);
+      border-color: #38bdf8;
+    }
+    .verify-status-msg {
+      font-size: 0.72rem;
+      margin-left: 8px;
+      transition: all 0.2s ease;
+    }
+    .verify-status-msg.success { color: #34d399; font-weight: 600; }
+    .verify-status-msg.error { color: #f87171; font-weight: 600; }
   </style>
 </head>
 <body>
@@ -1594,13 +1725,19 @@
                 LinkedIn
               </span>
               <label class="toggle-switch">
-                <input type="checkbox" id="cfg-linkedin-connected" checked>
+                <input type="checkbox" id="cfg-linkedin-connected">
                 <span class="slider"></span>
               </label>
             </div>
             <div class="form-group">
               <label>Vanity Handle / Profile URL</label>
-              <input type="text" id="cfg-linkedin-handle" class="form-input" value="in/mejbaur">
+              <input type="text" id="cfg-linkedin-handle" class="form-input" placeholder="e.g. in/username or full URL" value="">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-top:6px;">
+                <button type="button" class="btn-verify" onclick="verifyConnectionCard('linkedin', 'cfg-linkedin-handle', 'verify-status-linkedin')">
+                  ⚡ Test & Verify Connection
+                </button>
+                <span id="verify-status-linkedin" class="verify-status-msg"></span>
+              </div>
             </div>
             <div class="form-group">
               <label>Publishing Time Slot</label>
@@ -1616,13 +1753,19 @@
                 X (Twitter)
               </span>
               <label class="toggle-switch">
-                <input type="checkbox" id="cfg-x-connected" checked>
+                <input type="checkbox" id="cfg-x-connected">
                 <span class="slider"></span>
               </label>
             </div>
             <div class="form-group">
               <label>Username / Handle</label>
-              <input type="text" id="cfg-x-handle" class="form-input" value="@fagun018">
+              <input type="text" id="cfg-x-handle" class="form-input" placeholder="e.g. @username" value="">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-top:6px;">
+                <button type="button" class="btn-verify" onclick="verifyConnectionCard('x', 'cfg-x-handle', 'verify-status-x')">
+                  ⚡ Test & Verify Connection
+                </button>
+                <span id="verify-status-x" class="verify-status-msg"></span>
+              </div>
             </div>
             <div class="form-group">
               <label>Publishing Time Slot</label>
@@ -1638,13 +1781,19 @@
                 Facebook Profile
               </span>
               <label class="toggle-switch">
-                <input type="checkbox" id="cfg-facebook-connected" checked>
+                <input type="checkbox" id="cfg-facebook-connected">
                 <span class="slider"></span>
               </label>
             </div>
             <div class="form-group">
               <label>Username / Handle</label>
-              <input type="text" id="cfg-facebook-handle" class="form-input" value="@mbfagun">
+              <input type="text" id="cfg-facebook-handle" class="form-input" placeholder="e.g. @username or profile link" value="">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-top:6px;">
+                <button type="button" class="btn-verify" onclick="verifyConnectionCard('facebook', 'cfg-facebook-handle', 'verify-status-facebook')">
+                  ⚡ Test & Verify Connection
+                </button>
+                <span id="verify-status-facebook" class="verify-status-msg"></span>
+              </div>
             </div>
             <div class="form-group">
               <label>Publishing Time Slot</label>
@@ -1652,21 +1801,27 @@
             </div>
           </div>
 
-          <!-- 4. Facebook Page (MI Unifyld Agro Ltd) -->
+          <!-- 4. Facebook Page Identity -->
           <div class="setup-channel-card">
             <div class="setup-channel-top">
               <span class="setup-channel-title">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="#10b981"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                MI Unifyld Agro Ltd
+                Facebook Page
               </span>
               <label class="toggle-switch">
-                <input type="checkbox" id="cfg-agro-connected" checked>
+                <input type="checkbox" id="cfg-agro-connected">
                 <span class="slider"></span>
               </label>
             </div>
             <div class="form-group">
               <label>Facebook Page Identity</label>
-              <input type="text" id="cfg-agro-handle" class="form-input" value="MI Unifyld Agro Ltd (61594281573717)">
+              <input type="text" id="cfg-agro-handle" class="form-input" placeholder="e.g. My Business Brand or Page ID" value="">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-top:6px;">
+                <button type="button" class="btn-verify" onclick="verifyConnectionCard('facebook_page', 'cfg-agro-handle', 'verify-status-agro')">
+                  ⚡ Test & Verify Connection
+                </button>
+                <span id="verify-status-agro" class="verify-status-msg"></span>
+              </div>
             </div>
             <div class="form-group">
               <label>Publishing Time Slot</label>
@@ -1682,13 +1837,19 @@
                 Instagram
               </span>
               <label class="toggle-switch">
-                <input type="checkbox" id="cfg-instagram-connected" checked>
+                <input type="checkbox" id="cfg-instagram-connected">
                 <span class="slider"></span>
               </label>
             </div>
             <div class="form-group">
               <label>Handle / Account</label>
-              <input type="text" id="cfg-instagram-handle" class="form-input" value="@koy_jabo">
+              <input type="text" id="cfg-instagram-handle" class="form-input" placeholder="e.g. @brand" value="">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-top:6px;">
+                <button type="button" class="btn-verify" onclick="verifyConnectionCard('instagram', 'cfg-instagram-handle', 'verify-status-instagram')">
+                  ⚡ Test & Verify Connection
+                </button>
+                <span id="verify-status-instagram" class="verify-status-msg"></span>
+              </div>
             </div>
             <div class="form-group">
               <label>Publishing Time Slot</label>
@@ -2880,6 +3041,155 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       </div>
     </section>
 
+    <!-- Section 8: Audience Perception & Social Sentiment Telemetry (Multi-Tenant Isolated) -->
+    <section id="sentiment-telemetry-section" class="sentiment-panel">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-title" style="color:#38bdf8;">
+            📊 Audience Perception & Social Sentiment Telemetry
+          </h2>
+          <div class="section-subtitle">Real-time public sentiment monitoring across connected social channels. AI monitors feedback, classifies intent, tracks critiques/bugs, and logs actions.</div>
+        </div>
+        <div class="zero-secrets-badge" style="border-color:rgba(56, 189, 248, 0.4); background:rgba(56, 189, 248, 0.1); color:#38bdf8;">
+          🛡️ Multi-Tenant Guarded: User Isolated Feedback Database
+        </div>
+      </div>
+
+      <!-- Sentiment KPI Counters -->
+      <div class="sentiment-kpi-grid">
+        <div class="sentiment-kpi-card" style="border-left:4px solid #60a5fa;">
+          <span class="sentiment-kpi-lbl">Total Monitored</span>
+          <span class="sentiment-kpi-val" id="sentiment-kpi-total" style="color:#60a5fa;">0</span>
+          <span style="font-size:0.7rem; color:#94a3b8;">Posts, Comments & Mentions</span>
+        </div>
+        <div class="sentiment-kpi-card" style="border-left:4px solid #4ade80;">
+          <span class="sentiment-kpi-lbl">🟢 Positive Praise</span>
+          <span class="sentiment-kpi-val" id="sentiment-kpi-positive" style="color:#4ade80;">0%</span>
+          <span id="sentiment-kpi-positive-sub" style="font-size:0.7rem; color:#86efac;">0 items</span>
+        </div>
+        <div class="sentiment-kpi-card" style="border-left:4px solid #cbd5e1;">
+          <span class="sentiment-kpi-lbl">⚪ Neutral Inquiries</span>
+          <span class="sentiment-kpi-val" id="sentiment-kpi-neutral" style="color:#cbd5e1;">0%</span>
+          <span id="sentiment-kpi-neutral-sub" style="font-size:0.7rem; color:#94a3b8;">0 items</span>
+        </div>
+        <div class="sentiment-kpi-card" style="border-left:4px solid #f87171;">
+          <span class="sentiment-kpi-lbl">🔴 Critical / Bug Reports</span>
+          <span class="sentiment-kpi-val" id="sentiment-kpi-negative" style="color:#f87171;">0%</span>
+          <span id="sentiment-kpi-negative-sub" style="font-size:0.7rem; color:#fca5a5;">0 items</span>
+        </div>
+      </div>
+
+      <!-- Sentiment Visual Diagram & Platform Breakdown -->
+      <div class="sentiment-chart-row">
+        <!-- Donut Chart Card -->
+        <div class="sentiment-donut-card">
+          <div style="font-size:0.95rem; font-weight:700; color:#f8fafc; margin-bottom:12px; display:flex; align-items:center; justify-content:space-between;">
+            <span>🍩 Sentiment Distribution</span>
+            <span style="font-size:0.72rem; color:#94a3b8;">Visual Proportion</span>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:center; gap:20px;">
+            <svg id="sentiment-donut-svg" width="130" height="130" viewBox="0 0 42 42" style="transform: rotate(-90deg); border-radius:50%;">
+              <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#1e293b" stroke-width="6"></circle>
+              <!-- Segments injected dynamically -->
+              <circle id="donut-seg-pos" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#4ade80" stroke-width="6" stroke-dasharray="60 40" stroke-dashoffset="0"></circle>
+              <circle id="donut-seg-neu" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#94a3b8" stroke-width="6" stroke-dasharray="25 75" stroke-dashoffset="-60"></circle>
+              <circle id="donut-seg-neg" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#f87171" stroke-width="6" stroke-dasharray="15 85" stroke-dashoffset="-85"></circle>
+            </svg>
+            <div style="font-size:0.76rem; display:flex; flex-direction:column; gap:6px;">
+              <div style="display:flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#4ade80; border-radius:2px;"></span> Positive Praise</div>
+              <div style="display:flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#94a3b8; border-radius:2px;"></span> Neutral Discussions</div>
+              <div style="display:flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#f87171; border-radius:2px;"></span> Critiques & Bugs</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Platform Breakdown Bars Card -->
+        <div class="sentiment-platform-card">
+          <div style="font-size:0.95rem; font-weight:700; color:#f8fafc; margin-bottom:12px; display:flex; align-items:center; justify-content:space-between;">
+            <span>🌐 Perception by Channel</span>
+            <span style="font-size:0.72rem; color:#94a3b8;">Multi-Platform Split</span>
+          </div>
+          <div id="sentiment-platform-bars" style="display:flex; flex-direction:column; gap:10px;">
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.76rem; margin-bottom:4px; color:#cbd5e1;">
+                <span>💼 LinkedIn Feed</span>
+                <span id="plat-sentiment-linkedin">0 Monitored</span>
+              </div>
+              <div style="height:8px; background:rgba(30, 41, 59, 0.8); border-radius:4px; overflow:hidden; display:flex;">
+                <div id="plat-bar-li-pos" style="height:100%; width:50%; background:#4ade80;"></div>
+                <div id="plat-bar-li-neu" style="height:100%; width:30%; background:#94a3b8;"></div>
+                <div id="plat-bar-li-neg" style="height:100%; width:20%; background:#f87171;"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.76rem; margin-bottom:4px; color:#cbd5e1;">
+                <span>🐦 X (Twitter)</span>
+                <span id="plat-sentiment-x">0 Monitored</span>
+              </div>
+              <div style="height:8px; background:rgba(30, 41, 59, 0.8); border-radius:4px; overflow:hidden; display:flex;">
+                <div id="plat-bar-x-pos" style="height:100%; width:60%; background:#4ade80;"></div>
+                <div id="plat-bar-x-neu" style="height:100%; width:25%; background:#94a3b8;"></div>
+                <div id="plat-bar-x-neg" style="height:100%; width:15%; background:#f87171;"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.76rem; margin-bottom:4px; color:#cbd5e1;">
+                <span>📘 Facebook Ecosystem</span>
+                <span id="plat-sentiment-facebook">0 Monitored</span>
+              </div>
+              <div style="height:8px; background:rgba(30, 41, 59, 0.8); border-radius:4px; overflow:hidden; display:flex;">
+                <div id="plat-bar-fb-pos" style="height:100%; width:40%; background:#4ade80;"></div>
+                <div id="plat-bar-fb-neu" style="height:100%; width:40%; background:#94a3b8;"></div>
+                <div id="plat-bar-fb-neg" style="height:100%; width:20%; background:#f87171;"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.76rem; margin-bottom:4px; color:#cbd5e1;">
+                <span>📸 Instagram</span>
+                <span id="plat-sentiment-instagram">0 Monitored</span>
+              </div>
+              <div style="height:8px; background:rgba(30, 41, 59, 0.8); border-radius:4px; overflow:hidden; display:flex;">
+                <div id="plat-bar-ig-pos" style="height:100%; width:80%; background:#4ade80;"></div>
+                <div id="plat-bar-ig-neu" style="height:100%; width:15%; background:#94a3b8;"></div>
+                <div id="plat-bar-ig-neg" style="height:100%; width:5%; background:#f87171;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filterable Audience Feedback Database Table -->
+      <div class="sentiment-filter-bar">
+        <div class="sentiment-filters">
+          <button class="filter-btn active" id="filter-btn-all" onclick="filterSentimentFeed('all')">🔘 All Feedback</button>
+          <button class="filter-btn" id="filter-btn-pos" onclick="filterSentimentFeed('positive')">🟢 Positive Praise</button>
+          <button class="filter-btn" id="filter-btn-neu" onclick="filterSentimentFeed('neutral')">⚪ Neutral Inquiries</button>
+          <button class="filter-btn" id="filter-btn-neg" onclick="filterSentimentFeed('negative')">🔴 Critical / Bugs</button>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <input type="text" id="sentiment-search-input" placeholder="Search feedback..." class="form-input" style="padding:6px 12px; font-size:0.78rem; width:220px;" oninput="searchSentimentFeed(this.value)">
+        </div>
+      </div>
+
+      <div style="overflow-x:auto; background:rgba(15, 23, 42, 0.4); border-radius:10px; border:1px solid rgba(255, 255, 255, 0.08);">
+        <table class="sentiment-table">
+          <thead>
+            <tr>
+              <th style="width:180px;">Author & Channel</th>
+              <th>Comment / Mention Content</th>
+              <th style="width:140px;">Sentiment / Score</th>
+              <th style="width:150px;">Intent Category</th>
+              <th style="width:200px;">AI Action Status</th>
+              <th style="width:100px;">Logged</th>
+            </tr>
+          </thead>
+          <tbody id="sentiment-feed-tbody">
+            <!-- Dynamically populated from /api/sentiment/feed -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
     </div><!-- End of #dashboard-sections -->
 
   </main>
@@ -3558,6 +3868,28 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
           if (fbGraphicAuthor && currentAuthUser) {
             fbGraphicAuthor.textContent = `${currentAuthUser.name} • Senior SDET Community`;
           }
+
+          // Strict Multi-Tenant Isolation Guard
+          const cleanEmail = (currentAuthUser.email || '').toLowerCase().trim();
+          const isMejbaur = (cleanEmail === 'fagun115946@gmail.com' || cleanEmail === 'mejbaur.bahar@gmail.com');
+
+          // Block personal MI Unifyld Agro Ltd assets from non-Mejbaur accounts
+          const agroCard = document.querySelector('.card-agro');
+          const agroWorker = document.querySelector('.worker-channel.tag-agro')?.closest('.worker-card');
+          const agroPreviewTab = document.querySelector('.preview-tab-btn[onclick*="agro"]');
+          const agroPreviewCard = document.querySelector('.mock-fb-card[data-platform="agro"]');
+
+          if (!isMejbaur) {
+            if (agroCard) agroCard.style.display = 'none';
+            if (agroWorker) agroWorker.style.display = 'none';
+            if (agroPreviewTab) agroPreviewTab.style.display = 'none';
+            if (agroPreviewCard) agroPreviewCard.style.display = 'none';
+          } else {
+            if (agroCard) agroCard.style.display = 'flex';
+            if (agroWorker) agroWorker.style.display = 'block';
+            if (agroPreviewTab) agroPreviewTab.style.display = 'inline-block';
+            if (agroPreviewCard) agroPreviewCard.style.display = 'block';
+          }
         }
       } catch (e) {
         console.error('Error hydrating session from /api/auth/me:', e);
@@ -3568,6 +3900,8 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
         await loadAdminUsers();
       }
       await loadUserQuota();
+      await loadSentimentStats();
+      await loadSentimentFeed('all');
     }
 
     function renderAuthUI() {
@@ -3711,33 +4045,33 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       const configs = [
         {
           platform: 'linkedin',
-          is_connected: document.getElementById('cfg-linkedin-connected')?.checked ?? true,
-          account_handle: document.getElementById('cfg-linkedin-handle')?.value ?? 'in/mejbaur',
-          post_time_slot: document.getElementById('cfg-linkedin-slot')?.value ?? '10:00 AM BST'
+          is_connected: document.getElementById('cfg-linkedin-connected')?.checked ?? false,
+          account_handle: document.getElementById('cfg-linkedin-handle')?.value?.trim() || '',
+          post_time_slot: document.getElementById('cfg-linkedin-slot')?.value?.trim() || '10:00 AM BST'
         },
         {
           platform: 'x',
-          is_connected: document.getElementById('cfg-x-connected')?.checked ?? true,
-          account_handle: document.getElementById('cfg-x-handle')?.value ?? '@fagun018',
-          post_time_slot: document.getElementById('cfg-x-slot')?.value ?? '02:00 PM BST'
+          is_connected: document.getElementById('cfg-x-connected')?.checked ?? false,
+          account_handle: document.getElementById('cfg-x-handle')?.value?.trim() || '',
+          post_time_slot: document.getElementById('cfg-x-slot')?.value?.trim() || '02:00 PM BST'
         },
         {
           platform: 'facebook',
-          is_connected: document.getElementById('cfg-facebook-connected')?.checked ?? true,
-          account_handle: document.getElementById('cfg-facebook-handle')?.value ?? '@mbfagun',
-          post_time_slot: document.getElementById('cfg-facebook-slot')?.value ?? '06:30 PM BST'
+          is_connected: document.getElementById('cfg-facebook-connected')?.checked ?? false,
+          account_handle: document.getElementById('cfg-facebook-handle')?.value?.trim() || '',
+          post_time_slot: document.getElementById('cfg-facebook-slot')?.value?.trim() || '06:30 PM BST'
         },
         {
           platform: 'facebook_page',
-          is_connected: document.getElementById('cfg-agro-connected')?.checked ?? true,
-          account_handle: document.getElementById('cfg-agro-handle')?.value ?? 'MI Unifyld Agro Ltd',
-          post_time_slot: document.getElementById('cfg-agro-slot')?.value ?? '07:30 PM BST'
+          is_connected: document.getElementById('cfg-agro-connected')?.checked ?? false,
+          account_handle: document.getElementById('cfg-agro-handle')?.value?.trim() || '',
+          post_time_slot: document.getElementById('cfg-agro-slot')?.value?.trim() || '07:30 PM BST'
         },
         {
           platform: 'instagram',
-          is_connected: document.getElementById('cfg-instagram-connected')?.checked ?? true,
-          account_handle: document.getElementById('cfg-instagram-handle')?.value ?? '@koy_jabo',
-          post_time_slot: document.getElementById('cfg-instagram-slot')?.value ?? '08:30 PM BST'
+          is_connected: document.getElementById('cfg-instagram-connected')?.checked ?? false,
+          account_handle: document.getElementById('cfg-instagram-handle')?.value?.trim() || '',
+          post_time_slot: document.getElementById('cfg-instagram-slot')?.value?.trim() || '08:30 PM BST'
         }
       ];
 
@@ -3764,6 +4098,268 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
     function toggleDefaultSchedule(isDefault) {
       const slots = ['cfg-linkedin-slot', 'cfg-x-slot', 'cfg-facebook-slot', 'cfg-agro-slot', 'cfg-instagram-slot'];
       const defaultTimes = ['10:00 AM BST', '02:00 PM BST', '06:30 PM BST', '07:30 PM BST', '08:30 PM BST'];
+      slots.forEach((id, idx) => {
+        const el = document.getElementById(id);
+        if (el) {
+          if (isDefault) {
+            el.value = defaultTimes[idx];
+            el.disabled = true;
+          } else {
+            el.disabled = false;
+          }
+        }
+      });
+    }
+
+    // --- Social Connection Verification Handler ---
+    async function verifyConnectionCard(platform, inputId, statusId) {
+      const inputEl = document.getElementById(inputId);
+      const statusEl = document.getElementById(statusId);
+      const val = inputEl ? inputEl.value.trim() : '';
+
+      if (!val) {
+        if (statusEl) {
+          statusEl.className = 'verify-status-msg error';
+          statusEl.innerText = '⚠️ Enter a handle or URL first';
+        }
+        return;
+      }
+
+      if (statusEl) {
+        statusEl.className = 'verify-status-msg';
+        statusEl.style.color = '#38bdf8';
+        statusEl.innerText = '⏳ Verifying syntax & reachability...';
+      }
+
+      try {
+        const res = await fetch(`${getApiBase()}/api/settings/verify-connection`, {
+          method: 'POST',
+          headers: getApiHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({ platform: platform, handle_or_url: val })
+        });
+        const data = await res.json();
+        if (data.valid) {
+          if (statusEl) {
+            statusEl.className = 'verify-status-msg success';
+            statusEl.innerText = data.message || '✅ Verified & Active';
+          }
+          if (inputEl && data.normalized_handle) {
+            inputEl.value = data.normalized_handle;
+          }
+          // Automatically toggle checkbox on for verified handle
+          const checkMap = {
+            'linkedin': 'cfg-linkedin-connected',
+            'x': 'cfg-x-connected',
+            'facebook': 'cfg-facebook-connected',
+            'facebook_page': 'cfg-agro-connected',
+            'instagram': 'cfg-instagram-connected'
+          };
+          const chk = document.getElementById(checkMap[platform]);
+          if (chk) chk.checked = true;
+        } else {
+          if (statusEl) {
+            statusEl.className = 'verify-status-msg error';
+            statusEl.innerText = data.message || '❌ Invalid handle format';
+          }
+        }
+      } catch (err) {
+        if (statusEl) {
+          statusEl.className = 'verify-status-msg error';
+          statusEl.innerText = '⚠️ Network error during handshake';
+        }
+      }
+    }
+
+    // --- Audience Perception & Sentiment Telemetry Handlers ---
+    let currentSentimentFeed = [];
+
+    async function loadSentimentStats() {
+      try {
+        const res = await fetch(`${getApiBase()}/api/sentiment/stats`, {
+          headers: getApiHeaders()
+        });
+        if (!res.ok) return;
+        const stats = await res.json();
+
+        // 1. Update KPI numbers
+        const totalEl = document.getElementById('sentiment-kpi-total');
+        if (totalEl) totalEl.innerText = `${stats.total_monitored || 0} Monitored`;
+
+        const posEl = document.getElementById('sentiment-kpi-positive');
+        const posSub = document.getElementById('sentiment-kpi-positive-sub');
+        if (posEl) posEl.innerText = `${stats.positive?.percentage || 0}%`;
+        if (posSub) posSub.innerText = `${stats.positive?.count || 0} praise items`;
+
+        const neuEl = document.getElementById('sentiment-kpi-neutral');
+        const neuSub = document.getElementById('sentiment-kpi-neutral-sub');
+        if (neuEl) neuEl.innerText = `${stats.neutral?.percentage || 0}%`;
+        if (neuSub) neuSub.innerText = `${stats.neutral?.count || 0} discussions`;
+
+        const negEl = document.getElementById('sentiment-kpi-negative');
+        const negSub = document.getElementById('sentiment-kpi-negative-sub');
+        if (negEl) negEl.innerText = `${stats.negative?.percentage || 0}%`;
+        if (negSub) negSub.innerText = `${stats.negative?.count || 0} critiques/bugs`;
+
+        // 2. Update SVG Donut chart segments
+        const posP = Math.max(0, stats.positive?.percentage || 0);
+        const neuP = Math.max(0, stats.neutral?.percentage || 0);
+        const negP = Math.max(0, stats.negative?.percentage || 0);
+
+        const segPos = document.getElementById('donut-seg-pos');
+        const segNeu = document.getElementById('donut-seg-neu');
+        const segNeg = document.getElementById('donut-seg-neg');
+
+        if (segPos) {
+          segPos.setAttribute('stroke-dasharray', `${posP} ${100 - posP}`);
+          segPos.setAttribute('stroke-dashoffset', '0');
+        }
+        if (segNeu) {
+          segNeu.setAttribute('stroke-dasharray', `${neuP} ${100 - neuP}`);
+          segNeu.setAttribute('stroke-dashoffset', `${-posP}`);
+        }
+        if (segNeg) {
+          segNeg.setAttribute('stroke-dasharray', `${negP} ${100 - negP}`);
+          segNeg.setAttribute('stroke-dashoffset', `${-(posP + neuP)}`);
+        }
+
+        // 3. Update Platform Bars
+        const bp = stats.breakdown_by_platform || {};
+        const platforms = ['linkedin', 'x', 'facebook', 'instagram'];
+        platforms.forEach(p => {
+          const pData = bp[p] || { positive: 0, neutral: 0, negative: 0 };
+          const pTot = pData.positive + pData.neutral + pData.negative;
+          const lbl = document.getElementById(`plat-sentiment-${p}`);
+          if (lbl) lbl.innerText = `${pTot} Monitored (${pData.positive} pos, ${pData.negative} crit)`;
+
+          const pPosPct = pTot > 0 ? (pData.positive / pTot) * 100 : 33;
+          const pNeuPct = pTot > 0 ? (pData.neutral / pTot) * 100 : 33;
+          const pNegPct = pTot > 0 ? (pData.negative / pTot) * 100 : 34;
+
+          const pShort = p === 'linkedin' ? 'li' : (p === 'instagram' ? 'ig' : (p === 'facebook' ? 'fb' : 'x'));
+          const barPos = document.getElementById(`plat-bar-${pShort}-pos`);
+          const barNeu = document.getElementById(`plat-bar-${pShort}-neu`);
+          const barNeg = document.getElementById(`plat-bar-${pShort}-neg`);
+          if (barPos) barPos.style.width = `${pPosPct}%`;
+          if (barNeu) barNeu.style.width = `${pNeuPct}%`;
+          if (barNeg) barNeg.style.width = `${pNegPct}%`;
+        });
+      } catch (err) {
+        console.error('Error loading sentiment stats:', err);
+      }
+    }
+
+    async function loadSentimentFeed(sentimentFilter = 'all') {
+      try {
+        const url = (sentimentFilter && sentimentFilter !== 'all')
+          ? `${getApiBase()}/api/sentiment/feed?sentiment=${sentimentFilter}`
+          : `${getApiBase()}/api/sentiment/feed`;
+
+        const res = await fetch(url, { headers: getApiHeaders() });
+        if (!res.ok) return;
+        const data = await res.json();
+        currentSentimentFeed = data.feed || [];
+        renderSentimentTable(currentSentimentFeed);
+      } catch (err) {
+        console.error('Error loading sentiment feed:', err);
+      }
+    }
+
+    function renderSentimentTable(items) {
+      const tbody = document.getElementById('sentiment-feed-tbody');
+      if (!tbody) return;
+
+      if (!items || items.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:24px; color:#94a3b8;">No feedback records found for this view. Real-time mentions will appear here as they are detected.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = items.map(item => {
+        let pillClass = 'pill-neutral';
+        let pillIcon = '⚪';
+        if (item.sentiment === 'positive') {
+          pillClass = 'pill-positive';
+          pillIcon = '🟢';
+        } else if (item.sentiment === 'negative') {
+          pillClass = 'pill-negative';
+          pillIcon = '🔴';
+        }
+
+        const scoreText = (item.sentiment_score !== null && item.sentiment_score !== undefined)
+          ? (item.sentiment_score > 0 ? `+${item.sentiment_score.toFixed(2)}` : `${item.sentiment_score.toFixed(2)}`)
+          : '0.00';
+
+        let platBadge = item.platform ? item.platform.toUpperCase() : 'WEB';
+        let platColor = '#38bdf8';
+        if (item.platform === 'linkedin') platColor = '#0a66c2';
+        else if (item.platform === 'x') platColor = '#f8fafc';
+        else if (item.platform === 'facebook') platColor = '#1877f2';
+        else if (item.platform === 'instagram') platColor = '#e1306c';
+
+        return `
+          <tr>
+            <td>
+              <div style="font-weight:600; color:#fff;">${escapeHtml(item.author_name || 'Community Member')}</div>
+              <div style="font-size:0.73rem; color:#94a3b8;">${escapeHtml(item.author_handle || '')}</div>
+              <span style="display:inline-block; margin-top:2px; font-size:0.68rem; padding:2px 6px; border-radius:4px; background:rgba(255,255,255,0.06); color:${platColor}; font-weight:700;">${platBadge}</span>
+            </td>
+            <td style="line-height:1.45; font-size:0.83rem; max-width:320px;">
+              ${escapeHtml(item.content_text || '')}
+            </td>
+            <td>
+              <span class="pill-sentiment ${pillClass}">
+                ${pillIcon} ${item.sentiment ? item.sentiment.toUpperCase() : 'NEUTRAL'} (${scoreText})
+              </span>
+            </td>
+            <td>
+              <span style="font-size:0.75rem; color:#cbd5e1; background:rgba(51, 65, 85, 0.6); padding:3px 8px; border-radius:6px;">
+                ${escapeHtml(item.intent_label || 'Discussion')}
+              </span>
+            </td>
+            <td>
+              <div style="font-size:0.76rem; font-weight:600; color:#38bdf8; display:flex; align-items:center; gap:4px;">
+                <span>⚡</span> ${escapeHtml(item.ai_action_status || 'Monitored & Logged')}
+              </div>
+            </td>
+            <td style="font-size:0.73rem; color:#94a3b8;">
+              ${escapeHtml(item.created_at || 'Recently')}
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function filterSentimentFeed(sentiment) {
+      document.querySelectorAll('.sentiment-filters .filter-btn').forEach(b => b.classList.remove('active'));
+      const btnId = sentiment === 'all' ? 'filter-btn-all' : `filter-btn-${sentiment.slice(0, 3)}`;
+      const activeBtn = document.getElementById(btnId);
+      if (activeBtn) activeBtn.classList.add('active');
+      loadSentimentFeed(sentiment);
+    }
+
+    function searchSentimentFeed(query) {
+      if (!query || !query.trim()) {
+        renderSentimentTable(currentSentimentFeed);
+        return;
+      }
+      const q = query.toLowerCase().trim();
+      const filtered = currentSentimentFeed.filter(item => {
+        return (item.author_name && item.author_name.toLowerCase().includes(q)) ||
+               (item.author_handle && item.author_handle.toLowerCase().includes(q)) ||
+               (item.content_text && item.content_text.toLowerCase().includes(q)) ||
+               (item.intent_label && item.intent_label.toLowerCase().includes(q));
+      });
+      renderSentimentTable(filtered);
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
       if (isDefault) {
         slots.forEach((id, idx) => {
           const el = document.getElementById(id);
