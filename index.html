@@ -2921,7 +2921,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
         return 'http://127.0.0.1:8000';
       }
       if (window.location.hostname.endsWith('github.io')) {
-        return 'https://fagun-ai.loca.lt';
+        return 'https://hand-goal-kong-seminar.trycloudflare.com';
       }
       return '';
     }
@@ -2996,12 +2996,12 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       }
     }
 
-    function quickFillLogin(email, password) {
+    async function quickFillLogin(email, password) {
       const emailInput = document.getElementById('login-input-email');
       const passInput = document.getElementById('login-input-password');
       if (emailInput) emailInput.value = email;
       if (passInput) passInput.value = password;
-      handleLoginSubmit();
+      await handleLoginSubmit();
     }
 
     async function handleLoginSubmit() {
