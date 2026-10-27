@@ -1848,6 +1848,9 @@
                 </button>
                 <span id="verify-status-linkedin" class="verify-status-msg"></span>
               </div>
+              <button type="button" onclick="connectSinglePlatform('linkedin', 'cfg-linkedin-handle', 'verify-status-linkedin')" style="width:100%; margin-top:10px; padding:8px 14px; background:linear-gradient(135deg, #0a66c2, #004182); color:#ffffff; border:none; border-radius:6px; font-size:0.82rem; font-weight:700; cursor:pointer;">
+                🚀 Connect & Activate LinkedIn
+              </button>
             </div>
             <div class="form-group">
               <label>Publishing Time Slot</label>
@@ -1869,13 +1872,16 @@
             </div>
             <div class="form-group">
               <label>Username / Handle</label>
-              <input type="text" id="cfg-x-handle" class="form-input" placeholder="e.g. @username" value="">
+              <input type="text" id="cfg-x-handle" class="form-input" placeholder="e.g. @username or x.com/username" value="">
               <div style="display:flex; align-items:center; justify-content:space-between; margin-top:6px;">
                 <button type="button" class="btn-verify" onclick="verifyConnectionCard('x', 'cfg-x-handle', 'verify-status-x')">
                   ⚡ Test & Verify Connection
                 </button>
                 <span id="verify-status-x" class="verify-status-msg"></span>
               </div>
+              <button type="button" onclick="connectSinglePlatform('x', 'cfg-x-handle', 'verify-status-x')" style="width:100%; margin-top:10px; padding:8px 14px; background:linear-gradient(135deg, #1d9bf0, #0284c7); color:#ffffff; border:none; border-radius:6px; font-size:0.82rem; font-weight:700; cursor:pointer;">
+                🚀 Connect & Activate X Profile
+              </button>
             </div>
             <div class="form-group">
               <label>Publishing Time Slot</label>
@@ -1897,13 +1903,16 @@
             </div>
             <div class="form-group">
               <label>Username / Handle</label>
-              <input type="text" id="cfg-facebook-handle" class="form-input" placeholder="e.g. @username or profile link" value="">
+              <input type="text" id="cfg-facebook-handle" class="form-input" placeholder="e.g. @username or facebook.com/username" value="">
               <div style="display:flex; align-items:center; justify-content:space-between; margin-top:6px;">
                 <button type="button" class="btn-verify" onclick="verifyConnectionCard('facebook', 'cfg-facebook-handle', 'verify-status-facebook')">
                   ⚡ Test & Verify Connection
                 </button>
                 <span id="verify-status-facebook" class="verify-status-msg"></span>
               </div>
+              <button type="button" onclick="connectSinglePlatform('facebook', 'cfg-facebook-handle', 'verify-status-facebook')" style="width:100%; margin-top:10px; padding:8px 14px; background:linear-gradient(135deg, #1877f2, #0d5cb6); color:#ffffff; border:none; border-radius:6px; font-size:0.82rem; font-weight:700; cursor:pointer;">
+                🚀 Connect & Activate Facebook
+              </button>
             </div>
             <div class="form-group">
               <label>Publishing Time Slot</label>
@@ -1932,6 +1941,9 @@
                 </button>
                 <span id="verify-status-agro" class="verify-status-msg"></span>
               </div>
+              <button type="button" onclick="connectSinglePlatform('facebook_page', 'cfg-agro-handle', 'verify-status-agro')" style="width:100%; margin-top:10px; padding:8px 14px; background:linear-gradient(135deg, #10b981, #059669); color:#ffffff; border:none; border-radius:6px; font-size:0.82rem; font-weight:700; cursor:pointer;">
+                🚀 Connect & Activate Page
+              </button>
             </div>
             <div class="form-group">
               <label>Publishing Time Slot</label>
@@ -1953,13 +1965,16 @@
             </div>
             <div class="form-group">
               <label>Handle / Account</label>
-              <input type="text" id="cfg-instagram-handle" class="form-input" placeholder="e.g. @brand" value="">
+              <input type="text" id="cfg-instagram-handle" class="form-input" placeholder="e.g. @brand or instagram.com/brand" value="">
               <div style="display:flex; align-items:center; justify-content:space-between; margin-top:6px;">
                 <button type="button" class="btn-verify" onclick="verifyConnectionCard('instagram', 'cfg-instagram-handle', 'verify-status-instagram')">
                   ⚡ Test & Verify Connection
                 </button>
                 <span id="verify-status-instagram" class="verify-status-msg"></span>
               </div>
+              <button type="button" onclick="connectSinglePlatform('instagram', 'cfg-instagram-handle', 'verify-status-instagram')" style="width:100%; margin-top:10px; padding:8px 14px; background:linear-gradient(135deg, #e1306c, #c13584); color:#ffffff; border:none; border-radius:6px; font-size:0.82rem; font-weight:700; cursor:pointer;">
+                🚀 Connect & Activate Instagram
+              </button>
             </div>
             <div class="form-group">
               <label>Publishing Time Slot</label>
@@ -2151,10 +2166,152 @@
           </div>
           <div>
             <button class="btn btn-primary" onclick="showSettingsView()" style="gap:6px;">
-              ⚙️ Manage Connected Channels & Schedule
+              ⚙️ Full Schedule Settings
             </button>
           </div>
         </div>
+
+        <!-- Live Autonomous AI Status Banner -->
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-top:24px; padding:16px 20px; background:rgba(15, 23, 42, 0.7); border:1px solid #334155; border-radius:12px;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="display:inline-block; width:12px; height:12px; border-radius:50%; background:#10b981; box-shadow:0 0 12px #10b981; animation:pulse 2s infinite;"></span>
+            <div>
+              <strong style="color:#f8fafc; font-size:0.95rem;">Fagun AI Autonomous Core:</strong>
+              <span id="user-worker-status-badge" style="color:#34d399; font-weight:700; margin-left:6px;">Active & Monitoring</span>
+            </div>
+          </div>
+          <div style="font-size:0.84rem; color:#38bdf8; font-weight:600;" id="user-connected-channels-summary">
+            ● 0 / 5 Channels Active
+          </div>
+        </div>
+
+        <!-- User Connected Social Media Fleet Grid (Direct 1-Click Connect) -->
+        <div style="margin-top:28px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+            <div>
+              <h3 style="font-size:1.2rem; font-weight:700; color:#f8fafc; margin:0 0 4px 0; display:flex; align-items:center; gap:8px;">
+                <span>🌐</span> Connect Your Social Media Accounts
+              </h3>
+              <div style="font-size:0.84rem; color:#94a3b8;">
+                Connect your personal profiles and pages below. Once connected, Fagun AI automatically starts research and daily scheduling.
+              </div>
+            </div>
+          </div>
+
+          <div id="user-portal-channels-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px;">
+            <!-- 1. LinkedIn Card -->
+            <div class="user-fleet-card" style="background:#0b0f19; border:1px solid #334155; border-radius:12px; padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                  <div style="display:flex; align-items:center; gap:8px; font-weight:700; color:#f8fafc;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#0a66c2"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    LinkedIn
+                  </div>
+                  <span id="fleet-badge-linkedin" style="font-size:0.72rem; padding:2px 8px; border-radius:10px; background:rgba(255,255,255,0.08); color:#94a3b8;">Not Connected</span>
+                </div>
+                <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:8px;">Profile URL or vanity handle:</div>
+                <input type="text" id="fleet-input-linkedin" placeholder="e.g. in/username or linkedin.com/in/username" style="width:100%; padding:9px 12px; background:#030712; border:1px solid #334155; border-radius:6px; font-size:0.82rem; color:#f8fafc; outline:none;" onfocus="this.style.borderColor='#38bdf8'" onblur="this.style.borderColor='#334155'">
+                <div id="fleet-status-linkedin" style="font-size:0.74rem; margin-top:6px; min-height:16px;"></div>
+              </div>
+              <div style="display:flex; gap:8px; margin-top:14px;">
+                <button type="button" onclick="connectSinglePlatform('linkedin', 'fleet-input-linkedin', 'fleet-status-linkedin')" style="flex:1; padding:8px 12px; background:linear-gradient(135deg, #0a66c2, #004182); color:#ffffff; border:none; border-radius:6px; font-size:0.82rem; font-weight:700; cursor:pointer;">
+                  🔗 Connect LinkedIn
+                </button>
+                <button type="button" id="fleet-disconnect-linkedin" onclick="disconnectPlatform('linkedin')" style="display:none; padding:8px 12px; background:transparent; border:1px solid #ef4444; color:#ef4444; border-radius:6px; font-size:0.78rem; cursor:pointer;">Disconnect</button>
+              </div>
+            </div>
+
+            <!-- 2. X (Twitter) Card -->
+            <div class="user-fleet-card" style="background:#0b0f19; border:1px solid #334155; border-radius:12px; padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                  <div style="display:flex; align-items:center; gap:8px; font-weight:700; color:#f8fafc;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#f8fafc"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    X (Twitter)
+                  </div>
+                  <span id="fleet-badge-x" style="font-size:0.72rem; padding:2px 8px; border-radius:10px; background:rgba(255,255,255,0.08); color:#94a3b8;">Not Connected</span>
+                </div>
+                <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:8px;">Username or profile URL:</div>
+                <input type="text" id="fleet-input-x" placeholder="e.g. @yourhandle or x.com/yourhandle" style="width:100%; padding:9px 12px; background:#030712; border:1px solid #334155; border-radius:6px; font-size:0.82rem; color:#f8fafc; outline:none;" onfocus="this.style.borderColor='#38bdf8'" onblur="this.style.borderColor='#334155'">
+                <div id="fleet-status-x" style="font-size:0.74rem; margin-top:6px; min-height:16px;"></div>
+              </div>
+              <div style="display:flex; gap:8px; margin-top:14px;">
+                <button type="button" onclick="connectSinglePlatform('x', 'fleet-input-x', 'fleet-status-x')" style="flex:1; padding:8px 12px; background:linear-gradient(135deg, #1d9bf0, #0284c7); color:#ffffff; border:none; border-radius:6px; font-size:0.82rem; font-weight:700; cursor:pointer;">
+                  🔗 Connect X Profile
+                </button>
+                <button type="button" id="fleet-disconnect-x" onclick="disconnectPlatform('x')" style="display:none; padding:8px 12px; background:transparent; border:1px solid #ef4444; color:#ef4444; border-radius:6px; font-size:0.78rem; cursor:pointer;">Disconnect</button>
+              </div>
+            </div>
+
+            <!-- 3. Facebook Profile Card -->
+            <div class="user-fleet-card" style="background:#0b0f19; border:1px solid #334155; border-radius:12px; padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                  <div style="display:flex; align-items:center; gap:8px; font-weight:700; color:#f8fafc;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    Facebook Profile
+                  </div>
+                  <span id="fleet-badge-facebook" style="font-size:0.72rem; padding:2px 8px; border-radius:10px; background:rgba(255,255,255,0.08); color:#94a3b8;">Not Connected</span>
+                </div>
+                <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:8px;">Username or profile link:</div>
+                <input type="text" id="fleet-input-facebook" placeholder="e.g. @username or facebook.com/username" style="width:100%; padding:9px 12px; background:#030712; border:1px solid #334155; border-radius:6px; font-size:0.82rem; color:#f8fafc; outline:none;" onfocus="this.style.borderColor='#38bdf8'" onblur="this.style.borderColor='#334155'">
+                <div id="fleet-status-facebook" style="font-size:0.74rem; margin-top:6px; min-height:16px;"></div>
+              </div>
+              <div style="display:flex; gap:8px; margin-top:14px;">
+                <button type="button" onclick="connectSinglePlatform('facebook', 'fleet-input-facebook', 'fleet-status-facebook')" style="flex:1; padding:8px 12px; background:linear-gradient(135deg, #1877f2, #0d5cb6); color:#ffffff; border:none; border-radius:6px; font-size:0.82rem; font-weight:700; cursor:pointer;">
+                  🔗 Connect Facebook
+                </button>
+                <button type="button" id="fleet-disconnect-facebook" onclick="disconnectPlatform('facebook')" style="display:none; padding:8px 12px; background:transparent; border:1px solid #ef4444; color:#ef4444; border-radius:6px; font-size:0.78rem; cursor:pointer;">Disconnect</button>
+              </div>
+            </div>
+
+            <!-- 4. Facebook Page Card -->
+            <div class="user-fleet-card" style="background:#0b0f19; border:1px solid #334155; border-radius:12px; padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                  <div style="display:flex; align-items:center; gap:8px; font-weight:700; color:#f8fafc;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#10b981"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    Facebook Page
+                  </div>
+                  <span id="fleet-badge-facebook_page" style="font-size:0.72rem; padding:2px 8px; border-radius:10px; background:rgba(255,255,255,0.08); color:#94a3b8;">Not Connected</span>
+                </div>
+                <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:8px;">Page name or Page ID:</div>
+                <input type="text" id="fleet-input-facebook_page" placeholder="e.g. My Business Brand or Page ID" style="width:100%; padding:9px 12px; background:#030712; border:1px solid #334155; border-radius:6px; font-size:0.82rem; color:#f8fafc; outline:none;" onfocus="this.style.borderColor='#38bdf8'" onblur="this.style.borderColor='#334155'">
+                <div id="fleet-status-facebook_page" style="font-size:0.74rem; margin-top:6px; min-height:16px;"></div>
+              </div>
+              <div style="display:flex; gap:8px; margin-top:14px;">
+                <button type="button" onclick="connectSinglePlatform('facebook_page', 'fleet-input-facebook_page', 'fleet-status-facebook_page')" style="flex:1; padding:8px 12px; background:linear-gradient(135deg, #10b981, #059669); color:#ffffff; border:none; border-radius:6px; font-size:0.82rem; font-weight:700; cursor:pointer;">
+                  🔗 Connect Page
+                </button>
+                <button type="button" id="fleet-disconnect-facebook_page" onclick="disconnectPlatform('facebook_page')" style="display:none; padding:8px 12px; background:transparent; border:1px solid #ef4444; color:#ef4444; border-radius:6px; font-size:0.78rem; cursor:pointer;">Disconnect</button>
+              </div>
+            </div>
+
+            <!-- 5. Instagram Card -->
+            <div class="user-fleet-card" style="background:#0b0f19; border:1px solid #334155; border-radius:12px; padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                  <div style="display:flex; align-items:center; gap:8px; font-weight:700; color:#f8fafc;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#e1306c"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    Instagram
+                  </div>
+                  <span id="fleet-badge-instagram" style="font-size:0.72rem; padding:2px 8px; border-radius:10px; background:rgba(255,255,255,0.08); color:#94a3b8;">Not Connected</span>
+                </div>
+                <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:8px;">Username or profile link:</div>
+                <input type="text" id="fleet-input-instagram" placeholder="e.g. @yourbrand or instagram.com/yourbrand" style="width:100%; padding:9px 12px; background:#030712; border:1px solid #334155; border-radius:6px; font-size:0.82rem; color:#f8fafc; outline:none;" onfocus="this.style.borderColor='#38bdf8'" onblur="this.style.borderColor='#334155'">
+                <div id="fleet-status-instagram" style="font-size:0.74rem; margin-top:6px; min-height:16px;"></div>
+              </div>
+              <div style="display:flex; gap:8px; margin-top:14px;">
+                <button type="button" onclick="connectSinglePlatform('instagram', 'fleet-input-instagram', 'fleet-status-instagram')" style="flex:1; padding:8px 12px; background:linear-gradient(135deg, #e1306c, #c13584); color:#ffffff; border:none; border-radius:6px; font-size:0.82rem; font-weight:700; cursor:pointer;">
+                  🔗 Connect Instagram
+                </button>
+                <button type="button" id="fleet-disconnect-instagram" onclick="disconnectPlatform('instagram')" style="display:none; padding:8px 12px; background:transparent; border:1px solid #ef4444; color:#ef4444; border-radius:6px; font-size:0.78rem; cursor:pointer;">Disconnect</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
 
         <!-- Paywall / Expired Access Notification Card -->
         <div id="user-paywall-card" style="display:none; margin-top:20px; padding:20px; background:rgba(239, 68, 68, 0.08); border:1px solid rgba(239, 68, 68, 0.25); border-radius:12px;">
@@ -3076,6 +3233,7 @@
           const isExpired = (!isAdmin && ((currentAuthUser.days_left <= 0) || currentAuthUser.status === 'suspended'));
           paywallCard.style.display = isExpired ? 'block' : 'none';
         }
+        refreshUserSocialFleet();
       }
       if (adminBtn) {
         adminBtn.style.display = isAdmin ? 'inline-flex' : 'none';
@@ -3495,6 +3653,211 @@
         }
       }
     }
+
+    // --- Direct Single-Platform Connection & Live Fleet Handlers ---
+    async function connectSinglePlatform(platform, inputId, statusId) {
+      if (currentAuthUser && currentAuthUser.role !== 'admin' && (currentAuthUser.days_left <= 0 || currentAuthUser.status === 'suspended')) {
+        alert('🔒 Subscription Expired: Please upgrade or renew your plan to connect accounts and activate the AI worker.');
+        return;
+      }
+
+      const inputEl = document.getElementById(inputId);
+      const statusEl = document.getElementById(statusId);
+      const val = inputEl ? inputEl.value.trim() : '';
+
+      if (!val) {
+        if (statusEl) {
+          statusEl.className = 'verify-status-msg error';
+          statusEl.innerText = '⚠️ Please enter your profile link or handle first.';
+        }
+        alert('⚠️ Please enter your profile link or handle before connecting.');
+        return;
+      }
+
+      if (statusEl) {
+        statusEl.className = 'verify-status-msg';
+        statusEl.style.color = '#38bdf8';
+        statusEl.innerText = '⏳ Verifying ownership & connecting...';
+      }
+
+      try {
+        // 1. Verify syntax, ownership, and anti-collision
+        const vRes = await fetch(`${getApiBase()}/api/settings/verify-connection`, {
+          method: 'POST',
+          headers: getApiHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({ platform: platform, handle_or_url: val })
+        });
+        const vData = await vRes.json();
+        if (!vData.valid) {
+          if (statusEl) {
+            statusEl.className = 'verify-status-msg error';
+            statusEl.innerText = vData.message || '⚠️ Verification failed';
+          }
+          alert(`⚠️ ${vData.message || 'Invalid handle or ownership restriction'}`);
+          return;
+        }
+
+        const canonicalHandle = vData.normalized_handle || val;
+        if (inputEl) inputEl.value = canonicalHandle;
+
+        // 2. Fetch existing configs to preserve other channels
+        const gRes = await fetch(`${getApiBase()}/api/user/social-config`, { headers: getApiHeaders() });
+        let configs = [];
+        if (gRes.ok) {
+          const gData = await gRes.json();
+          configs = gData.configs || [];
+        }
+
+        let found = false;
+        configs = configs.map(c => {
+          if (c.platform === platform) {
+            found = true;
+            return { ...c, is_connected: true, account_handle: canonicalHandle };
+          }
+          return c;
+        });
+        if (!found) {
+          configs.push({ platform: platform, is_connected: true, account_handle: canonicalHandle, post_time_slot: 'default' });
+        }
+
+        // 3. Save to backend immediately
+        const sRes = await fetch(`${getApiBase()}/api/user/social-config`, {
+          method: 'POST',
+          headers: getApiHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({
+            use_default_schedule: true,
+            timezone: 'Asia/Dhaka',
+            configs: configs
+          })
+        });
+        const sData = await sRes.json();
+
+        if (sRes.ok && sData.success) {
+          if (statusEl) {
+            statusEl.className = 'verify-status-msg success';
+            statusEl.innerText = '✅ Connected & Monitoring Active';
+          }
+          alert(`🎉 Success! Connected ${platform.toUpperCase()} (${canonicalHandle})!\n\nFagun AI Autonomous Worker has automatically started active monitoring, scheduled posts, and sentiment telemetry for your account.`);
+          await refreshUserSocialFleet();
+        } else {
+          if (statusEl) {
+            statusEl.className = 'verify-status-msg error';
+            statusEl.innerText = `⚠️ ${sData.detail || 'Connection failed'}`;
+          }
+          alert(`⚠️ ${sData.detail || 'Failed to save connection'}`);
+        }
+      } catch (err) {
+        if (statusEl) {
+          statusEl.className = 'verify-status-msg error';
+          statusEl.innerText = '⚠️ Network error during connection';
+        }
+        alert(`⚠️ Connection error: ${err.message}`);
+      }
+    }
+
+    async function disconnectPlatform(platform) {
+      if (!confirm(`Are you sure you want to disconnect ${platform.toUpperCase()}?`)) return;
+      try {
+        const gRes = await fetch(`${getApiBase()}/api/user/social-config`, { headers: getApiHeaders() });
+        if (!gRes.ok) return;
+        const gData = await gRes.json();
+        const configs = (gData.configs || []).map(c => {
+          if (c.platform === platform) {
+            return { ...c, is_connected: false, account_handle: '' };
+          }
+          return c;
+        });
+        await fetch(`${getApiBase()}/api/user/social-config`, {
+          method: 'POST',
+          headers: getApiHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({ use_default_schedule: true, timezone: 'Asia/Dhaka', configs: configs })
+        });
+        alert(`Disconnected ${platform.toUpperCase()}.`);
+        await refreshUserSocialFleet();
+      } catch (e) {
+        alert('Failed to disconnect platform.');
+      }
+    }
+
+    async function refreshUserSocialFleet() {
+      try {
+        const res = await fetch(`${getApiBase()}/api/user/social-config`, {
+          headers: getApiHeaders()
+        });
+        if (!res.ok) return;
+        const data = await res.json();
+        const configs = data.configs || [];
+
+        let connectedCount = 0;
+        const platforms = ['linkedin', 'x', 'facebook', 'facebook_page', 'instagram'];
+
+        platforms.forEach(plat => {
+          const cfg = configs.find(c => c.platform === plat);
+          const isConnected = !!(cfg && cfg.is_connected && cfg.account_handle);
+          if (isConnected) connectedCount++;
+
+          const handle = cfg ? (cfg.account_handle || '') : '';
+          const slot = cfg ? (cfg.post_time_slot || 'default') : 'default';
+
+          // Update Dashboard Fleet Card
+          const badge = document.getElementById(`fleet-badge-${plat}`);
+          const input = document.getElementById(`fleet-input-${plat}`);
+          const status = document.getElementById(`fleet-status-${plat}`);
+          const disBtn = document.getElementById(`fleet-disconnect-${plat}`);
+
+          if (badge) {
+            badge.style.background = isConnected ? 'rgba(52, 211, 153, 0.15)' : 'rgba(255, 255, 255, 0.08)';
+            badge.style.color = isConnected ? '#34d399' : '#94a3b8';
+            badge.style.border = isConnected ? '1px solid rgba(52, 211, 153, 0.3)' : '1px solid transparent';
+            badge.innerText = isConnected ? `● Connected: ${handle}` : 'Not Connected';
+          }
+          if (input && handle && isConnected) {
+            input.value = handle;
+          }
+          if (status) {
+            status.innerHTML = isConnected ? `<span style="color:#34d399;">● Active • Scheduled ${slot}</span>` : '';
+          }
+          if (disBtn) {
+            disBtn.style.display = isConnected ? 'inline-block' : 'none';
+          }
+
+          // Sync Settings View inputs
+          const settInputMap = {
+            'linkedin': 'cfg-linkedin-handle',
+            'x': 'cfg-x-handle',
+            'facebook': 'cfg-facebook-handle',
+            'facebook_page': 'cfg-agro-handle',
+            'instagram': 'cfg-instagram-handle'
+          };
+          const settChkMap = {
+            'linkedin': 'cfg-linkedin-connected',
+            'x': 'cfg-x-connected',
+            'facebook': 'cfg-facebook-connected',
+            'facebook_page': 'cfg-agro-connected',
+            'instagram': 'cfg-instagram-connected'
+          };
+          const sIn = document.getElementById(settInputMap[plat]);
+          const sChk = document.getElementById(settChkMap[plat]);
+          if (sIn && handle && isConnected) sIn.value = handle;
+          if (sChk) sChk.checked = isConnected;
+        });
+
+        // Update Fleet Summary in banner
+        const summary = document.getElementById('user-connected-channels-summary');
+        if (summary) {
+          summary.innerText = `● ${connectedCount} / 5 Channels Active`;
+          summary.style.color = connectedCount > 0 ? '#34d399' : '#94a3b8';
+        }
+        const workerBadge = document.getElementById('user-worker-status-badge');
+        if (workerBadge) {
+          workerBadge.innerText = connectedCount > 0 ? 'Active & Monitoring' : 'Ready (Awaiting Channel Connection)';
+          workerBadge.style.color = connectedCount > 0 ? '#34d399' : '#fbbf24';
+        }
+      } catch (err) {
+        console.warn('refreshUserSocialFleet error:', err);
+      }
+    }
+
 
     // --- Audience Perception & Sentiment Telemetry Handlers ---
     let currentSentimentFeed = [];
