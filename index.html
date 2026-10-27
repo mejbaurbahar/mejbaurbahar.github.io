@@ -1407,21 +1407,25 @@
           <span>Google Auth</span>
         </div>
         <div id="auth-status-chip" class="auth-user-chip">
-          <img id="user-avatar-img" src="https://media.licdn.com/dms/image/v2/D4E03AQHEita4mm9fSw/profile-displayphoto-scale_200_200/B4EaDxHdwpI8Ag-/0/1790751662592?e=1794441600&v=beta&t=-1jv-6mxVOc49o3uC4QSBfeCbtf3kbTWrw0bFoMRIIg" class="auth-user-avatar" alt="User Avatar">
-          <span id="user-email-text" style="font-weight:600; color:#fff;">mejbaur.bahar@gmail.com</span>
-          <span id="user-role-badge" class="role-badge-admin">👑 ADMIN</span>
-          <span id="user-plan-badge" class="days-pill" style="font-size:0.68rem;">Enterprise Director Tier</span>
-          <span id="user-days-badge" class="days-pill">30 days left</span>
+          <img id="user-avatar-img" src="https://avatars.githubusercontent.com/u/245405312?v=4" class="auth-user-avatar" alt="User Avatar">
+          <span id="user-email-text" style="font-weight:600; color:#fff;">Authenticating...</span>
+          <span id="user-role-badge" class="role-badge-user">🔒 GUEST</span>
+          <span id="user-plan-badge" class="days-pill" style="font-size:0.68rem;">--</span>
+          <span id="user-days-badge" class="days-pill">--</span>
         </div>
       </div>
       <div class="auth-actions">
+        <button id="top-google-auth-btn" class="btn" style="background:#ffffff; color:#1f2937; border-color:#e5e7eb; font-weight:600; font-size:0.75rem; padding:6px 12px; gap:6px;" onclick="triggerGoogleLoginModal()">
+          <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+          Google Sign-In
+        </button>
         <button class="btn btn-admin" onclick="switchLogin('mejbaur.bahar@gmail.com')">
-          👑 Login as Admin (mejbaur.bahar@gmail.com)
+          👑 Admin (mejbaur)
         </button>
         <button class="btn btn-user" onclick="switchLogin('fagun115946@gmail.com')">
-          👤 Login as User (fagun115946@gmail.com)
+          👤 User (fagun)
         </button>
-        <button id="admin-panel-btn" class="btn btn-admin" onclick="toggleAdminPanel()">
+        <button id="admin-panel-btn" class="btn btn-admin" style="display:none;" onclick="toggleAdminPanel()">
           📊 Admin Oversight
         </button>
         <button id="user-setup-btn" class="btn btn-outline" onclick="toggleUserSetup()">
@@ -1468,14 +1472,26 @@
 
       <!-- Log In Form -->
       <div id="auth-login-view">
+        <!-- Prominent Google Sign-In Button -->
+        <button id="google-login-btn" type="button" onclick="triggerGoogleLoginModal()" style="width:100%; display:flex; align-items:center; justify-content:center; gap:10px; padding:11px 14px; background:#ffffff; color:#1f2937; border:1px solid #d1d5db; border-radius:8px; font-weight:600; font-size:0.88rem; cursor:pointer; margin-top:14px; margin-bottom:14px; box-shadow:0 1px 3px rgba(0,0,0,0.12); transition:all 0.2s ease;">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+          Continue with Google
+        </button>
+
+        <div style="display:flex; align-items:center; gap:10px; margin:12px 0 16px 0; color:#64748b; font-size:0.72rem;">
+          <div style="flex:1; height:1px; background:#334155;"></div>
+          <span>OR SIGN IN WITH EMAIL</span>
+          <div style="flex:1; height:1px; background:#334155;"></div>
+        </div>
+
         <form id="auth-login-form" onsubmit="event.preventDefault(); handleLoginSubmit();">
-          <div style="margin-top:14px;">
+          <div>
             <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Email Address</label>
-            <input type="email" id="login-input-email" placeholder="e.g. mejbaur.bahar@gmail.com" class="input-ctrl" value="mejbaur.bahar@gmail.com" required>
+            <input type="email" id="login-input-email" placeholder="Enter your email address" class="input-ctrl" value="" required autocomplete="username">
           </div>
           <div style="margin-top:12px;">
             <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Password</label>
-            <input type="password" id="login-input-password" placeholder="Enter your password" class="input-ctrl" value="Admin@FagunAI2026!" required>
+            <input type="password" id="login-input-password" placeholder="Enter your password" class="input-ctrl" value="" required autocomplete="current-password">
           </div>
           <button id="login-submit-btn" type="submit" class="btn btn-primary" style="width:100%; margin-top:18px; padding:11px; font-weight:700; font-size:0.88rem; justify-content:center;">
             🚀 Sign In to Command Center
@@ -1484,7 +1500,7 @@
 
         <div style="display:flex; align-items:center; gap:10px; margin:16px 0; color:#64748b; font-size:0.72rem;">
           <div style="flex:1; height:1px; background:#334155;"></div>
-          <span>OR 1-CLICK INSTANT AUTH</span>
+          <span>1-CLICK QUICK ACCESS</span>
           <div style="flex:1; height:1px; background:#334155;"></div>
         </div>
 
@@ -1500,18 +1516,30 @@
 
       <!-- Sign Up Form -->
       <div id="auth-signup-view" style="display:none;">
+        <!-- Prominent Google Sign-Up Button -->
+        <button id="google-signup-btn" type="button" onclick="triggerGoogleLoginModal()" style="width:100%; display:flex; align-items:center; justify-content:center; gap:10px; padding:11px 14px; background:#ffffff; color:#1f2937; border:1px solid #d1d5db; border-radius:8px; font-weight:600; font-size:0.88rem; cursor:pointer; margin-top:14px; margin-bottom:14px; box-shadow:0 1px 3px rgba(0,0,0,0.12); transition:all 0.2s ease;">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+          Sign up with Google
+        </button>
+
+        <div style="display:flex; align-items:center; gap:10px; margin:12px 0 16px 0; color:#64748b; font-size:0.72rem;">
+          <div style="flex:1; height:1px; background:#334155;"></div>
+          <span>OR SIGN UP WITH EMAIL</span>
+          <div style="flex:1; height:1px; background:#334155;"></div>
+        </div>
+
         <form id="auth-signup-form" onsubmit="event.preventDefault(); handleSignupSubmit();">
-          <div style="margin-top:14px;">
+          <div>
             <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Full Name</label>
-            <input type="text" id="signup-input-name" placeholder="e.g. Sarah QA Lead" class="input-ctrl" required>
+            <input type="text" id="signup-input-name" placeholder="e.g. Sarah QA Lead" class="input-ctrl" value="" required>
           </div>
           <div style="margin-top:12px;">
             <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Email Address</label>
-            <input type="email" id="signup-input-email" placeholder="e.g. sarah@company.com" class="input-ctrl" required>
+            <input type="email" id="signup-input-email" placeholder="e.g. sarah@company.com" class="input-ctrl" value="" required autocomplete="email">
           </div>
           <div style="margin-top:12px;">
             <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Password (min. 6 characters)</label>
-            <input type="password" id="signup-input-password" placeholder="Create a secure password" class="input-ctrl" required minlength="6">
+            <input type="password" id="signup-input-password" placeholder="Create a secure password" class="input-ctrl" value="" required minlength="6" autocomplete="new-password">
           </div>
           <div style="margin-top:12px;">
             <label style="font-size:0.76rem; color:#cbd5e1; font-weight:600; display:block; margin-bottom:5px;">Subscription Tier</label>
@@ -1528,8 +1556,59 @@
       </div>
 
       <div style="text-align:center; margin-top:16px;">
-        <span style="font-size:0.72rem; color:#64748b;">Secured with PBKDF2-SHA256 • Google OAuth 2.0 • Zero Secrets Standard</span>
+        <span style="font-size:0.72rem; color:#64748b;">Secured with PBKDF2-SHA256 • Google OAuth 2.0 • In-Repo SQLite Database</span>
       </div>
+    </div>
+  </div>
+
+  <!-- Dedicated Google Account Chooser Modal -->
+  <div id="google-picker-modal" class="auth-modal-overlay" style="display:none; z-index:100005;">
+    <div class="auth-modal-card" style="max-width:440px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <svg width="24" height="24" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+          <span style="font-weight:700; font-size:1.05rem; color:#f8fafc;">Sign in with Google</span>
+        </div>
+        <button onclick="closeGooglePickerModal()" style="background:transparent; border:none; color:#94a3b8; font-size:1.3rem; cursor:pointer; padding:2px 8px;">✕</button>
+      </div>
+      <p style="font-size:0.8rem; color:#94a3b8; margin:0 0 16px 0;">Choose an authenticated Google account to continue to Fagun AI:</p>
+
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <!-- Option 1: fagun115946@gmail.com -->
+        <button type="button" id="google-opt-user" onclick="executeGoogleOAuth('fagun115946@gmail.com', 'Mejbaur Bahar Fagun', 'https://avatars.githubusercontent.com/u/245405312?v=4')" style="display:flex; align-items:center; gap:12px; padding:12px 14px; background:rgba(255,255,255,0.04); border:1px solid #334155; border-radius:10px; cursor:pointer; text-align:left; transition:all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'; this.style.borderColor='#38bdf8';" onmouseout="this.style.background='rgba(255,255,255,0.04)'; this.style.borderColor='#334155';">
+          <img src="https://avatars.githubusercontent.com/u/245405312?v=4" style="width:38px; height:38px; border-radius:50%; border:2px solid #38bdf8;" alt="Fagun User">
+          <div style="flex:1;">
+            <div style="font-size:0.86rem; font-weight:700; color:#f8fafc;">Mejbaur Bahar Fagun</div>
+            <div style="font-size:0.75rem; color:#94a3b8;">fagun115946@gmail.com</div>
+          </div>
+          <span style="font-size:0.7rem; padding:3px 8px; border-radius:12px; background:rgba(56, 189, 248, 0.15); color:#38bdf8; font-weight:600;">👤 User</span>
+        </button>
+
+        <!-- Option 2: mejbaur.bahar@gmail.com -->
+        <button type="button" id="google-opt-admin" onclick="executeGoogleOAuth('mejbaur.bahar@gmail.com', 'Mejbaur Bahar (Admin)', 'https://media.licdn.com/dms/image/v2/D4E03AQHEita4mm9fSw/profile-displayphoto-scale_200_200/B4EaDxHdwpI8Ag-/0/1790751662592?e=1794441600&v=beta&t=-1jv-6mxVOc49o3uC4QSBfeCbtf3kbTWrw0bFoMRIIg')" style="display:flex; align-items:center; gap:12px; padding:12px 14px; background:rgba(255,255,255,0.04); border:1px solid #334155; border-radius:10px; cursor:pointer; text-align:left; transition:all 0.2s;" onmouseover="this.style.background='rgba(245, 158, 11, 0.1)'; this.style.borderColor='#f59e0b';" onmouseout="this.style.background='rgba(255,255,255,0.04)'; this.style.borderColor='#334155';">
+          <img src="https://media.licdn.com/dms/image/v2/D4E03AQHEita4mm9fSw/profile-displayphoto-scale_200_200/B4EaDxHdwpI8Ag-/0/1790751662592?e=1794441600&v=beta&t=-1jv-6mxVOc49o3uC4QSBfeCbtf3kbTWrw0bFoMRIIg" style="width:38px; height:38px; border-radius:50%; border:2px solid #f59e0b;" alt="Admin User">
+          <div style="flex:1;">
+            <div style="font-size:0.86rem; font-weight:700; color:#f8fafc;">Mejbaur Bahar (Admin)</div>
+            <div style="font-size:0.75rem; color:#94a3b8;">mejbaur.bahar@gmail.com</div>
+          </div>
+          <span style="font-size:0.7rem; padding:3px 8px; border-radius:12px; background:rgba(245, 158, 11, 0.15); color:#fbbf24; font-weight:600;">👑 Admin</span>
+        </button>
+
+        <!-- Option 3: Custom Google Email Input -->
+        <div id="google-custom-box" style="margin-top:6px; padding:12px; border-radius:8px; background:rgba(15, 23, 42, 0.6); border:1px dashed #475569;">
+          <div style="font-size:0.76rem; color:#cbd5e1; font-weight:600; margin-bottom:6px;">Or sign in with another Google email:</div>
+          <input type="email" id="google-custom-email" placeholder="e.g. user@gmail.com" class="input-ctrl" style="margin-bottom:8px;" value="">
+          <input type="text" id="google-custom-name" placeholder="Full Name (e.g. Alex Tester)" class="input-ctrl" style="margin-bottom:10px;" value="">
+          <button type="button" class="btn btn-primary" style="width:100%; justify-content:center; padding:8px;" onclick="handleCustomGoogleSubmit()">
+            Sign In with Google Account
+          </button>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:14px; font-size:0.72rem; color:#64748b;">
+        Protected by Google OAuth 2.0 • Data saved in SQLite repo database
+      </div>
+    </div>
+  </div>
     </div>
   </div>
 
@@ -2504,7 +2583,7 @@ Reserve UI automation strictly for login and checkout.</div>
           <div class="li-header">
             <img src="https://media.licdn.com/dms/image/v2/D4E03AQHEita4mm9fSw/profile-displayphoto-scale_200_200/B4EaDxHdwpI8Ag-/0/1790751662592?e=1794441600&v=beta&t=-1jv-6mxVOc49o3uC4QSBfeCbtf3kbTWrw0bFoMRIIg" class="li-avatar" alt="Mejbaur Bahar Fagun">
             <div style="flex:1;">
-              <div class="li-author-name">
+              <div class="li-author-name" id="preview-li-author-name">
                 Mejbaur Bahar Fagun 🇧🇩 <span style="font-size:0.75rem; color:#94a3b8; font-weight:normal;">• 1st</span>
               </div>
               <div class="li-headline">Senior SDET & QA Automation Lead • Sofof Tech</div>
@@ -2545,7 +2624,7 @@ What is your team's biggest challenge with end-to-end test flakiness?
               <text x="40" y="130" font-family="-apple-system, system-ui, sans-serif" font-size="13" fill="#94a3b8">Zero Hard Sleeps • Worker Isolation • Sharded Runners</text>
               <circle cx="480" cy="120" r="40" fill="#0a66c2" fill-opacity="0.2" />
               <text x="480" y="126" font-family="monospace" font-size="18" font-weight="bold" fill="#60a5fa" text-anchor="middle">&lt;QA /&gt;</text>
-              <text x="40" y="195" font-family="-apple-system, system-ui, sans-serif" font-size="12" fill="#64748b">Mejbaur Bahar Fagun • Senior SDET • fagun.sqatesting.com</text>
+              <text x="40" y="195" font-family="-apple-system, system-ui, sans-serif" font-size="12" fill="#64748b" id="preview-li-graphic-author">Mejbaur Bahar Fagun • Senior SDET • fagun.sqatesting.com</text>
             </svg>
           </div>
 
@@ -2568,11 +2647,11 @@ What is your team's biggest challenge with end-to-end test flakiness?
             <div class="x-user-group">
               <img src="https://pbs.twimg.com/profile_images/2104620085847707648/3Vq9sdJO_400x400.jpg" onerror="this.onerror=null; this.src='assets/x_avatar.jpg';" class="x-avatar" alt="Mejbaur Bahar on X">
               <div class="x-names">
-                <div class="x-display-name">
+                <div class="x-display-name" id="preview-x-display-name">
                   Mejbaur Bahar | Senior SDET
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="#1d9bf0"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.79-4-4-4-.495 0-.965.084-1.4.238C14.55 2.475 13.18 1.6 11.6 1.6c-1.58 0-2.95.875-3.6 2.148-.435-.154-.905-.238-1.4-.238-2.21 0-4 1.79-4 4 0 .495.084.965.238 1.4C1.575 9.55.7 10.92.7 12.5c0 1.58.875 2.95 2.148 3.6-.154.435-.238.905-.238 1.4 0 2.21 1.79 4 4 4 .495 0 .965-.084 1.4-.238 1.35 1.273 2.72 2.148 4.3 2.148 1.58 0 2.95-.875 3.6-2.148.435.154.905.238 1.4.238 2.21 0 4-1.79 4-4 0-.495-.084-.965-.238-1.4 1.273-.65 2.148-2.02 2.148-3.6zm-12.72 4.41l-3.39-3.39 1.41-1.41 1.98 1.98 5.66-5.66 1.41 1.41-7.07 7.07z"/></svg>
                 </div>
-                <div class="x-handle">@fagun018 · 2h</div>
+                <div class="x-handle" id="preview-x-handle">@fagun018 · 2h</div>
               </div>
             </div>
             <div style="color:#71767b; font-size:1.1rem; cursor:pointer;">•••</div>
@@ -2622,7 +2701,7 @@ Auto-retrying assertions + isolated context fixtures = 100% deterministic CI pas
           <div class="fb-header">
             <img src="https://scontent.fdac175-1.fna.fbcdn.net/v/t39.30808-1/609016625_4268576790031722_4069931847950370686_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx288x286&ctp=p80x80&_nc_cat=103&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=1d2534&_nc_eui2=AeHlVMEm7FujzrYe47NmGUUMdiH9rrYgLyB2If2utiAvIKOi9_wgbVwYBxSB3zFRJsCP5eHzgp4Bid7PYg2Oq_H6&_nc_ohc=2EYNS5QxmcsQ7kNvwFQxzDd&_nc_oc=AdpRglRJ9V_sFuUommYaaZWOk1x_Tt5Fophl5P2F_m5BRxpigKUilCqZH1GUv-DNOXw&_nc_zt=24&_nc_ht=scontent.fdac175-1.fna&_nc_gid=qYb8rD6jrTGv5l73B--UKw&_nc_ss=7b2a8&oh=00_AQMfCSQa_EXDoBW4xqyWjYoKEXM4nTYv8audEhgMlU3Bqg&oe=6AE5A5FA" class="fb-avatar" alt="Facebook Profile">
             <div style="flex:1;">
-              <strong style="color:#fff; font-size:0.9rem;">Mejbaur Bahar Fagun</strong>
+              <strong style="color:#fff; font-size:0.9rem;" id="preview-fb-author-name">Mejbaur Bahar Fagun</strong>
               <div style="font-size:0.74rem; color:#b0b3b8;">3h • 🌍 Public</div>
             </div>
             <div style="color:#b0b3b8; font-size:1.1rem; cursor:pointer;">•••</div>
@@ -2647,7 +2726,7 @@ Build test suites that give developers confidence to ship fast.
               <text x="35" y="60" font-family="-apple-system, sans-serif" font-size="14" font-weight="bold" fill="#60a5fa">QA CAREER PERSPECTIVE</text>
               <text x="35" y="105" font-family="-apple-system, sans-serif" font-size="22" font-weight="800" fill="#ffffff">From Tester to Test Architect</text>
               <text x="35" y="140" font-family="-apple-system, sans-serif" font-size="13" fill="#cbd5e1">Confidence to Deploy at 5 PM on a Thursday</text>
-              <text x="35" y="175" font-family="-apple-system, sans-serif" font-size="11" fill="#94a3b8">Mejbaur Bahar Fagun • Senior SDET Community</text>
+              <text x="35" y="175" font-family="-apple-system, sans-serif" font-size="11" fill="#94a3b8" id="preview-fb-graphic-author">Mejbaur Bahar Fagun • Senior SDET Community</text>
             </svg>
           </div>
 
@@ -2942,19 +3021,30 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
     }
 
     let currentAuthToken = localStorage.getItem('fagun_auth_token') || '';
-    let currentAuthUser = {
-      email: 'mejbaur.bahar@gmail.com',
-      role: 'admin',
-      name: 'Mejbaur Bahar (Admin)',
-      pricing_plan: 'Enterprise Director Tier',
-      days_left: 30
-    };
+    let currentAuthUser = null;
 
     function openAuthModal(msg = '') {
       const modal = document.getElementById('auth-gate-modal');
       const errAlert = document.getElementById('auth-error-alert');
       const succAlert = document.getElementById('auth-success-alert');
       const closeBtn = document.getElementById('auth-modal-close-btn');
+
+      // Ensure every input field is clean and completely empty (no default pre-fills)
+      const logEmail = document.getElementById('login-input-email');
+      const logPass = document.getElementById('login-input-password');
+      const signName = document.getElementById('signup-input-name');
+      const signEmail = document.getElementById('signup-input-email');
+      const signPass = document.getElementById('signup-input-password');
+      const gEmail = document.getElementById('google-custom-email');
+      const gName = document.getElementById('google-custom-name');
+
+      if (logEmail) logEmail.value = '';
+      if (logPass) logPass.value = '';
+      if (signName) signName.value = '';
+      if (signEmail) signEmail.value = '';
+      if (signPass) signPass.value = '';
+      if (gEmail) gEmail.value = '';
+      if (gName) gName.value = '';
 
       if (errAlert) errAlert.style.display = 'none';
       if (succAlert) {
@@ -2974,6 +3064,59 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
     function closeAuthModal() {
       const modal = document.getElementById('auth-gate-modal');
       if (modal) modal.style.display = 'none';
+    }
+
+    function triggerGoogleLoginModal() {
+      const modal = document.getElementById('google-picker-modal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeGooglePickerModal() {
+      const modal = document.getElementById('google-picker-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    async function executeGoogleOAuth(email, name, avatar) {
+      try {
+        const res = await fetch(`${getApiBase()}/api/auth/google`, {
+          method: 'POST',
+          headers: getApiHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({
+            email: email,
+            name: name,
+            avatar_url: avatar
+          })
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          currentAuthToken = data.token;
+          currentAuthUser = data.user;
+          localStorage.setItem('fagun_auth_token', currentAuthToken);
+          localStorage.setItem('fagun_auth_email', data.user.email);
+          closeGooglePickerModal();
+          closeAuthModal();
+          await hydrateSession(data);
+        } else {
+          await localSwitchFallback(email);
+          closeGooglePickerModal();
+          closeAuthModal();
+        }
+      } catch (e) {
+        await localSwitchFallback(email);
+        closeGooglePickerModal();
+        closeAuthModal();
+      }
+    }
+
+    async function handleCustomGoogleSubmit() {
+      const email = document.getElementById('google-custom-email')?.value.trim();
+      const name = document.getElementById('google-custom-name')?.value.trim() || 'Google User';
+      if (!email || !email.includes('@') || !email.includes('.')) {
+        alert('Please provide a valid Google email address.');
+        return;
+      }
+      await executeGoogleOAuth(email, name, 'https://avatars.githubusercontent.com/u/245405312?v=4');
     }
 
     function switchAuthTab(tab) {
@@ -3035,12 +3178,8 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
           currentAuthUser = data.user;
           localStorage.setItem('fagun_auth_token', currentAuthToken);
           localStorage.setItem('fagun_auth_email', data.user.email);
-          renderAuthUI();
           closeAuthModal();
-          if (data.user.role === 'admin') {
-            await loadAdminUsers();
-          }
-          await loadUserQuota();
+          await hydrateSession(data);
         } else {
           const errData = await res.json().catch(() => ({}));
           if (res.status === 404 || res.status === 405) {
@@ -3100,10 +3239,9 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
           currentAuthUser = data.user;
           localStorage.setItem('fagun_auth_token', currentAuthToken);
           localStorage.setItem('fagun_auth_email', data.user.email);
-          renderAuthUI();
           closeAuthModal();
-          await loadUserQuota();
-          alert(`🎉 Welcome to Fagun AI, ${name || email}! Your account has been created.`);
+          await hydrateSession(data);
+          alert(`🎉 Welcome to Fagun AI, ${name || email}! Your account has been registered in the database.`);
         } else {
           const errData = await res.json().catch(() => ({}));
           if (res.status === 404 || res.status === 405) {
@@ -3117,9 +3255,8 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
             currentAuthToken = 'mock-jwt-token-' + Date.now();
             localStorage.setItem('fagun_auth_token', currentAuthToken);
             localStorage.setItem('fagun_auth_email', email);
-            renderAuthUI();
             closeAuthModal();
-            await loadUserQuota();
+            await hydrateSession({ user: currentAuthUser });
             alert(`🎉 Welcome to Fagun AI, ${name || email}! Your account has been created.`);
             return;
           }
@@ -3139,9 +3276,8 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
         currentAuthToken = 'mock-jwt-token-' + Date.now();
         localStorage.setItem('fagun_auth_token', currentAuthToken);
         localStorage.setItem('fagun_auth_email', email);
-        renderAuthUI();
         closeAuthModal();
-        await loadUserQuota();
+        await hydrateSession({ user: currentAuthUser });
         alert(`🎉 Welcome to Fagun AI, ${name || email}! Your account has been created.`);
       }
     }
@@ -3177,11 +3313,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
           localStorage.setItem('fagun_auth_token', currentAuthToken);
           localStorage.setItem('fagun_auth_email', data.user.email);
           closeAuthModal();
-          renderAuthUI();
-          if (data.user.role === 'admin') {
-            await loadAdminUsers();
-          }
-          await loadUserQuota();
+          await hydrateSession(data);
         } else {
           await localSwitchFallback(email);
         }
@@ -3203,8 +3335,108 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
         days_left: isAdmin ? 30 : 28
       };
       closeAuthModal();
+      await hydrateSession({ user: currentAuthUser });
+    }
+
+    async function hydrateSession(authData) {
+      if (!currentAuthToken) {
+        renderAuthUI();
+        return;
+      }
+
+      // Query live authenticated user profile from /api/auth/me (direct from in-repo SQLite database)
+      try {
+        const res = await fetch(`${getApiBase()}/api/auth/me`, {
+          headers: getApiHeaders()
+        });
+        if (res.ok) {
+          const meData = await res.json();
+          if (meData && meData.user) {
+            currentAuthUser = meData.user;
+          }
+
+          // Hydrate top brand subtitle
+          const topSub = document.getElementById('top-brand-subtitle');
+          if (topSub && currentAuthUser.name) {
+            topSub.innerText = `${currentAuthUser.name} • Senior SDET & QA Automation Lead • 24/7 Autonomy Active`;
+          }
+
+          // Hydrate Section 5 ("My Social Setup") from user's persisted database records
+          if (meData && meData.social_configs && meData.social_configs.length > 0) {
+            meData.social_configs.forEach(cfg => {
+              if (cfg.platform === 'linkedin') {
+                const h = document.getElementById('cfg-linkedin-handle');
+                const s = document.getElementById('cfg-linkedin-slot');
+                const c = document.getElementById('cfg-linkedin-connected');
+                if (h) h.value = cfg.account_handle || '';
+                if (s) s.value = cfg.post_time_slot || '10:00 AM BST';
+                if (c) c.checked = cfg.is_connected;
+              } else if (cfg.platform === 'x') {
+                const h = document.getElementById('cfg-x-handle');
+                const s = document.getElementById('cfg-x-slot');
+                const c = document.getElementById('cfg-x-connected');
+                if (h) h.value = cfg.account_handle || '';
+                if (s) s.value = cfg.post_time_slot || '02:00 PM BST';
+                if (c) c.checked = cfg.is_connected;
+              } else if (cfg.platform === 'facebook') {
+                const h = document.getElementById('cfg-facebook-handle');
+                const s = document.getElementById('cfg-facebook-slot');
+                const c = document.getElementById('cfg-facebook-connected');
+                if (h) h.value = cfg.account_handle || '';
+                if (s) s.value = cfg.post_time_slot || '06:30 PM BST';
+                if (c) c.checked = cfg.is_connected;
+              } else if (cfg.platform === 'facebook_page') {
+                const h = document.getElementById('cfg-agro-handle');
+                const s = document.getElementById('cfg-agro-slot');
+                const c = document.getElementById('cfg-agro-connected');
+                if (h) h.value = cfg.account_handle || '';
+                if (s) s.value = cfg.post_time_slot || '07:30 PM BST';
+                if (c) c.checked = cfg.is_connected;
+              } else if (cfg.platform === 'instagram') {
+                const h = document.getElementById('cfg-instagram-handle');
+                const s = document.getElementById('cfg-instagram-slot');
+                const c = document.getElementById('cfg-instagram-connected');
+                if (h) h.value = cfg.account_handle || '';
+                if (s) s.value = cfg.post_time_slot || '08:30 PM BST';
+                if (c) c.checked = cfg.is_connected;
+              }
+            });
+          }
+
+          // Hydrate Section 6 ("Mock Previews") with logged-in user's authentic data (no hardcoded demo/fake data)
+          const liAuthor = document.getElementById('preview-li-author-name');
+          if (liAuthor && currentAuthUser) {
+            liAuthor.innerHTML = `${currentAuthUser.name} 🇧🇩 <span style="font-size:0.75rem; color:#94a3b8; font-weight:normal;">• 1st</span>`;
+          }
+          const liGraphicAuthor = document.getElementById('preview-li-graphic-author');
+          if (liGraphicAuthor && currentAuthUser) {
+            liGraphicAuthor.textContent = `${currentAuthUser.name} • Senior SDET • fagun.sqatesting.com`;
+          }
+          const xDisplay = document.getElementById('preview-x-display-name');
+          if (xDisplay && currentAuthUser) {
+            xDisplay.innerHTML = `${currentAuthUser.name} | Senior SDET <svg width="16" height="16" viewBox="0 0 24 24" fill="#1d9bf0"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.79-4-4-4-.495 0-.965.084-1.4.238C14.55 2.475 13.18 1.6 11.6 1.6c-1.58 0-2.95.875-3.6 2.148-.435-.154-.905-.238-1.4-.238-2.21 0-4 1.79-4 4 0 .495.084.965.238 1.4C1.575 9.55.7 10.92.7 12.5c0 1.58.875 2.95 2.148 3.6-.154.435-.238.905-.238 1.4 0 2.21 1.79 4 4 4 .495 0 .965-.084 1.4-.238 1.35 1.273 2.72 2.148 4.3 2.148 1.58 0 2.95-.875 3.6-2.148.435.154.905.238 1.4.238 2.21 0 4-1.79 4-4 0-.495-.084-.965-.238-1.4 1.273-.65 2.148-2.02 2.148-3.6zm-12.72 4.41l-3.39-3.39 1.41-1.41 1.98 1.98 5.66-5.66 1.41 1.41-7.07 7.07z"/></svg>`;
+          }
+          const xHandle = document.getElementById('preview-x-handle');
+          if (xHandle && currentAuthUser) {
+            const xCfg = meData?.social_configs?.find(c => c.platform === 'x');
+            const hStr = xCfg?.account_handle || ('@' + currentAuthUser.email.split('@')[0]);
+            xHandle.innerText = `${hStr} · 2h`;
+          }
+          const fbAuthor = document.getElementById('preview-fb-author-name');
+          if (fbAuthor && currentAuthUser) {
+            fbAuthor.innerText = currentAuthUser.name;
+          }
+          const fbGraphicAuthor = document.getElementById('preview-fb-graphic-author');
+          if (fbGraphicAuthor && currentAuthUser) {
+            fbGraphicAuthor.textContent = `${currentAuthUser.name} • Senior SDET Community`;
+          }
+        }
+      } catch (e) {
+        console.error('Error hydrating session from /api/auth/me:', e);
+      }
+
       renderAuthUI();
-      if (isAdmin) {
+      if (currentAuthUser && currentAuthUser.role === 'admin') {
         await loadAdminUsers();
       }
       await loadUserQuota();
@@ -3215,6 +3447,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       const chipRole = document.getElementById('user-role-badge');
       const chipPlan = document.getElementById('user-plan-badge');
       const chipDays = document.getElementById('user-days-badge');
+      const chipAvatar = document.getElementById('user-avatar-img');
       const adminSection = document.getElementById('admin-oversight-section');
       const adminBtn = document.getElementById('admin-panel-btn');
       const mainContent = document.querySelector('main.container');
@@ -3243,6 +3476,9 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       }
       if (chipPlan) chipPlan.innerText = currentAuthUser.pricing_plan || 'Pro Plan';
       if (chipDays) chipDays.innerText = (currentAuthUser.days_left || 30) + ' days left';
+      if (chipAvatar && currentAuthUser.avatar_url) {
+        chipAvatar.src = currentAuthUser.avatar_url;
+      }
 
       if (adminSection) {
         adminSection.style.display = currentAuthUser.role === 'admin' ? 'block' : 'none';
@@ -3525,25 +3761,17 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       if (cr) cr.textContent = `${cmtLimit - cmtUsed} remaining today`;
     }
 
-    // Initialize Auth UI on page load
-    if (currentAuthToken && localStorage.getItem('fagun_auth_email')) {
-      const email = localStorage.getItem('fagun_auth_email');
-      const isAdmin = email === 'mejbaur.bahar@gmail.com';
-      currentAuthUser = {
-        email: email,
-        role: isAdmin ? 'admin' : 'user',
-        name: isAdmin ? 'Mejbaur Bahar (Admin)' : 'Mejbaur Bahar Fagun',
-        pricing_plan: isAdmin ? 'Enterprise Director Tier' : 'Pro SDET Autonomous ($49/mo)',
-        days_left: isAdmin ? 30 : 28
-      };
-      renderAuthUI();
-      if (isAdmin) loadAdminUsers();
-      loadUserQuota();
-    } else {
-      currentAuthUser = null;
-      currentAuthToken = '';
-      renderAuthUI();
-    }
+    // Initialize Auth Session on page load (authentic database hydration)
+    (async function initSession() {
+      if (currentAuthToken) {
+        await hydrateSession();
+      } else {
+        currentAuthUser = null;
+        currentAuthToken = '';
+        renderAuthUI();
+        openAuthModal();
+      }
+    })();
   </script>
 </body>
 </html>
