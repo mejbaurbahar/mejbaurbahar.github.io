@@ -2753,7 +2753,21 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       if (window.location.protocol === 'file:') {
         return 'http://127.0.0.1:8000';
       }
+      if (window.location.hostname.endsWith('github.io')) {
+        return 'https://fagun-ai.loca.lt';
+      }
       return '';
+    }
+
+    function getApiHeaders(extraHeaders = {}) {
+      const headers = {
+        'Bypass-Tunnel-Reminder': 'true',
+        ...extraHeaders
+      };
+      if (currentAuthToken) {
+        headers['Authorization'] = 'Bearer ' + currentAuthToken;
+      }
+      return headers;
     }
 
     let currentAuthToken = localStorage.getItem('fagun_auth_token') || '';
@@ -2769,7 +2783,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       try {
         const res = await fetch(`${getApiBase()}/api/auth/login-as`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: getApiHeaders({ 'Content-Type': 'application/json' }),
           body: JSON.stringify({ email: email })
         });
         if (res.ok) {
@@ -2830,8 +2844,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
 
     async function loadAdminUsers() {
       try {
-        const headers = currentAuthToken ? { 'Authorization': 'Bearer ' + currentAuthToken } : {};
-        const res = await fetch(`${getApiBase()}/api/admin/users`, { headers });
+        const res = await fetch(`${getApiBase()}/api/admin/users`, { headers: getApiHeaders() });
         if (res.ok) {
           const data = await res.json();
           const tbody = document.getElementById('admin-users-tbody');
@@ -2882,13 +2895,9 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
 
     async function extendUserPlan(userId, days) {
       try {
-        const headers = {
-          'Content-Type': 'application/json',
-          ...(currentAuthToken ? { 'Authorization': 'Bearer ' + currentAuthToken } : {})
-        };
         const res = await fetch(`${getApiBase()}/api/admin/users/${userId}/plan`, {
           method: 'POST',
-          headers,
+          headers: getApiHeaders({ 'Content-Type': 'application/json' }),
           body: JSON.stringify({
             pricing_plan: 'Enterprise SDET Dedicated ($149/mo)',
             additional_days: days
@@ -2959,13 +2968,9 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       ];
 
       try {
-        const headers = {
-          'Content-Type': 'application/json',
-          ...(currentAuthToken ? { 'Authorization': 'Bearer ' + currentAuthToken } : {})
-        };
         const res = await fetch(`${getApiBase()}/api/user/social-config`, {
           method: 'POST',
-          headers,
+          headers: getApiHeaders({ 'Content-Type': 'application/json' }),
           body: JSON.stringify({
             use_default_schedule: useDefault,
             timezone: 'Asia/Dhaka',
@@ -3014,8 +3019,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
 
     async function loadUserQuota() {
       try {
-        const headers = currentAuthToken ? { 'Authorization': 'Bearer ' + currentAuthToken } : {};
-        const res = await fetch(`${getApiBase()}/api/user/usage`, { headers });
+        const res = await fetch(`${getApiBase()}/api/user/usage`, { headers: getApiHeaders() });
         if (!res.ok) {
           applyDefaultQuotaDisplay();
           return;
