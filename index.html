@@ -22,6 +22,7 @@
       --success: #10b981;
       --warning: #f59e0b;
       --cyan: #06b6d4;
+      --purple: #8b5cf6;
       --text: #f8fafc;
       --text-muted: #94a3b8;
       --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -155,7 +156,7 @@
       margin-top: 4px;
     }
 
-    /* Accounts Grid: Crystal Clear Distinct Cards */
+    /* Accounts Grid */
     .accounts-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
@@ -180,7 +181,6 @@
       transform: translateY(-3px);
     }
 
-    /* Distinct Platform Card Styles */
     .card-linkedin {
       border-color: rgba(10, 102, 194, 0.5);
       background: linear-gradient(135deg, rgba(10, 102, 194, 0.12) 0%, rgba(18, 24, 38, 0.95) 100%);
@@ -255,6 +255,7 @@
       object-fit: cover;
       flex-shrink: 0;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      background: #1e293b;
     }
     .acc-meta {
       flex: 1;
@@ -281,7 +282,7 @@
       margin-top: 4px;
     }
 
-    /* Section 2: Real-Time AI Social Working Status */
+    /* Section 2: Real-Time AI Social Working Status with COUNTDOWNS */
     .ai-working-section {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -300,10 +301,10 @@
       background: rgba(15, 23, 42, 0.7);
       border-radius: 14px;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 18px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
     }
     .worker-header {
       display: flex;
@@ -311,8 +312,8 @@
       align-items: center;
     }
     .worker-channel {
-      font-size: 0.88rem;
-      font-weight: 700;
+      font-size: 0.9rem;
+      font-weight: 800;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -329,10 +330,47 @@
       align-items: center;
       gap: 5px;
     }
+
+    /* Dynamic Digital Countdown Box */
+    .countdown-box {
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(15, 23, 42, 0.9) 100%);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .countdown-meta {
+      display: flex;
+      flex-direction: column;
+    }
+    .countdown-target {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .countdown-post-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .countdown-digits {
+      font-family: var(--font-mono);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+    }
+
     .worker-task-box {
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.35);
       border-left: 3px solid var(--cyan);
-      padding: 10px 14px;
+      padding: 12px 14px;
       border-radius: 0 8px 8px 0;
       font-size: 0.82rem;
       color: #e2e8f0;
@@ -340,7 +378,7 @@
     .worker-task-box strong {
       color: #fff;
       display: block;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
       font-size: 0.85rem;
     }
     .worker-footer {
@@ -352,12 +390,83 @@
       border-top: 1px dashed rgba(255, 255, 255, 0.08);
       padding-top: 10px;
     }
-    .worker-footer span.highlight {
-      color: #facc15;
-      font-weight: 600;
+
+    /* Section 3: Visual Real-Time Mindmap / Operations Map */
+    .mindmap-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .operations-map {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      position: relative;
+    }
+    .map-core-card {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border: 2px solid rgba(139, 92, 246, 0.5);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 0 25px rgba(139, 92, 246, 0.2);
+    }
+    .map-core-header {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #c084fc;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .map-node-card {
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s ease;
+    }
+    .map-node-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+    .map-node-title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .map-node-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: #cbd5e1;
+    }
+    .map-node-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.4;
+    }
+    .map-node-list li::before {
+      content: "▸";
+      color: var(--cyan);
+      font-weight: 800;
     }
 
-    /* Section 3: Scheduled Posts Calendar */
+    /* Section 4: Scheduled Posts Calendar */
     .schedule-hub {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -463,7 +572,7 @@
       font-weight: 700;
     }
 
-    /* Section 4: Free.ai Media Studio */
+    /* Section 5: Free.ai Media Studio */
     .media-studio {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -546,12 +655,12 @@
 
   <div class="container">
 
-    <!-- Section 1: Connected Social Accounts (Clear Distinct Branding) -->
+    <!-- Section 1: Connected Social Accounts (Distinct Branding & Verified Avatars) -->
     <section>
       <div class="section-header-row">
         <div>
           <div class="section-title">
-            Connected Social Accounts
+            Target Connected Social Accounts
           </div>
           <div class="section-subtitle">Real authentic accounts inspected live in Google Chrome with verified browser sessions</div>
         </div>
@@ -597,7 +706,7 @@
           </div>
         </a>
 
-        <!-- 3. MI Unifyld Agro Ltd (Official Farm Logo Image) -->
+        <!-- 3. MI Unifyld Agro Ltd (Official Original Logo) -->
         <a href="https://www.facebook.com/profile.php?id=61594281573717" target="_blank" class="account-card card-agro">
           <div class="platform-label-bar">
             <span class="platform-name-tag tag-agro">
@@ -606,7 +715,7 @@
             <span class="session-badge" style="color:#34d399; border-color:rgba(5, 150, 105, 0.4); background:rgba(5, 150, 105, 0.15);">● Managed Page</span>
           </div>
           <div class="acc-profile-body">
-            <img src="https://scontent.fdac175-1.fna.fbcdn.net/v/t39.30808-1/807798566_122101019349476052_4858676092529831405_n.jpg?stp=dst-jpg_tt6&cstp=mx1254x1254&ctp=s120x120&_nc_cat=103&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=11a88f&_nc_eui2=AeGX3TwZCe4AR_u7HXJ_LE1Qorf6cOchMMyit_pw5yEwzB7NjwKmU0Sm-dMU9iOxqFhUk5X4FWvHhCoZs03PjOCN&_nc_ohc=EuybWzA7ORsQ7kNvwHBA2BV&_nc_oc=Adrgfq4RntFd1CKdsmrrxMcaeCmSIfH6AwWawmY7tNxVT_hYNXhf3BEs-xBZ0eNG4Gk&_nc_zt=24&_nc_ht=scontent.fdac175-1.fna&_nc_gid=miNB2_wjIqahU5JhRszNug&_nc_ss=7b2a8&oh=00_AQM6c21ttsk4qqC1EYgHHEcVM-NzJDnTLKfOuOaVbRXz8g&oe=6AE5CACE" alt="MI Unifyld Agro Ltd Logo" class="acc-avatar" style="border-color:#10b981;">
+            <img src="https://scontent.fdac175-1.fna.fbcdn.net/v/t39.30808-1/807798566_122101019349476052_4858676092529831405_n.jpg?stp=dst-jpg_tt6&cstp=mx1254x1254&ctp=s120x120&_nc_cat=103&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=11a88f&_nc_eui2=AeGX3TwZCe4AR_u7HXJ_LE1Qorf6cOchMMyit_pw5yEwzB7NjwKmU0Sm-dMU9iOxqFhUk5X4FWvHhCoZs03PjOCN&_nc_ohc=EuybWzA7ORsQ7kNvwHBA2BV&_nc_oc=Adrgfq4RntFd1CKdsmrrxMcaeCmSIfH6AwWawmY7tNxVT_hYNXhf3BEs-xBZ0eNG4Gk&_nc_zt=24&_nc_ht=scontent.fdac175-1.fna&_nc_gid=miNB2_wjIqahU5JhRszNug&_nc_ss=7b2a8&oh=00_AQM6c21ttsk4qqC1EYgHHEcVM-NzJDnTLKfOuOaVbRXz8g&oe=6AE5CACE" alt="MI Unifyld Agro Ltd Official Logo" class="acc-avatar" style="border-color:#10b981;">
             <div class="acc-meta">
               <h3>MI Unifyld Agro Ltd</h3>
               <div class="acc-handle">Page ID: 61594281573717</div>
@@ -615,7 +724,7 @@
           </div>
         </a>
 
-        <!-- 4. X (Twitter) Card -->
+        <!-- 4. X (Twitter) Card with Verified Profile Image -->
         <a href="https://x.com/fagun018" target="_blank" class="account-card card-x">
           <div class="platform-label-bar">
             <span class="platform-name-tag tag-x">
@@ -625,7 +734,7 @@
             <span class="session-badge">● Active Session</span>
           </div>
           <div class="acc-profile-body">
-            <img src="https://pbs.twimg.com/profile_images/2026888241434382336/gO7c1nJ6_400x400.jpg" alt="X Profile" class="acc-avatar">
+            <img src="https://pbs.twimg.com/profile_images/2104620085847707648/3Vq9sdJO_400x400.jpg" onerror="this.onerror=null; this.src='assets/x_avatar.jpg';" alt="Mejbaur Bahar on X" class="acc-avatar">
             <div class="acc-meta">
               <h3>Mejbaur Bahar | Senior SDET</h3>
               <div class="acc-handle">@fagun018</div>
@@ -675,23 +784,23 @@
       </div>
     </section>
 
-    <!-- Section 2: Real-Time AI Social Working Status (NO WORKFLOW / DAG) -->
+    <!-- Section 2: Real-Time AI Social Working Status WITH LIVE COUNTDOWNS -->
     <section class="ai-working-section">
       <div class="section-header-row">
         <div>
           <div class="section-title">
             Live AI Social Media Activity Monitor
           </div>
-          <div class="section-subtitle">Real-time status of what the autonomous agent is doing across each social media channel right now</div>
+          <div class="section-subtitle">Real-time status and live digital countdowns ticking down to the exact scheduled publication time for each channel</div>
         </div>
         <div class="persistent-notice" style="background:rgba(6, 182, 212, 0.1); border-color:rgba(6, 182, 212, 0.3); color:var(--cyan);">
-          🛡️ 100% Organic Delivery: All AI metadata tags & watermarks are automatically stripped before posting.
+          🛡️ 100% Organic Content: All AI tags, metadata & prompt tokens are stripped clean before publishing.
         </div>
       </div>
 
       <div class="ai-workers-grid">
 
-        <!-- LinkedIn AI Worker -->
+        <!-- 1. LinkedIn AI Worker -->
         <div class="worker-card">
           <div class="worker-header">
             <span class="worker-channel tag-linkedin">
@@ -700,54 +809,28 @@
             </span>
             <span class="worker-pulse-badge"><div class="dot-pulse"></div> Active Working</span>
           </div>
+
+          <div class="countdown-box">
+            <div class="countdown-meta">
+              <span class="countdown-target">Scheduled for Today • 10:00 AM BST</span>
+              <span class="countdown-post-title">Playwright CI/CD Fixtures</span>
+            </div>
+            <div class="countdown-digits" id="timer-linkedin" data-hour="10" data-minute="0">
+              00h : 00m : 00s
+            </div>
+          </div>
+
           <div class="worker-task-box">
             <strong>Current Task:</strong>
             Scanning engineering discussions on test reliability, Playwright fixtures, and sharding in GitHub Actions.
           </div>
           <div class="worker-footer">
-            <span>Next Action: <span class="highlight">10:00 AM BST Post Queue</span></span>
+            <span>Next Action: <strong style="color:#facc15;">10:00 AM BST Post Dispatch</strong></span>
             <span style="color:var(--success);">● Auto-Replies Active</span>
           </div>
         </div>
 
-        <!-- Facebook Profile AI Worker -->
-        <div class="worker-card">
-          <div class="worker-header">
-            <span class="worker-channel tag-facebook">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-              Facebook Profile AI Worker
-            </span>
-            <span class="worker-pulse-badge"><div class="dot-pulse"></div> Active Working</span>
-          </div>
-          <div class="worker-task-box">
-            <strong>Current Task:</strong>
-            Reviewing community comments, classifying technical intents, and filtering spam with zero human waiting.
-          </div>
-          <div class="worker-footer">
-            <span>Next Action: <span class="highlight">06:30 PM BST Career Lesson</span></span>
-            <span style="color:var(--success);">● Grounded In Facts</span>
-          </div>
-        </div>
-
-        <!-- MI Unifyld Agro Ltd Facebook Page AI Worker -->
-        <div class="worker-card" style="border-color:rgba(5, 150, 105, 0.4);">
-          <div class="worker-header">
-            <span class="worker-channel tag-agro">
-              🌾 MI Unifyld Agro Ltd Worker
-            </span>
-            <span class="worker-pulse-badge" style="color:#34d399; background:rgba(5, 150, 105, 0.2);"><div class="dot-pulse" style="background:#10b981;"></div> Active Working</span>
-          </div>
-          <div class="worker-task-box" style="border-left-color:#10b981;">
-            <strong>Current Task:</strong>
-            Drafting precision farming and automated IoT soil/temperature telemetry quality engineering updates.
-          </div>
-          <div class="worker-footer">
-            <span>Next Action: <span class="highlight">07:30 PM BST Smart Agro Post</span></span>
-            <span style="color:#34d399;">● Page Notifications Active</span>
-          </div>
-        </div>
-
-        <!-- X (Twitter) AI Worker -->
+        <!-- 2. X (Twitter @fagun018) AI Worker -->
         <div class="worker-card">
           <div class="worker-header">
             <span class="worker-channel tag-x">
@@ -756,17 +839,87 @@
             </span>
             <span class="worker-pulse-badge"><div class="dot-pulse"></div> Active Working</span>
           </div>
+
+          <div class="countdown-box">
+            <div class="countdown-meta">
+              <span class="countdown-target">Scheduled for Today • 02:00 PM BST</span>
+              <span class="countdown-post-title">Playwright vs Cypress Auto-Wait</span>
+            </div>
+            <div class="countdown-digits" id="timer-x" data-hour="14" data-minute="0">
+              00h : 00m : 00s
+            </div>
+          </div>
+
           <div class="worker-task-box">
             <strong>Current Task:</strong>
             Tracking #Playwright, #Cypress, and #SDET discussions. Generating punchy, high-signal technical tips.
           </div>
           <div class="worker-footer">
-            <span>Next Action: <span class="highlight">02:00 PM BST Tech Advice</span></span>
+            <span>Next Action: <strong style="color:#facc15;">02:00 PM BST Tech Advice</strong></span>
             <span style="color:var(--success);">● Auto-Replies Active</span>
           </div>
         </div>
 
-        <!-- Instagram AI Worker -->
+        <!-- 3. Facebook Profile AI Worker -->
+        <div class="worker-card">
+          <div class="worker-header">
+            <span class="worker-channel tag-facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Facebook Profile AI Worker
+            </span>
+            <span class="worker-pulse-badge"><div class="dot-pulse"></div> Active Working</span>
+          </div>
+
+          <div class="countdown-box">
+            <div class="countdown-meta">
+              <span class="countdown-target">Scheduled for Today • 06:30 PM BST</span>
+              <span class="countdown-post-title">Career Lessons as a Senior SDET</span>
+            </div>
+            <div class="countdown-digits" id="timer-facebook" data-hour="18" data-minute="30">
+              00h : 00m : 00s
+            </div>
+          </div>
+
+          <div class="worker-task-box">
+            <strong>Current Task:</strong>
+            Reviewing community comments, classifying technical intents, and filtering spam with zero human waiting.
+          </div>
+          <div class="worker-footer">
+            <span>Next Action: <strong style="color:#facc15;">06:30 PM BST Career Lesson</strong></span>
+            <span style="color:var(--success);">● Grounded In Facts</span>
+          </div>
+        </div>
+
+        <!-- 4. MI Unifyld Agro Ltd Facebook Page AI Worker -->
+        <div class="worker-card" style="border-color:rgba(5, 150, 105, 0.4);">
+          <div class="worker-header">
+            <span class="worker-channel tag-agro">
+              🌾 MI Unifyld Agro Ltd Worker
+            </span>
+            <span class="worker-pulse-badge" style="color:#34d399; background:rgba(5, 150, 105, 0.2);"><div class="dot-pulse" style="background:#10b981;"></div> Active Working</span>
+          </div>
+
+          <div class="countdown-box" style="border-color:rgba(5, 150, 105, 0.4); background:linear-gradient(135deg, rgba(5, 150, 105, 0.15) 0%, rgba(15, 23, 42, 0.9) 100%);">
+            <div class="countdown-meta">
+              <span class="countdown-target" style="color:#a7f3d0;">Scheduled for Today • 07:30 PM BST</span>
+              <span class="countdown-post-title">Smart Agriculture & Precision Farming</span>
+            </div>
+            <div class="countdown-digits" id="timer-agro" data-hour="19" data-minute="30" style="color:#34d399; border-color:rgba(16, 185, 129, 0.4);">
+              00h : 00m : 00s
+            </div>
+          </div>
+
+          <div class="worker-task-box" style="border-left-color:#10b981;">
+            <strong>Current Task:</strong>
+            Drafting precision farming and automated IoT soil/temperature telemetry quality engineering updates.
+          </div>
+          <div class="worker-footer">
+            <span>Next Action: <strong style="color:#34d399;">07:30 PM BST Smart Agro Post</strong></span>
+            <span style="color:#34d399;">● Page Notifications Active</span>
+          </div>
+        </div>
+
+        <!-- 5. Instagram (@koy_jabo) AI Worker -->
         <div class="worker-card">
           <div class="worker-header">
             <span class="worker-channel tag-instagram">
@@ -775,12 +928,23 @@
             </span>
             <span class="worker-pulse-badge"><div class="dot-pulse"></div> Active Working</span>
           </div>
+
+          <div class="countdown-box">
+            <div class="countdown-meta">
+              <span class="countdown-target">Scheduled for Today • 08:30 PM BST</span>
+              <span class="countdown-post-title">4 Pillars of Flake-Free QA</span>
+            </div>
+            <div class="countdown-digits" id="timer-instagram" data-hour="20" data-minute="30">
+              00h : 00m : 00s
+            </div>
+          </div>
+
           <div class="worker-task-box">
             <strong>Current Task:</strong>
             Rendering multi-slide visual explainers and technical carousels with Free.ai image generators.
           </div>
           <div class="worker-footer">
-            <span>Next Action: <span class="highlight">08:30 PM BST Visual Carousel</span></span>
+            <span>Next Action: <strong style="color:#facc15;">08:30 PM BST Visual Carousel</strong></span>
             <span style="color:var(--success);">● Free.ai 1080x1080 Active</span>
           </div>
         </div>
@@ -788,7 +952,90 @@
       </div>
     </section>
 
-    <!-- Section 3: Scheduled Posts Hub & Calendar Breakdown -->
+    <!-- Section 3: Visual Real-Time Operations Map & Mindmap -->
+    <section class="mindmap-section">
+      <div class="section-header-row">
+        <div>
+          <div class="section-title">
+            Visual Operations Map & Real-Time Mindmap
+          </div>
+          <div class="section-subtitle">Interactive architecture map showing exactly how signals flow from discovery to factual verification and autonomous publishing</div>
+        </div>
+      </div>
+
+      <div class="operations-map">
+
+        <!-- Node 1: Intelligence Discovery -->
+        <div class="map-node-card">
+          <div class="map-node-title">
+            <span style="font-size:1.2rem;">📡</span>
+            <span>1. Discovery Hub</span>
+          </div>
+          <ul class="map-node-list">
+            <li>Scans DEV.to, Reddit r/QualityAssurance & GitHub trending repositories.</li>
+            <li>Listens for #Playwright, #Cypress, #SDET, #API, and #AgTech discussions.</li>
+            <li>Calculates multi-factor relevance scores against verified professional skills.</li>
+          </ul>
+        </div>
+
+        <!-- Node 2: Fact Grounding -->
+        <div class="map-node-card">
+          <div class="map-node-title">
+            <span style="font-size:1.2rem;">🛡️</span>
+            <span>2. Fact Grounding</span>
+          </div>
+          <ul class="map-node-list">
+            <li>Strict validation against Mejbaur's verified 7+ years SDET resume facts.</li>
+            <li>Sanitizer automatically strips all AI metadata tags, comments, and watermarks.</li>
+            <li>Blocks hallucinations, fake anecdotes, and confidential employer information.</li>
+          </ul>
+        </div>
+
+        <!-- Central Core: Autonomous Brain -->
+        <div class="map-core-card">
+          <div class="map-core-header">
+            <span style="font-size:1.4rem;">🧠</span>
+            <span>Fagun AI Autonomous Core</span>
+          </div>
+          <p style="font-size:0.8rem; color:#cbd5e1; line-height:1.5;">
+            Operating 24/7 in <strong>MODE C (Controlled Autonomy)</strong> with full pre-approval. Automatically balances daily engagement budgets, schedules high-impact posts, and executes with zero human waiting.
+          </p>
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.75rem; border-top:1px dashed rgba(255,255,255,0.15); padding-top:8px;">
+            <span style="color:#38bdf8;">⚡ Daily Post Budget: 50</span>
+            <span style="color:#4ade80;">● Full Auto Active</span>
+          </div>
+        </div>
+
+        <!-- Node 3: Free.ai Media Synthesis -->
+        <div class="map-node-card">
+          <div class="map-node-title">
+            <span style="font-size:1.2rem;">🎨</span>
+            <span>3. Free.ai Studio</span>
+          </div>
+          <ul class="map-node-list">
+            <li>Renders 1080x1080 carousel graphics with Pollinations FLUX & open models.</li>
+            <li>Generates technical 5-second teaser video clips via CogVideoX.</li>
+            <li>Zero API token costs: 100% free open-weight visual asset pipeline.</li>
+          </ul>
+        </div>
+
+        <!-- Node 4: Multi-Channel Publisher -->
+        <div class="map-node-card">
+          <div class="map-node-title">
+            <span style="font-size:1.2rem;">🚀</span>
+            <span>4. Distribution Gate</span>
+          </div>
+          <ul class="map-node-list">
+            <li>Dispatches scheduled posts to LinkedIn, Facebook, Agro Page, X & Instagram.</li>
+            <li>Enforces timezone-aware publication slots in Asia/Dhaka time (`BST UTC+6`).</li>
+            <li>Autonomous reply engine classifies commenter intent and replies instantly.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 4: Scheduled Posts Hub & Calendar Breakdown -->
     <section class="schedule-hub">
       <div class="section-header-row">
         <div>
@@ -798,7 +1045,7 @@
           <div class="section-subtitle">Persistent schedule ledger — all existing posts are permanently preserved and never deleted</div>
         </div>
         <div class="persistent-notice">
-          🛡️ Zero AI Watermarks: Content is cleaned to read 100% natural and human.
+          🛡️ Zero AI Watermarks: Content is cleaned to read 100% natural, technical, and human.
         </div>
       </div>
 
@@ -1020,7 +1267,7 @@ Reserve UI automation strictly for login and checkout.</div>
       </div>
     </section>
 
-    <!-- Section 4: Free.ai Media Studio -->
+    <!-- Section 5: Free.ai Media Studio -->
     <section class="media-studio">
       <div class="section-header-row">
         <div>
@@ -1102,6 +1349,7 @@ Reserve UI automation strictly for login and checkout.</div>
   </footer>
 
   <script>
+    // 1. Digital Clock for Asia/Dhaka
     function updateClock() {
       const now = new Date();
       const options = {
@@ -1120,8 +1368,54 @@ Reserve UI automation strictly for login and checkout.</div>
         clockEl.innerText = 'BST (Dhaka): ' + formatter.format(now);
       }
     }
+
+    // 2. Real-Time Countdowns for Scheduled Social Media Posts
+    function updateCountdowns() {
+      // Get current time in Asia/Dhaka
+      const now = new Date();
+      const dhakaTimeStr = now.toLocaleString("en-US", { timeZone: "Asia/Dhaka" });
+      const dhakaNow = new Date(dhakaTimeStr);
+
+      const timers = [
+        { id: 'timer-linkedin', hour: 10, minute: 0 },
+        { id: 'timer-x', hour: 14, minute: 0 },
+        { id: 'timer-facebook', hour: 18, minute: 30 },
+        { id: 'timer-agro', hour: 19, minute: 30 },
+        { id: 'timer-instagram', hour: 20, minute: 30 },
+      ];
+
+      timers.forEach(item => {
+        const el = document.getElementById(item.id);
+        if (!el) return;
+
+        // Target Date in Dhaka
+        const target = new Date(dhakaNow);
+        target.setHours(item.hour, item.minute, 0, 0);
+
+        let diffMs = target - dhakaNow;
+        if (diffMs <= 0) {
+          // If already passed today, target tomorrow
+          target.setDate(target.getDate() + 1);
+          diffMs = target - dhakaNow;
+        }
+
+        const totalSecs = Math.floor(diffMs / 1000);
+        const hours = Math.floor(totalSecs / 3600);
+        const mins = Math.floor((totalSecs % 3600) / 60);
+        const secs = totalSecs % 60;
+
+        const hStr = String(hours).padStart(2, '0');
+        const mStr = String(mins).padStart(2, '0');
+        const sStr = String(secs).padStart(2, '0');
+
+        el.innerText = `${hStr}h : ${mStr}m : ${sStr}s`;
+      });
+    }
+
     setInterval(updateClock, 1000);
+    setInterval(updateCountdowns, 1000);
     updateClock();
+    updateCountdowns();
   </script>
 </body>
 </html>
