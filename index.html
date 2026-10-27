@@ -3470,8 +3470,8 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       if (modal) modal.style.display = 'none';
     }
 
-    function selectGoogleAccount(email, name, avatar) {
-      executeGoogleOAuth(email, name, avatar);
+    async function selectGoogleAccount(email, name, avatar) {
+      await executeGoogleOAuth(email, name, avatar);
     }
 
     async function submitGoogleSignIn() {
