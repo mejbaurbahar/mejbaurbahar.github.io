@@ -2749,6 +2749,13 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
     updateCountdowns();
 
     // 3. Google Auth & Role Management
+    function getApiBase() {
+      if (window.location.protocol === 'file:') {
+        return 'http://127.0.0.1:8000';
+      }
+      return '';
+    }
+
     let currentAuthToken = localStorage.getItem('fagun_auth_token') || '';
     let currentAuthUser = {
       email: 'mejbaur.bahar@gmail.com',
@@ -2760,7 +2767,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
 
     async function switchLogin(email) {
       try {
-        const res = await fetch('/api/auth/login-as', {
+        const res = await fetch(`${getApiBase()}/api/auth/login-as`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: email })
@@ -2773,18 +2780,18 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
           localStorage.setItem('fagun_auth_email', data.user.email);
           renderAuthUI();
           if (data.user.role === 'admin') {
-            loadAdminUsers();
+            await loadAdminUsers();
           }
-          loadUserQuota();
+          await loadUserQuota();
         } else {
-          localSwitchFallback(email);
+          await localSwitchFallback(email);
         }
       } catch (e) {
-        localSwitchFallback(email);
+        await localSwitchFallback(email);
       }
     }
 
-    function localSwitchFallback(email) {
+    async function localSwitchFallback(email) {
       const isAdmin = email === 'mejbaur.bahar@gmail.com';
       currentAuthUser = {
         email: email,
@@ -2794,7 +2801,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
         days_left: isAdmin ? 30 : 28
       };
       renderAuthUI();
-      loadUserQuota();
+      await loadUserQuota();
     }
 
     function renderAuthUI() {
@@ -2824,7 +2831,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
     async function loadAdminUsers() {
       try {
         const headers = currentAuthToken ? { 'Authorization': 'Bearer ' + currentAuthToken } : {};
-        const res = await fetch('/api/admin/users', { headers });
+        const res = await fetch(`${getApiBase()}/api/admin/users`, { headers });
         if (res.ok) {
           const data = await res.json();
           const tbody = document.getElementById('admin-users-tbody');
@@ -2879,7 +2886,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
           'Content-Type': 'application/json',
           ...(currentAuthToken ? { 'Authorization': 'Bearer ' + currentAuthToken } : {})
         };
-        const res = await fetch(`/api/admin/users/${userId}/plan`, {
+        const res = await fetch(`${getApiBase()}/api/admin/users/${userId}/plan`, {
           method: 'POST',
           headers,
           body: JSON.stringify({
@@ -2956,7 +2963,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
           'Content-Type': 'application/json',
           ...(currentAuthToken ? { 'Authorization': 'Bearer ' + currentAuthToken } : {})
         };
-        const res = await fetch('/api/user/social-config', {
+        const res = await fetch(`${getApiBase()}/api/user/social-config`, {
           method: 'POST',
           headers,
           body: JSON.stringify({
@@ -3008,7 +3015,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
     async function loadUserQuota() {
       try {
         const headers = currentAuthToken ? { 'Authorization': 'Bearer ' + currentAuthToken } : {};
-        const res = await fetch('/api/user/usage', { headers });
+        const res = await fetch(`${getApiBase()}/api/user/usage`, { headers });
         if (!res.ok) {
           applyDefaultQuotaDisplay();
           return;
