@@ -3113,8 +3113,12 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
 
     // Initialize Auth UI on page load
     renderAuthUI();
-    loadAdminUsers();
-    loadUserQuota();
+    if (currentAuthToken && localStorage.getItem('fagun_auth_email')) {
+      if (currentAuthUser.role === 'admin') loadAdminUsers();
+      loadUserQuota();
+    } else {
+      switchLogin('mejbaur.bahar@gmail.com');
+    }
   </script>
 </body>
 </html>
