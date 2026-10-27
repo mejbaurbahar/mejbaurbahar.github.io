@@ -2440,6 +2440,161 @@
           </div>
         </div>
 
+        <!-- Audience Perception & Social Sentiment Telemetry Panel -->
+        <section class="sentiment-panel" id="sentiment-telemetry-section" style="margin-top:28px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
+            <div>
+              <h3 style="font-size:1.25rem; font-weight:700; color:#f8fafc; margin:0 0 4px 0; display:flex; align-items:center; gap:8px;">
+                <span>📊</span> Audience Perception & Social Sentiment Telemetry
+              </h3>
+              <div style="font-size:0.84rem; color:#94a3b8;">
+                Real-time analysis of comments, praise, technical questions, and critiques across your connected channels.
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span id="sentiment-kpi-total" style="font-size:0.82rem; font-weight:700; color:#38bdf8; background:#0b0f19; padding:6px 14px; border-radius:20px; border:1px solid #334155;">
+                0 Monitored
+              </span>
+              <button type="button" onclick="triggerUserLiveScan()" style="padding:6px 14px; background:#1e293b; color:#34d399; border:1px solid #34d399; border-radius:20px; font-size:0.8rem; font-weight:700; cursor:pointer;">
+                🔄 Refresh Telemetry
+              </button>
+            </div>
+          </div>
+
+          <!-- KPI Cards Grid -->
+          <div class="sentiment-kpi-grid">
+            <div class="sentiment-kpi-card" style="border-left:4px solid #10b981;">
+              <div class="sentiment-kpi-lbl">Positive Sentiment</div>
+              <div id="sentiment-kpi-positive" class="sentiment-kpi-val" style="color:#34d399;">0%</div>
+              <div id="sentiment-kpi-positive-sub" style="font-size:0.75rem; color:#94a3b8;">0 praise items</div>
+            </div>
+            <div class="sentiment-kpi-card" style="border-left:4px solid #64748b;">
+              <div class="sentiment-kpi-lbl">Neutral / Discussions</div>
+              <div id="sentiment-kpi-neutral" class="sentiment-kpi-val" style="color:#94a3b8;">0%</div>
+              <div id="sentiment-kpi-neutral-sub" style="font-size:0.75rem; color:#94a3b8;">0 discussions</div>
+            </div>
+            <div class="sentiment-kpi-card" style="border-left:4px solid #ef4444;">
+              <div class="sentiment-kpi-lbl">Critical / Bug Reports</div>
+              <div id="sentiment-kpi-negative" class="sentiment-kpi-val" style="color:#f87171;">0%</div>
+              <div id="sentiment-kpi-negative-sub" style="font-size:0.75rem; color:#94a3b8;">0 critiques/bugs</div>
+            </div>
+          </div>
+
+          <!-- Charts Row (Donut & Platform Bars) -->
+          <div class="sentiment-chart-row">
+            <!-- Donut Chart -->
+            <div class="sentiment-donut-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <h4 style="font-size:0.95rem; font-weight:700; color:#f8fafc; margin:0 0 14px 0;">Distribution Overview</h4>
+              <div style="display:flex; align-items:center; justify-content:space-around; gap:16px;">
+                <svg width="120" height="120" viewBox="0 0 36 36" style="transform: rotate(-90deg); border-radius:50%;">
+                  <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#1e293b" stroke-width="3.5"></circle>
+                  <circle id="donut-seg-pos" cx="18" cy="18" r="15.915" fill="transparent" stroke="#10b981" stroke-width="3.5" stroke-dasharray="0 100" stroke-dashoffset="0"></circle>
+                  <circle id="donut-seg-neu" cx="18" cy="18" r="15.915" fill="transparent" stroke="#64748b" stroke-width="3.5" stroke-dasharray="0 100" stroke-dashoffset="0"></circle>
+                  <circle id="donut-seg-neg" cx="18" cy="18" r="15.915" fill="transparent" stroke="#ef4444" stroke-width="3.5" stroke-dasharray="0 100" stroke-dashoffset="0"></circle>
+                </svg>
+                <div style="display:flex; flex-direction:column; gap:8px; font-size:0.78rem;">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="width:10px; height:10px; border-radius:50%; background:#10b981; display:inline-block;"></span>
+                    <span style="color:#f8fafc;">Positive</span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="width:10px; height:10px; border-radius:50%; background:#64748b; display:inline-block;"></span>
+                    <span style="color:#f8fafc;">Neutral</span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="width:10px; height:10px; border-radius:50%; background:#ef4444; display:inline-block;"></span>
+                    <span style="color:#f8fafc;">Negative</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Platform Breakdown Bars -->
+            <div class="sentiment-platform-card">
+              <h4 style="font-size:0.95rem; font-weight:700; color:#f8fafc; margin:0 0 14px 0;">Platform Health Breakdown</h4>
+              <div style="display:flex; flex-direction:column; gap:12px;">
+                <!-- LinkedIn -->
+                <div>
+                  <div style="display:flex; justify-content:space-between; font-size:0.76rem; color:#cbd5e1; margin-bottom:4px;">
+                    <span>LinkedIn</span>
+                    <span id="plat-sentiment-linkedin">0 Monitored</span>
+                  </div>
+                  <div style="display:flex; height:8px; border-radius:4px; overflow:hidden; background:#0b0f19;">
+                    <div id="plat-bar-li-pos" style="background:#10b981; width:33%;"></div>
+                    <div id="plat-bar-li-neu" style="background:#64748b; width:33%;"></div>
+                    <div id="plat-bar-li-neg" style="background:#ef4444; width:34%;"></div>
+                  </div>
+                </div>
+                <!-- X (Twitter) -->
+                <div>
+                  <div style="display:flex; justify-content:space-between; font-size:0.76rem; color:#cbd5e1; margin-bottom:4px;">
+                    <span>X (Twitter)</span>
+                    <span id="plat-sentiment-x">0 Monitored</span>
+                  </div>
+                  <div style="display:flex; height:8px; border-radius:4px; overflow:hidden; background:#0b0f19;">
+                    <div id="plat-bar-x-pos" style="background:#10b981; width:33%;"></div>
+                    <div id="plat-bar-x-neu" style="background:#64748b; width:33%;"></div>
+                    <div id="plat-bar-x-neg" style="background:#ef4444; width:34%;"></div>
+                  </div>
+                </div>
+                <!-- Facebook -->
+                <div>
+                  <div style="display:flex; justify-content:space-between; font-size:0.76rem; color:#cbd5e1; margin-bottom:4px;">
+                    <span>Facebook Profile / Page</span>
+                    <span id="plat-sentiment-facebook">0 Monitored</span>
+                  </div>
+                  <div style="display:flex; height:8px; border-radius:4px; overflow:hidden; background:#0b0f19;">
+                    <div id="plat-bar-fb-pos" style="background:#10b981; width:33%;"></div>
+                    <div id="plat-bar-fb-neu" style="background:#64748b; width:33%;"></div>
+                    <div id="plat-bar-fb-neg" style="background:#ef4444; width:34%;"></div>
+                  </div>
+                </div>
+                <!-- Instagram -->
+                <div>
+                  <div style="display:flex; justify-content:space-between; font-size:0.76rem; color:#cbd5e1; margin-bottom:4px;">
+                    <span>Instagram</span>
+                    <span id="plat-sentiment-instagram">0 Monitored</span>
+                  </div>
+                  <div style="display:flex; height:8px; border-radius:4px; overflow:hidden; background:#0b0f19;">
+                    <div id="plat-bar-ig-pos" style="background:#10b981; width:33%;"></div>
+                    <div id="plat-bar-ig-neu" style="background:#64748b; width:33%;"></div>
+                    <div id="plat-bar-ig-neg" style="background:#ef4444; width:34%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feed Filter & Search -->
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
+            <div class="sentiment-filters" style="display:flex; gap:8px;">
+              <button class="filter-btn active" id="filter-btn-all" onclick="filterSentimentFeed('all')" style="padding:6px 14px; background:#1e293b; color:#f8fafc; border:1px solid #334155; border-radius:6px; font-size:0.78rem; cursor:pointer;">All Comments</button>
+              <button class="filter-btn" id="filter-btn-pos" onclick="filterSentimentFeed('positive')" style="padding:6px 14px; background:#0b0f19; color:#34d399; border:1px solid #334155; border-radius:6px; font-size:0.78rem; cursor:pointer;">Positive Praise</button>
+              <button class="filter-btn" id="filter-btn-neu" onclick="filterSentimentFeed('neutral')" style="padding:6px 14px; background:#0b0f19; color:#94a3b8; border:1px solid #334155; border-radius:6px; font-size:0.78rem; cursor:pointer;">Technical Questions</button>
+              <button class="filter-btn" id="filter-btn-neg" onclick="filterSentimentFeed('negative')" style="padding:6px 14px; background:#0b0f19; color:#f87171; border:1px solid #334155; border-radius:6px; font-size:0.78rem; cursor:pointer;">Critiques & Bugs</button>
+            </div>
+            <input type="text" placeholder="Search comments or author..." onkeyup="searchSentimentFeed(this.value)" style="padding:7px 12px; background:#0b0f19; border:1px solid #334155; border-radius:6px; font-size:0.8rem; color:#f8fafc; outline:none; min-width:220px;">
+          </div>
+
+          <!-- Comments & Sentiment Table -->
+          <div class="admin-table-wrapper" style="border-radius:10px; overflow:hidden; border:1px solid #334155;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Platform</th>
+                  <th>Author / Handle</th>
+                  <th>Comment & Intent</th>
+                  <th>Sentiment</th>
+                  <th>AI Autonomous Action Taken</th>
+                  <th>Timestamp</th>
+                </tr>
+              </thead>
+              <tbody id="sentiment-tbody">
+                <!-- Dynamically populated from SQLite via /api/sentiment/feed -->
+              </tbody>
+            </table>
+          </div>
+        </section>
 
         <!-- Paywall / Expired Access Notification Card -->
         <div id="user-paywall-card" style="display:none; margin-top:20px; padding:20px; background:rgba(239, 68, 68, 0.08); border:1px solid rgba(239, 68, 68, 0.25); border-radius:12px;">
