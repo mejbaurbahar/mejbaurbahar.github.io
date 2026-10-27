@@ -1670,7 +1670,7 @@
           <input type="email" id="google-email-input" placeholder="e.g. username@gmail.com" class="input-ctrl" required style="width:100%; padding:12px 14px; border:1px solid #dadce0; border-radius:6px; font-size:0.95rem; color:#202124; background:#ffffff; box-sizing:border-box; outline:none;" onfocus="this.style.borderColor='#1a73e8'; this.style.boxShadow='0 0 0 1px #1a73e8';" onblur="this.style.borderColor='#dadce0'; this.style.boxShadow='none';">
         </div>
         <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
-          <button type="button" onclick="closeGooglePickerModal()" style="background:transparent; border:none; color:#1a73e8; font-weight:600; font-size:0.88rem; cursor:pointer; padding:6px 0;">Cancel</button>
+          <button type="button" onclick="triggerGoogleLoginModal()" style="background:transparent; border:none; color:#1a73e8; font-weight:600; font-size:0.88rem; cursor:pointer; padding:6px 0;">← Back to accounts</button>
           <button type="submit" id="google-next-btn" style="background:#1a73e8; color:#ffffff; border:none; border-radius:6px; padding:10px 24px; font-weight:600; font-size:0.88rem; cursor:pointer; transition:background 0.2s;" onmouseover="this.style.background='#1557b0'" onmouseout="this.style.background='#1a73e8'">
             Next
           </button>
@@ -3338,21 +3338,55 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       if (modal) modal.style.display = 'none';
     }
 
-    function getSavedGoogleAccounts() {
+    const DEFAULT_AVAILABLE_GOOGLE_ACCOUNTS = [
+      {
+        email: 'fagun115946@gmail.com',
+        name: 'Mejbaur Bahar Fagun',
+        avatar: 'https://avatars.githubusercontent.com/u/245405312?v=4',
+        role: 'user'
+      },
+      {
+        email: 'mejbaur.bahar@gmail.com',
+        name: 'Mejbaur Bahar (Admin)',
+        avatar: 'https://media.licdn.com/dms/image/v2/D4E03AQHEita4mm9fSw/profile-displayphoto-scale_200_200/B4EaDxHdwpI8Ag-/0/1790751662592?e=1794441600&v=beta&t=-1jv-6mxVOc49o3uC4QSBfeCbtf3kbTWrw0bFoMRIIg',
+        role: 'admin'
+      }
+    ];
+
+    function getAvailableGoogleAccounts() {
+      let customAccounts = [];
       try {
         const stored = localStorage.getItem('fagun_saved_google_accounts');
-        return stored ? JSON.parse(stored) : [];
-      } catch (e) {
-        return [];
-      }
+        if (stored) customAccounts = JSON.parse(stored);
+      } catch (e) {}
+
+      const accountMap = new Map();
+      // Put custom accounts first (in case user added newer ones)
+      customAccounts.forEach(acc => {
+        if (acc && acc.email) {
+          accountMap.set(acc.email.toLowerCase().trim(), acc);
+        }
+      });
+      // Ensure default accounts are present
+      DEFAULT_AVAILABLE_GOOGLE_ACCOUNTS.forEach(acc => {
+        const key = acc.email.toLowerCase().trim();
+        if (!accountMap.has(key)) {
+          accountMap.set(key, acc);
+        }
+      });
+      return Array.from(accountMap.values());
     }
 
     function saveGoogleAccountLocally(email, name, avatar) {
       try {
-        let accounts = getSavedGoogleAccounts();
+        let accounts = [];
+        try {
+          const stored = localStorage.getItem('fagun_saved_google_accounts');
+          if (stored) accounts = JSON.parse(stored);
+        } catch (e) {}
         accounts = accounts.filter(a => a.email.toLowerCase() !== email.toLowerCase());
         accounts.unshift({ email, name, avatar });
-        if (accounts.length > 5) accounts = accounts.slice(0, 5);
+        if (accounts.length > 8) accounts = accounts.slice(0, 8);
         localStorage.setItem('fagun_saved_google_accounts', JSON.stringify(accounts));
       } catch (e) {}
     }
@@ -3364,53 +3398,53 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       const title = document.getElementById('google-modal-title');
       const subtitle = document.getElementById('google-modal-subtitle');
 
-      const savedAccounts = getSavedGoogleAccounts();
+      const accounts = getAvailableGoogleAccounts();
 
-      if (savedAccounts.length > 0) {
-        // Show "Choose an account" with saved accounts on this device only
-        if (title) title.innerText = 'Choose an account';
-        if (subtitle) subtitle.innerHTML = 'to continue to <strong style="color:#202124; font-weight:600;">Fagun AI</strong>';
+      if (title) title.innerText = 'Choose an account';
+      if (subtitle) subtitle.innerHTML = 'to continue to <strong style="color:#202124; font-weight:600;">Fagun AI</strong>';
 
-        let html = '';
-        savedAccounts.forEach(acc => {
-          const isAdmin = acc.email === 'mejbaur.bahar@gmail.com';
-          const badge = isAdmin ? '<span style="font-size:0.75rem; color:#f59e0b; font-weight:600; background:#fef3c7; padding:2px 8px; border-radius:12px;">👑 Admin</span>' : '';
-          const initial = (acc.name || acc.email).charAt(0).toUpperCase();
+      let html = '';
+      accounts.forEach(acc => {
+        const isAdmin = acc.email === 'mejbaur.bahar@gmail.com';
+        const badge = isAdmin
+          ? '<span style="font-size:0.75rem; color:#b45309; font-weight:600; background:#fef3c7; border:1px solid #fde68a; padding:2px 8px; border-radius:12px;">👑 Admin</span>'
+          : '<span style="font-size:0.75rem; color:#0369a1; font-weight:600; background:#e0f2fe; border:1px solid #bae6fd; padding:2px 8px; border-radius:12px;">👤 User</span>';
 
-          html += `
-            <div class="google-account-row" onclick="selectGoogleAccount('${acc.email}', '${acc.name || ''}', '${acc.avatar || ''}')" style="display:flex; align-items:center; gap:14px; padding:10px 12px; border-radius:8px; cursor:pointer; transition:background 0.15s ease; border-bottom:1px solid #f1f3f4;" onmouseover="this.style.background='#f8fafd'" onmouseout="this.style.background='transparent'">
-              <div style="width:38px; height:38px; border-radius:50%; background:#1a73e8; color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:600; font-size:1rem;">
-                ${initial}
-              </div>
-              <div style="flex:1;">
-                <div style="font-size:0.92rem; font-weight:600; color:#202124;">${acc.name || acc.email}</div>
-                <div style="font-size:0.78rem; color:#5f6368;">${acc.email}</div>
-              </div>
-              ${badge}
-            </div>
-          `;
-        });
+        const initial = (acc.name || acc.email).charAt(0).toUpperCase();
+        const avatarImg = acc.avatar
+          ? `<img src="${acc.avatar}" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid #e5e7eb;" alt="${acc.name}">`
+          : `<div style="width:40px; height:40px; border-radius:50%; background:#1a73e8; color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:600; font-size:1rem;">${initial}</div>`;
 
-        // Add "Use another account" row
         html += `
-          <div class="google-account-row" onclick="showGoogleEmailInputView()" style="display:flex; align-items:center; gap:14px; padding:12px; border-radius:8px; cursor:pointer; transition:background 0.15s ease;" onmouseover="this.style.background='#f8fafd'" onmouseout="this.style.background='transparent'">
-            <div style="width:38px; height:38px; border-radius:50%; background:#f1f3f4; color:#5f6368; display:flex; align-items:center; justify-content:center; font-size:1.1rem;">
-              👤
+          <div class="google-account-row" onclick="selectGoogleAccount('${acc.email}', '${acc.name || ''}', '${acc.avatar || ''}')" style="display:flex; align-items:center; gap:14px; padding:12px 14px; border-radius:8px; cursor:pointer; transition:all 0.15s ease; border-bottom:1px solid #f1f3f4;" onmouseover="this.style.background='#f8fafd'; this.style.boxShadow='0 1px 3px rgba(60,64,67,0.1)';" onmouseout="this.style.background='transparent'; this.style.boxShadow='none';">
+            ${avatarImg}
+            <div style="flex:1;">
+              <div style="font-size:0.92rem; font-weight:600; color:#202124;">${acc.name || acc.email}</div>
+              <div style="font-size:0.78rem; color:#5f6368;">${acc.email}</div>
             </div>
-            <div style="font-size:0.92rem; font-weight:500; color:#202124;">Use another account</div>
+            ${badge}
           </div>
         `;
+      });
 
-        if (list) {
-          list.innerHTML = html;
-          list.style.display = 'flex';
-        }
-        if (form) form.style.display = 'none';
-      } else {
-        // Zero accounts saved on this device: Direct clean Google email input form
-        showGoogleEmailInputView();
+      // "Use another account" row
+      html += `
+        <div class="google-account-row" onclick="showGoogleEmailInputView()" style="display:flex; align-items:center; gap:14px; padding:12px 14px; border-radius:8px; cursor:pointer; transition:all 0.15s ease; margin-top:4px;" onmouseover="this.style.background='#f8fafd'" onmouseout="this.style.background='transparent'">
+          <div style="width:40px; height:40px; border-radius:50%; background:#f1f3f4; color:#5f6368; display:flex; align-items:center; justify-content:center; font-size:1.1rem; border:1px dashed #d1d5db;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#5f6368"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:0.92rem; font-weight:600; color:#1a73e8;">Use another account</div>
+            <div style="font-size:0.76rem; color:#5f6368;">Sign in with any other Google account</div>
+          </div>
+        </div>
+      `;
+
+      if (list) {
+        list.innerHTML = html;
+        list.style.display = 'flex';
       }
-
+      if (form) form.style.display = 'none';
       if (modal) modal.style.display = 'flex';
     }
 
