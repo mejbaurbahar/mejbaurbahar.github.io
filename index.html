@@ -1395,51 +1395,20 @@
       <div class="badge-pill clock" id="live-clock">
         BST (Dhaka): Calculating...
       </div>
-    </div>
-  </header>
-
-  <!-- Google Authentication Bar & Role Switcher -->
-  <div class="auth-bar-wrapper">
-    <div class="auth-bar">
-      <div class="auth-left">
-        <div class="google-badge">
-          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
-          <span>Google Auth</span>
-        </div>
-        <div id="auth-status-chip" class="auth-user-chip">
-          <img id="user-avatar-img" src="https://avatars.githubusercontent.com/u/245405312?v=4" class="auth-user-avatar" alt="User Avatar">
-          <span id="user-email-text" style="font-weight:600; color:#fff;">Authenticating...</span>
-          <span id="user-role-badge" class="role-badge-user">🔒 GUEST</span>
-          <span id="user-plan-badge" class="days-pill" style="font-size:0.68rem;">--</span>
-          <span id="user-days-badge" class="days-pill">--</span>
-        </div>
-      </div>
-      <div class="auth-actions">
-        <button id="top-google-auth-btn" class="btn" style="background:#ffffff; color:#1f2937; border-color:#e5e7eb; font-weight:600; font-size:0.75rem; padding:6px 12px; gap:6px;" onclick="triggerGoogleLoginModal()">
-          <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
-          Google Sign-In
+      <!-- Clean Navigation: Dashboard, Settings, Logout -->
+      <nav id="header-nav-group" style="display:flex; align-items:center; gap:8px; margin-left:10px;">
+        <button id="nav-btn-dashboard" class="btn" style="background:rgba(56, 189, 248, 0.15); border:1px solid #38bdf8; color:#38bdf8; font-weight:600; font-size:0.82rem; padding:7px 14px; border-radius:8px; cursor:pointer;" onclick="showDashboardView()">
+          📊 Dashboard
         </button>
-        <button class="btn btn-admin" onclick="switchLogin('mejbaur.bahar@gmail.com')">
-          👑 Admin (mejbaur)
+        <button id="nav-btn-settings" class="btn" style="background:rgba(255, 255, 255, 0.05); border:1px solid #334155; color:#cbd5e1; font-weight:600; font-size:0.82rem; padding:7px 14px; border-radius:8px; cursor:pointer;" onclick="showSettingsView()">
+          ⚙️ Settings
         </button>
-        <button class="btn btn-user" onclick="switchLogin('fagun115946@gmail.com')">
-          👤 User (fagun)
-        </button>
-        <button id="admin-panel-btn" class="btn btn-admin" style="display:none;" onclick="toggleAdminPanel()">
-          📊 Admin Oversight
-        </button>
-        <button id="user-setup-btn" class="btn btn-outline" onclick="toggleUserSetup()">
-          ⚙️ My Social Setup
-        </button>
-        <button class="btn btn-outline" style="border-color:#38bdf8; color:#38bdf8;" onclick="openAuthModal()">
-          🔑 Sign Up / Login
-        </button>
-        <button id="logout-btn" class="btn btn-outline" style="border-color:#ef4444; color:#f87171; background:rgba(239, 68, 68, 0.1);" onclick="logout()">
+        <button id="nav-btn-logout" class="btn" style="background:rgba(239, 68, 68, 0.12); border:1px solid rgba(239, 68, 68, 0.4); color:#f87171; font-weight:600; font-size:0.82rem; padding:7px 14px; border-radius:8px; cursor:pointer;" onclick="logout()">
           🚪 Log Out
         </button>
-      </div>
+      </nav>
     </div>
-  </div>
+  </header>
 
   <!-- Authentication Gate Modal (Signup > Login Gate) -->
   <div id="auth-gate-modal" class="auth-modal-overlay" style="display:none;">
@@ -1497,21 +1466,6 @@
             🚀 Sign In to Command Center
           </button>
         </form>
-
-        <div style="display:flex; align-items:center; gap:10px; margin:16px 0; color:#64748b; font-size:0.72rem;">
-          <div style="flex:1; height:1px; background:#334155;"></div>
-          <span>1-CLICK QUICK ACCESS</span>
-          <div style="flex:1; height:1px; background:#334155;"></div>
-        </div>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-          <button type="button" class="btn btn-admin" style="font-size:0.75rem; padding:8px; justify-content:center;" onclick="switchLogin('mejbaur.bahar@gmail.com')">
-            👑 Admin (mejbaur)
-          </button>
-          <button type="button" class="btn btn-user" style="font-size:0.75rem; padding:8px; justify-content:center;" onclick="switchLogin('fagun115946@gmail.com')">
-            👤 User (fagun)
-          </button>
-        </div>
       </div>
 
       <!-- Sign Up Form -->
@@ -1554,68 +1508,190 @@
           </button>
         </form>
       </div>
-
-      <div style="text-align:center; margin-top:16px;">
-        <span style="font-size:0.72rem; color:#64748b;">Secured with PBKDF2-SHA256 • Google OAuth 2.0 • In-Repo SQLite Database</span>
-      </div>
     </div>
   </div>
 
-  <!-- Dedicated Google Account Chooser Modal -->
+  <!-- Google Account Sign-In Dialog -->
   <div id="google-picker-modal" class="auth-modal-overlay" style="display:none; z-index:100005;">
-    <div class="auth-modal-card" style="max-width:440px;">
-      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <svg width="24" height="24" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
-          <span style="font-weight:700; font-size:1.05rem; color:#f8fafc;">Sign in with Google</span>
-        </div>
-        <button onclick="closeGooglePickerModal()" style="background:transparent; border:none; color:#94a3b8; font-size:1.3rem; cursor:pointer; padding:2px 8px;">✕</button>
+    <div class="auth-modal-card" style="max-width:390px; background:#ffffff; color:#202124; border-radius:12px; padding:32px 28px; box-shadow:0 12px 36px rgba(0,0,0,0.4);">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
+        <svg width="32" height="32" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+        </svg>
+        <button type="button" onclick="closeGooglePickerModal()" style="background:transparent; border:none; color:#5f6368; font-size:1.3rem; cursor:pointer; padding:0 4px;" title="Close">✕</button>
       </div>
-      <p style="font-size:0.8rem; color:#94a3b8; margin:0 0 16px 0;">Choose an authenticated Google account to continue to Fagun AI:</p>
 
-      <div style="display:flex; flex-direction:column; gap:10px;">
-        <!-- Option 1: fagun115946@gmail.com -->
-        <button type="button" id="google-opt-user" onclick="executeGoogleOAuth('fagun115946@gmail.com', 'Mejbaur Bahar Fagun', 'https://avatars.githubusercontent.com/u/245405312?v=4')" style="display:flex; align-items:center; gap:12px; padding:12px 14px; background:rgba(255,255,255,0.04); border:1px solid #334155; border-radius:10px; cursor:pointer; text-align:left; transition:all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'; this.style.borderColor='#38bdf8';" onmouseout="this.style.background='rgba(255,255,255,0.04)'; this.style.borderColor='#334155';">
-          <img src="https://avatars.githubusercontent.com/u/245405312?v=4" style="width:38px; height:38px; border-radius:50%; border:2px solid #38bdf8;" alt="Fagun User">
-          <div style="flex:1;">
-            <div style="font-size:0.86rem; font-weight:700; color:#f8fafc;">Mejbaur Bahar Fagun</div>
-            <div style="font-size:0.75rem; color:#94a3b8;">fagun115946@gmail.com</div>
-          </div>
-          <span style="font-size:0.7rem; padding:3px 8px; border-radius:12px; background:rgba(56, 189, 248, 0.15); color:#38bdf8; font-weight:600;">👤 User</span>
-        </button>
+      <h3 style="font-size:1.3rem; font-weight:500; margin:0 0 6px 0; color:#202124; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">Sign in with Google</h3>
+      <p style="font-size:0.88rem; color:#5f6368; margin:0 0 22px 0;">to continue to Fagun AI</p>
 
-        <!-- Option 2: mejbaur.bahar@gmail.com -->
-        <button type="button" id="google-opt-admin" onclick="executeGoogleOAuth('mejbaur.bahar@gmail.com', 'Mejbaur Bahar (Admin)', 'https://media.licdn.com/dms/image/v2/D4E03AQHEita4mm9fSw/profile-displayphoto-scale_200_200/B4EaDxHdwpI8Ag-/0/1790751662592?e=1794441600&v=beta&t=-1jv-6mxVOc49o3uC4QSBfeCbtf3kbTWrw0bFoMRIIg')" style="display:flex; align-items:center; gap:12px; padding:12px 14px; background:rgba(255,255,255,0.04); border:1px solid #334155; border-radius:10px; cursor:pointer; text-align:left; transition:all 0.2s;" onmouseover="this.style.background='rgba(245, 158, 11, 0.1)'; this.style.borderColor='#f59e0b';" onmouseout="this.style.background='rgba(255,255,255,0.04)'; this.style.borderColor='#334155';">
-          <img src="https://media.licdn.com/dms/image/v2/D4E03AQHEita4mm9fSw/profile-displayphoto-scale_200_200/B4EaDxHdwpI8Ag-/0/1790751662592?e=1794441600&v=beta&t=-1jv-6mxVOc49o3uC4QSBfeCbtf3kbTWrw0bFoMRIIg" style="width:38px; height:38px; border-radius:50%; border:2px solid #f59e0b;" alt="Admin User">
-          <div style="flex:1;">
-            <div style="font-size:0.86rem; font-weight:700; color:#f8fafc;">Mejbaur Bahar (Admin)</div>
-            <div style="font-size:0.75rem; color:#94a3b8;">mejbaur.bahar@gmail.com</div>
-          </div>
-          <span style="font-size:0.7rem; padding:3px 8px; border-radius:12px; background:rgba(245, 158, 11, 0.15); color:#fbbf24; font-weight:600;">👑 Admin</span>
-        </button>
-
-        <!-- Option 3: Custom Google Email Input -->
-        <div id="google-custom-box" style="margin-top:6px; padding:12px; border-radius:8px; background:rgba(15, 23, 42, 0.6); border:1px dashed #475569;">
-          <div style="font-size:0.76rem; color:#cbd5e1; font-weight:600; margin-bottom:6px;">Or sign in with another Google email:</div>
-          <input type="email" id="google-custom-email" placeholder="e.g. user@gmail.com" class="input-ctrl" style="margin-bottom:8px;" value="">
-          <input type="text" id="google-custom-name" placeholder="Full Name (e.g. Alex Tester)" class="input-ctrl" style="margin-bottom:10px;" value="">
-          <button type="button" class="btn btn-primary" style="width:100%; justify-content:center; padding:8px;" onclick="handleCustomGoogleSubmit()">
-            Sign In with Google Account
+      <form id="google-signin-form" onsubmit="event.preventDefault(); submitGoogleSignIn();">
+        <div style="margin-bottom:14px;">
+          <input type="email" id="google-email-input" placeholder="Email or phone" class="input-ctrl" required style="width:100%; padding:13px 14px; border:1px solid #dadce0; border-radius:6px; font-size:0.95rem; color:#202124; background:#ffffff; box-sizing:border-box; outline:none;" onfocus="this.style.borderColor='#1a73e8'; this.style.boxShadow='0 0 0 1px #1a73e8';" onblur="this.style.borderColor='#dadce0'; this.style.boxShadow='none';">
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:24px;">
+          <button type="button" onclick="closeGooglePickerModal()" style="background:transparent; border:none; color:#1a73e8; font-weight:600; font-size:0.86rem; cursor:pointer; padding:6px 0;">Cancel</button>
+          <button type="submit" id="google-next-btn" style="background:#1a73e8; color:#ffffff; border:none; border-radius:6px; padding:10px 24px; font-weight:600; font-size:0.88rem; cursor:pointer; transition:background 0.2s;" onmouseover="this.style.background='#1557b0'" onmouseout="this.style.background='#1a73e8'">
+            Next
           </button>
         </div>
-      </div>
-      <div style="text-align:center; margin-top:14px; font-size:0.72rem; color:#64748b;">
-        Protected by Google OAuth 2.0 • Data saved in SQLite repo database
-      </div>
-    </div>
-  </div>
+      </form>
     </div>
   </div>
 
   <main class="container" role="main">
 
-    <!-- Admin Oversight Command Center (Visible when logged in as mejbaur.bahar@gmail.com) -->
-    <section id="admin-oversight-section" class="admin-panel">
+    <!-- Dedicated Settings Page View (Toggled via Top Nav '⚙️ Settings') -->
+    <div id="settings-page-view" style="display:none;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; padding:16px 20px; background:rgba(30, 41, 59, 0.6); border:1px solid #334155; border-radius:12px;">
+        <div>
+          <h2 style="font-size:1.3rem; font-weight:700; color:#f8fafc; margin:0 0 4px 0;">⚙️ Platform Settings & Publishing Schedule</h2>
+          <div style="font-size:0.84rem; color:#94a3b8;">Manage your connected social platforms, account vanity URLs, and custom publishing schedules.</div>
+        </div>
+        <button class="btn btn-primary" onclick="showDashboardView()" style="gap:6px; font-size:0.82rem; padding:8px 16px;">
+          ← Back to Dashboard
+        </button>
+      </div>
+
+      <!-- User Social Media Onboarding & Schedule Customization Panel -->
+      <section id="user-setup-section" class="user-setup-panel" style="margin-top:0;">
+        <div class="section-header-row">
+          <div>
+            <h3 class="section-title" style="font-size:1.1rem;">
+              Connected Social Accounts & Schedule Config
+            </h3>
+            <div class="section-subtitle">Toggle active channels, customize delivery slots, or sync with default SQA schedule.</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <label style="font-size:0.8rem; color:#cbd5e1; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:8px;">
+              <input type="checkbox" id="setup-use-default" checked onchange="toggleDefaultSchedule(this.checked)">
+              Use Default SQA Schedule (BST)
+            </label>
+            <button class="btn btn-primary" onclick="saveUserSocialConfig()">💾 Save Configuration</button>
+          </div>
+        </div>
+
+        <div class="setup-channels-grid">
+          <!-- 1. LinkedIn Config -->
+          <div class="setup-channel-card">
+            <div class="setup-channel-top">
+              <span class="setup-channel-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#0a66c2"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                LinkedIn
+              </span>
+              <label class="toggle-switch">
+                <input type="checkbox" id="cfg-linkedin-connected" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="form-group">
+              <label>Vanity Handle / Profile URL</label>
+              <input type="text" id="cfg-linkedin-handle" class="form-input" value="in/mejbaur">
+            </div>
+            <div class="form-group">
+              <label>Publishing Time Slot</label>
+              <input type="text" id="cfg-linkedin-slot" class="form-input" value="10:00 AM BST">
+            </div>
+          </div>
+
+          <!-- 2. X / Twitter Config -->
+          <div class="setup-channel-card">
+            <div class="setup-channel-top">
+              <span class="setup-channel-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#f8fafc"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                X (Twitter)
+              </span>
+              <label class="toggle-switch">
+                <input type="checkbox" id="cfg-x-connected" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="form-group">
+              <label>Username / Handle</label>
+              <input type="text" id="cfg-x-handle" class="form-input" value="@fagun018">
+            </div>
+            <div class="form-group">
+              <label>Publishing Time Slot</label>
+              <input type="text" id="cfg-x-slot" class="form-input" value="02:00 PM BST">
+            </div>
+          </div>
+
+          <!-- 3. Facebook Personal Profile -->
+          <div class="setup-channel-card">
+            <div class="setup-channel-top">
+              <span class="setup-channel-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                Facebook Profile
+              </span>
+              <label class="toggle-switch">
+                <input type="checkbox" id="cfg-facebook-connected" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="form-group">
+              <label>Username / Handle</label>
+              <input type="text" id="cfg-facebook-handle" class="form-input" value="@mbfagun">
+            </div>
+            <div class="form-group">
+              <label>Publishing Time Slot</label>
+              <input type="text" id="cfg-facebook-slot" class="form-input" value="06:30 PM BST">
+            </div>
+          </div>
+
+          <!-- 4. Facebook Page (MI Unifyld Agro Ltd) -->
+          <div class="setup-channel-card">
+            <div class="setup-channel-top">
+              <span class="setup-channel-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#10b981"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                MI Unifyld Agro Ltd
+              </span>
+              <label class="toggle-switch">
+                <input type="checkbox" id="cfg-agro-connected" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="form-group">
+              <label>Facebook Page Identity</label>
+              <input type="text" id="cfg-agro-handle" class="form-input" value="MI Unifyld Agro Ltd (61594281573717)">
+            </div>
+            <div class="form-group">
+              <label>Publishing Time Slot</label>
+              <input type="text" id="cfg-agro-slot" class="form-input" value="07:30 PM BST">
+            </div>
+          </div>
+
+          <!-- 5. Instagram Profile -->
+          <div class="setup-channel-card">
+            <div class="setup-channel-top">
+              <span class="setup-channel-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#e1306c"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                Instagram
+              </span>
+              <label class="toggle-switch">
+                <input type="checkbox" id="cfg-instagram-connected" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="form-group">
+              <label>Handle / Account</label>
+              <input type="text" id="cfg-instagram-handle" class="form-input" value="@koy_jabo">
+            </div>
+            <div class="form-group">
+              <label>Publishing Time Slot</label>
+              <input type="text" id="cfg-instagram-slot" class="form-input" value="08:30 PM BST">
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Complete Autonomous Dashboard Master View -->
+    <div id="dashboard-sections">
+
+      <!-- Admin Oversight Command Center (Visible when logged in as mejbaur.bahar@gmail.com) -->
+      <section id="admin-oversight-section" class="admin-panel">
       <div class="section-header-row">
         <div>
           <h2 class="section-title" style="color:#fbbf24;">
@@ -1737,136 +1813,6 @@
             </tr>
           </tbody>
         </table>
-      </div>
-    </section>
-
-    <!-- User Social Media Onboarding & Schedule Customization Panel -->
-    <section id="user-setup-section" class="user-setup-panel">
-      <div class="section-header-row">
-        <div>
-          <h2 class="section-title">
-            ⚙️ My Social Accounts & Publishing Schedule
-          </h2>
-          <div class="section-subtitle">Connect your platforms, customize publication times, or enable the default enterprise SQA schedule.</div>
-        </div>
-        <div style="display:flex; align-items:center; gap:12px;">
-          <label style="font-size:0.8rem; color:#cbd5e1; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:8px;">
-            <input type="checkbox" id="setup-use-default" checked onchange="toggleDefaultSchedule(this.checked)">
-            Use Default SQA Schedule (BST)
-          </label>
-          <button class="btn btn-primary" onclick="saveUserSocialConfig()">💾 Save Configuration</button>
-        </div>
-      </div>
-
-      <div class="setup-channels-grid">
-        <!-- 1. LinkedIn Config -->
-        <div class="setup-channel-card">
-          <div class="setup-channel-top">
-            <span class="setup-channel-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="#0a66c2"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-              LinkedIn
-            </span>
-            <label class="toggle-switch">
-              <input type="checkbox" id="cfg-linkedin-connected" checked>
-              <span class="slider"></span>
-            </label>
-          </div>
-          <div class="form-group">
-            <label>Vanity Handle / Profile URL</label>
-            <input type="text" id="cfg-linkedin-handle" class="form-input" value="in/mejbaur">
-          </div>
-          <div class="form-group">
-            <label>Publishing Time Slot</label>
-            <input type="text" id="cfg-linkedin-slot" class="form-input" value="10:00 AM BST">
-          </div>
-        </div>
-
-        <!-- 2. X / Twitter Config -->
-        <div class="setup-channel-card">
-          <div class="setup-channel-top">
-            <span class="setup-channel-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="#f8fafc"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-              X (Twitter)
-            </span>
-            <label class="toggle-switch">
-              <input type="checkbox" id="cfg-x-connected" checked>
-              <span class="slider"></span>
-            </label>
-          </div>
-          <div class="form-group">
-            <label>Username / Handle</label>
-            <input type="text" id="cfg-x-handle" class="form-input" value="@fagun018">
-          </div>
-          <div class="form-group">
-            <label>Publishing Time Slot</label>
-            <input type="text" id="cfg-x-slot" class="form-input" value="02:00 PM BST">
-          </div>
-        </div>
-
-        <!-- 3. Facebook Personal Profile -->
-        <div class="setup-channel-card">
-          <div class="setup-channel-top">
-            <span class="setup-channel-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-              Facebook Profile
-            </span>
-            <label class="toggle-switch">
-              <input type="checkbox" id="cfg-facebook-connected" checked>
-              <span class="slider"></span>
-            </label>
-          </div>
-          <div class="form-group">
-            <label>Username / Handle</label>
-            <input type="text" id="cfg-facebook-handle" class="form-input" value="@mbfagun">
-          </div>
-          <div class="form-group">
-            <label>Publishing Time Slot</label>
-            <input type="text" id="cfg-facebook-slot" class="form-input" value="06:30 PM BST">
-          </div>
-        </div>
-
-        <!-- 4. Facebook Page: MI Unifyld Agro Ltd -->
-        <div class="setup-channel-card">
-          <div class="setup-channel-top">
-            <span class="setup-channel-title">
-              🌾 MI Unifyld Agro Ltd
-            </span>
-            <label class="toggle-switch">
-              <input type="checkbox" id="cfg-agro-connected" checked>
-              <span class="slider"></span>
-            </label>
-          </div>
-          <div class="form-group">
-            <label>Page Name / Page ID</label>
-            <input type="text" id="cfg-agro-handle" class="form-input" value="MI Unifyld Agro Ltd (61594281573717)">
-          </div>
-          <div class="form-group">
-            <label>Publishing Time Slot</label>
-            <input type="text" id="cfg-agro-slot" class="form-input" value="07:30 PM BST">
-          </div>
-        </div>
-
-        <!-- 5. Instagram Profile -->
-        <div class="setup-channel-card">
-          <div class="setup-channel-top">
-            <span class="setup-channel-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="#e1306c"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-              Instagram
-            </span>
-            <label class="toggle-switch">
-              <input type="checkbox" id="cfg-instagram-connected" checked>
-              <span class="slider"></span>
-            </label>
-          </div>
-          <div class="form-group">
-            <label>Handle / Account</label>
-            <input type="text" id="cfg-instagram-handle" class="form-input" value="@koy_jabo">
-          </div>
-          <div class="form-group">
-            <label>Publishing Time Slot</label>
-            <input type="text" id="cfg-instagram-slot" class="form-input" value="08:30 PM BST">
-          </div>
-        </div>
       </div>
     </section>
 
@@ -2922,6 +2868,8 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       </div>
     </section>
 
+    </div><!-- End of #dashboard-sections -->
+
   </main>
 
   <footer>
@@ -3037,6 +2985,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       const signPass = document.getElementById('signup-input-password');
       const gEmail = document.getElementById('google-custom-email');
       const gName = document.getElementById('google-custom-name');
+      const gEmailInput = document.getElementById('google-email-input');
 
       if (logEmail) logEmail.value = '';
       if (logPass) logPass.value = '';
@@ -3045,6 +2994,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       if (signPass) signPass.value = '';
       if (gEmail) gEmail.value = '';
       if (gName) gName.value = '';
+      if (gEmailInput) gEmailInput.value = '';
 
       if (errAlert) errAlert.style.display = 'none';
       if (succAlert) {
@@ -3068,12 +3018,73 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
 
     function triggerGoogleLoginModal() {
       const modal = document.getElementById('google-picker-modal');
+      const gEmailInput = document.getElementById('google-email-input');
+      if (gEmailInput) {
+        gEmailInput.value = '';
+        setTimeout(() => gEmailInput.focus(), 150);
+      }
       if (modal) modal.style.display = 'flex';
     }
 
     function closeGooglePickerModal() {
       const modal = document.getElementById('google-picker-modal');
       if (modal) modal.style.display = 'none';
+    }
+
+    async function submitGoogleSignIn() {
+      const emailInput = document.getElementById('google-email-input');
+      const email = emailInput?.value.trim();
+      if (!email || !email.includes('@') || !email.includes('.')) {
+        alert('Please enter a valid Google Account email.');
+        return;
+      }
+      const namePart = email.split('@')[0];
+      const name = namePart.replace(/[._-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      await executeGoogleOAuth(email, name, 'https://avatars.githubusercontent.com/u/245405312?v=4');
+    }
+
+    function showDashboardView() {
+      const dash = document.getElementById('dashboard-sections');
+      const sett = document.getElementById('settings-page-view');
+      const navDash = document.getElementById('nav-btn-dashboard');
+      const navSett = document.getElementById('nav-btn-settings');
+
+      if (dash) dash.style.display = 'block';
+      if (sett) sett.style.display = 'none';
+
+      if (navDash) {
+        navDash.style.background = 'rgba(56, 189, 248, 0.15)';
+        navDash.style.borderColor = '#38bdf8';
+        navDash.style.color = '#38bdf8';
+      }
+      if (navSett) {
+        navSett.style.background = 'rgba(255, 255, 255, 0.05)';
+        navSett.style.borderColor = '#334155';
+        navSett.style.color = '#cbd5e1';
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showSettingsView() {
+      const dash = document.getElementById('dashboard-sections');
+      const sett = document.getElementById('settings-page-view');
+      const navDash = document.getElementById('nav-btn-dashboard');
+      const navSett = document.getElementById('nav-btn-settings');
+
+      if (dash) dash.style.display = 'none';
+      if (sett) sett.style.display = 'block';
+
+      if (navSett) {
+        navSett.style.background = 'rgba(56, 189, 248, 0.15)';
+        navSett.style.borderColor = '#38bdf8';
+        navSett.style.color = '#38bdf8';
+      }
+      if (navDash) {
+        navDash.style.background = 'rgba(255, 255, 255, 0.05)';
+        navDash.style.borderColor = '#334155';
+        navDash.style.color = '#cbd5e1';
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     async function executeGoogleOAuth(email, name, avatar) {
@@ -3296,6 +3307,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       currentAuthUser = null;
 
       renderAuthUI();
+      showDashboardView();
       openAuthModal('You have successfully logged out. Please sign in or sign up to access the system.');
     }
 
