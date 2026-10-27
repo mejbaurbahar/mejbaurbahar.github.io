@@ -3275,12 +3275,17 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       }
     }
 
-    function saveGoogleAccountLocally(email, name, avatar) {
+    function saveGoogleAccountLocally(email, name, avatar, role) {
       if (!email) return;
       try {
         let accounts = getSavedGoogleAccounts();
         accounts = accounts.filter(a => a.email.toLowerCase() !== email.toLowerCase());
-        accounts.unshift({ email, name: name || email.split('@')[0], avatar: avatar || '' });
+        accounts.unshift({
+          email,
+          name: name || email.split('@')[0],
+          avatar: avatar || '',
+          role: role || 'user'
+        });
         if (accounts.length > 5) accounts = accounts.slice(0, 5);
         localStorage.setItem('fagun_saved_google_accounts', JSON.stringify(accounts));
       } catch (e) {}
@@ -3302,7 +3307,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
 
         let html = '';
         accounts.forEach(acc => {
-          const isAdmin = acc.email === 'mejbaur.bahar@gmail.com';
+          const isAdmin = acc.role === 'admin';
           const badge = isAdmin
             ? '<span style="font-size:0.75rem; color:#b45309; font-weight:600; background:#fef3c7; border:1px solid #fde68a; padding:2px 8px; border-radius:12px;">👑 Admin</span>'
             : '<span style="font-size:0.75rem; color:#0369a1; font-weight:600; background:#e0f2fe; border:1px solid #bae6fd; padding:2px 8px; border-radius:12px;">👤 User</span>';
@@ -3313,7 +3318,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
             : `<div style="width:40px; height:40px; border-radius:50%; background:#1a73e8; color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:600; font-size:1rem;">${initial}</div>`;
 
           html += `
-            <div class="google-account-row" onclick="selectGoogleAccount('${acc.email}', '${acc.name || ''}', '${acc.avatar || ''}')" style="display:flex; align-items:center; gap:14px; padding:12px 14px; border-radius:8px; cursor:pointer; transition:all 0.15s ease; border-bottom:1px solid #f1f3f4;" onmouseover="this.style.background='#f8fafd'; this.style.boxShadow='0 1px 3px rgba(60,64,67,0.1)';" onmouseout="this.style.background='transparent'; this.style.boxShadow='none';">
+            <div class="google-account-row" onclick="selectGoogleAccount('${acc.email}', '${acc.name || ''}', '${acc.avatar || ''}', '${acc.role || 'user'}')" style="display:flex; align-items:center; gap:14px; padding:12px 14px; border-radius:8px; cursor:pointer; transition:all 0.15s ease; border-bottom:1px solid #f1f3f4;" onmouseover="this.style.background='#f8fafd'; this.style.boxShadow='0 1px 3px rgba(60,64,67,0.1)';" onmouseout="this.style.background='transparent'; this.style.boxShadow='none';">
               ${avatarImg}
               <div style="flex:1;">
                 <div style="font-size:0.92rem; font-weight:600; color:#202124;">${acc.name || acc.email}</div>
@@ -3384,8 +3389,8 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       if (modal) modal.style.display = 'none';
     }
 
-    async function selectGoogleAccount(email, name, avatar) {
-      await executeGoogleOAuth(email, name, avatar);
+    async function selectGoogleAccount(email, name, avatar, role) {
+      await executeGoogleOAuth(email, name, avatar, role);
     }
 
     async function submitGoogleSignIn() {
@@ -3444,7 +3449,7 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    async function executeGoogleOAuth(email, name, avatar) {
+    async function executeGoogleOAuth(email, name, avatar, role) {
       try {
         const res = await fetch(`${getApiBase()}/api/auth/google`, {
           method: 'POST',
@@ -3462,19 +3467,19 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
           currentAuthUser = data.user;
           localStorage.setItem('fagun_auth_token', currentAuthToken);
           localStorage.setItem('fagun_auth_email', data.user.email);
-          saveGoogleAccountLocally(data.user.email, data.user.name, data.user.avatar_url);
+          saveGoogleAccountLocally(data.user.email, data.user.name, data.user.avatar_url, data.user.role);
           closeGooglePickerModal();
           closeAuthModal();
           await hydrateSession(data);
         } else {
-          saveGoogleAccountLocally(email, name, avatar);
-          await localSwitchFallback(email, name);
+          saveGoogleAccountLocally(email, name, avatar, role || 'user');
+          await localSwitchFallback(email, name, role || 'user');
           closeGooglePickerModal();
           closeAuthModal();
         }
       } catch (e) {
-        saveGoogleAccountLocally(email, name, avatar);
-        await localSwitchFallback(email, name);
+        saveGoogleAccountLocally(email, name, avatar, role || 'user');
+        await localSwitchFallback(email, name, role || 'user');
         closeGooglePickerModal();
         closeAuthModal();
       }
@@ -3694,23 +3699,15 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
       }
     }
 
-    async function localSwitchFallback(email, nameFallback) {
-      const isAdmin = email === 'mejbaur.bahar@gmail.com';
+    async function localSwitchFallback(email, nameFallback, roleFallback) {
+      const isAdmin = (roleFallback === 'admin') || (currentAuthUser && currentAuthUser.role === 'admin');
       currentAuthToken = 'token_' + Date.now();
       localStorage.setItem('fagun_auth_token', currentAuthToken);
       localStorage.setItem('fagun_auth_email', email);
 
       let extractedName = nameFallback;
       if (!extractedName) {
-        if (isAdmin) {
-          extractedName = 'Mejbaur Bahar (Admin)';
-        } else if (email === 'fagun115946@gmail.com' || email === 'fagunti115946@gmail.com') {
-          extractedName = 'Mejbaur Bahar Fagun';
-        } else if (email.includes('koyjabo')) {
-          extractedName = 'Koy Jabo';
-        } else {
-          extractedName = email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-        }
+        extractedName = email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
       }
 
       currentAuthUser = {
@@ -3818,16 +3815,15 @@ At MI Unifyld Agro Ltd, we are bringing software quality engineering and automat
           }
 
           // Strict Multi-Tenant Isolation Guard
-          const cleanEmail = (currentAuthUser.email || '').toLowerCase().trim();
-          const isMejbaur = (cleanEmail === 'fagun115946@gmail.com' || cleanEmail === 'mejbaur.bahar@gmail.com');
+          const isAdmin = (currentAuthUser.role === 'admin');
 
-          // Block personal MI Unifyld Agro Ltd assets from non-Mejbaur accounts
+          // Block administrative / private brand assets from standard user accounts
           const agroCard = document.querySelector('.card-agro');
           const agroWorker = document.querySelector('.worker-channel.tag-agro')?.closest('.worker-card');
           const agroPreviewTab = document.querySelector('.preview-tab-btn[onclick*="agro"]');
           const agroPreviewCard = document.querySelector('.mock-fb-card[data-platform="agro"]');
 
-          if (!isMejbaur) {
+          if (!isAdmin) {
             if (agroCard) agroCard.style.display = 'none';
             if (agroWorker) agroWorker.style.display = 'none';
             if (agroPreviewTab) agroPreviewTab.style.display = 'none';
